@@ -11,27 +11,35 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Masuk untuk memulai sesi anda sebagai <b>admin</b></p>
-
-                <form action="#" method="post">
+                {{-- Error Alert --}}
+                @if(session('errors'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{session('errors')->first('login_gagal')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+                <form action="{{ route('admin.login.proses_login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input
-                            id="email"
-                            type="email"
-                            placeholder="Email"
-                            class="form-control @error('email') is-invalid @enderror"
-                            name="email"
-                            value="{{ old('email') }}"
+                            id="username"
+                            type="text"
+                            placeholder="Username"
+                            class="form-control @error('username') is-invalid @enderror"
+                            name="username"
+                            value="{{ old('username') }}"
                             required="required"
-                            autocomplete="email"
+                            autocomplete="username"
                             autofocus="autofocus">
-                        {{-- <input type="email" class="form-control" placeholder="Email" autocomplete="off"> --}}
+                        {{-- <input type="username" class="form-control" placeholder="username" autocomplete="off"> --}}
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        @error('email')
+                        @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
