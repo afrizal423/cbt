@@ -1,7 +1,7 @@
 @php
 $links = [
     [
-        "href" => route('dashboard'),
+        "href" => "#",
         "text" => "Dasboard",
         "icon" => "fas fa-home",
         "is_multi" => false

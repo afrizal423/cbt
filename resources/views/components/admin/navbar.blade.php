@@ -16,28 +16,16 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                @if (Auth::user()->profile_photo_path)
-                <img
-                    src="{{ Auth::user()->profile_photo_path }}"
-                    class="user-image img-circle elevation-2"
-                    alt="User Imagess">
-                @else
                 <img
                     src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
                     class="user-image img-circle elevation-2"
                     alt="User Imagess">
-                    @endif
                     {{-- <span class="d-none d-md-inline">{{ Auth::user()->name }}</span> --}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        @if (Auth::user()->profile_photo_path)
-                        <img
-                        src="{{ Auth::user()->profile_photo_path }}"
-                        class="img-circle elevation-2"
-                        alt="User Imagess">
-                        @else
+
                         <img
                             src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
                             class="img-circle elevation-2"
@@ -45,10 +33,9 @@
                             style="display: block;
                             margin-left: auto;
                             margin-right: auto;">
-                            @endif
 
                             <p>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->username }}
                                 <small>Bergabung pada @DateIndo(Auth::user()->created_at)</small>
                             </p>
                         </li>
@@ -59,16 +46,16 @@
 
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href="{{route('profile.show')}}" class="btn btn-default btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
                             <a
                                 class="btn btn-default btn-flat float-right"
-                                href="{{ route('logout') }}"
+                                href="{{ route('admin.logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
 
                                 <form
                                     id="logout-form"
-                                    action="{{ route('logout') }}"
+                                    action="{{ route('admin.logout') }}"
                                     method="POST"
                                     style="display: none;">
                                     @csrf

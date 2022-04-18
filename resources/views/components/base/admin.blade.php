@@ -28,9 +28,9 @@
     <body class="hold-transition sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
-            @include('components.navbar')
+            @include('components.admin.navbar')
 
-            @include('components.sidebar')
+            @include('components.admin.sidebar')
 
             <div class="content-wrapper">
                 {{ $slot }}

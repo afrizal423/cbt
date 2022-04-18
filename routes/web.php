@@ -23,10 +23,18 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
     Route::get('/login', function(){
         if (Auth::user()) {
-            return redirect()->route('nyoba');
+            return redirect()->route('admin.dashboard');
         }
         return view('pages.admin.auth.login');
     })->name('login');
     Route::post('proses_login', [ AuthController::class, 'Proses_login'])->name('login.proses_login');
+    Route::post('logout', [ AuthController::class, 'logout'])->name('logout');
+
     // Route::get('/login', [ LoginController::class, "index" ])->name('login');
+
+    Route::group(['middleware'=> ['auth.admin']], function(){
+        Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
+    });
+
+
 });

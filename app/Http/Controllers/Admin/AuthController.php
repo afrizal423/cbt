@@ -21,14 +21,18 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('username', 'password'))) {
             $user = Auth::user();
             if ($user->level == 'admin') {
-                return redirect()->intended('admin');
-            } elseif ($user->level == 'editor') {
-                return redirect()->intended('editor');
+                return redirect()->route('admin.dashboard');
             }
             return redirect()->intended('/');
         }
         return redirect()->route('admin.login')
             ->withInput()
             ->withErrors(['login_gagal' => 'Data yang anda masukkan salah.']);
+    }
+    public function logout(Request $request)
+    {
+       $request->session()->flush();
+       Auth::logout();
+       return redirect()->route('admin.login');
     }
 }
