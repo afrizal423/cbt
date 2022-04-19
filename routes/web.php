@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");
+        Route::view("data_user",'pages.admin.users.index')->name("data_user");
     });
 
 

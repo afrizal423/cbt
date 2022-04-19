@@ -16,6 +16,7 @@
         "rorecek/laravel-ulid": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
         "krlove/eloquent-model-generator": "^2.0",
         "laravel/sail": "^1.0.1",

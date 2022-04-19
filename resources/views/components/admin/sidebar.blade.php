@@ -7,6 +7,12 @@ $links = [
         "is_multi" => false
     ],
     [
+        "href" => route('admin.data_user'),
+        "text" => "Manajemen User",
+        "icon" => "fa fa-users",
+        "is_multi" => false
+    ],
+    [
         "text" => "Administrasi",
         "icon" => "fa fa-list-alt",
         "is_multi" => true,
