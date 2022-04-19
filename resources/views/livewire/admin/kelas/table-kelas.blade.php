@@ -26,9 +26,9 @@
         </x-slot>
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('id')" role="button" href="#" style="color: black">
-                    ID
-                    @include('components.sort-icon', ['field' => 'id'])
+                <th><a wire:click.prevent="sortBy('tingkat')" role="button" href="#" style="color: black">
+                    Tingkat
+                    @include('components.sort-icon', ['field' => 'tingkat'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('kode_kelas')" role="button" href="#" style="color: black">
                     Kode Kelas
@@ -43,13 +43,13 @@
         </x-slot>
         <x-slot name="body">
             @foreach ($kelases as $kls)
-                <tr x-data="window.__controller.dataTableController({{ $kls->id }})">
-                    <td>{{ $kls->id }}</td>
-                    <td>{{ $divisi->kode_kelas }}</td>
-                    <td>{{ $divisi->nama_kelas }}</td>
+                <tr x-data="window.__controller.dataTableController('{{ $kls->id }}')">
+                    <td>{{ $kls->tingkat }}</td>
+                    <td>{{ $kls->kode_kelas }}</td>
+                    <td>{{ $kls->nama_kelas }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" wire:click.prevent="edit({{ $divisi->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                        <a role="button" wire:click.prevent="edit('{{ $kls->id }}')" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" x-on:click.prevent="deleteItem('{{ $kls->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -69,13 +69,18 @@
                <div class="modal-body">
                     <form>
                         <div class="form-group">
+                            <label for="exampleFormControlInput1">Tingkat Kelas</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Tingkat Kelas" wire:model.defer="kelas.tingkat" required>
+                            @error('kelas.tingkat') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="form-group">
                             <label for="exampleFormControlInput1">Kode Kelas</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kode Kelas" wire:model="kelas.kode_kelas" required>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kode Kelas" wire:model.defer="kelas.kode_kelas" required>
                             @error('kelas.kode_kelas') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Kelas</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Kelas" wire:model="kelas.nama_kelas" required>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Kelas" wire:model.defer="kelas.nama_kelas" required>
                             @error('kelas.nama_kelas') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                     </form>

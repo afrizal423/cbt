@@ -28,15 +28,13 @@
         {{-- custom js disini  --}}
         <script type="text/javascript">
             window.livewire.on('show', () => {
-                console.log("buka modal");
+                // console.log("buka modal");
                 $('#exampleModal').modal('show');
                 $("#exampleModal").appendTo("body");
             });
             window.livewire.on('tutup', () => {
-                console.log("tutup modal");
+                // console.log("tutup modal");
                 $('.close-modal').click();
-
-
             });
         </script>
     </x-slot>

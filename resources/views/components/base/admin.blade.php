@@ -22,6 +22,8 @@
         <livewire:styles />
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+
         @stack('script_head')
 
     </head>
@@ -51,6 +53,8 @@
         <!-- AdminLTE for demo purposes -->
         {{-- <script src="../../dist/js/demo.js"></script> --}}
         <livewire:scripts />
+        {{-- <script src="{{ asset('js/alpine.js') }}"></script> --}}
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @stack('modals')
         <!-- AdminLTE for demo purposes -->
         @isset($script_footer)

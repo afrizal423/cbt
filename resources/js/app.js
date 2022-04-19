@@ -1,5 +1,5 @@
 require('./bootstrap');
-import 'alpinejs';
+// import 'alpinejs';
 import swal from 'sweetalert2';
 window.Swal = swal;
 
@@ -18,6 +18,7 @@ function dataTableController (id) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     Livewire.emit('deleteItem', this.id);
+                    this.id = '';
                 }
             })
         }

@@ -56,45 +56,40 @@ class TableKelas extends Component
     {
         $this->validate([
             'kelas.kode_kelas' => 'required',
+            'kelas.tingkat' => 'required',
             'kelas.nama_kelas' => 'required'
         ]);
-        $this->tutupModal();
-        $this->resetInputFields();
-        session()->flash('success','Category Created Successfully!!');
-        // dd($this->kelas);
-        // try{
-        //     // Create Category
-        //     $this->model::create([
-        //         'nama_divisi'=>$this->nama_divisi
-        //     ]);
-        //     $this->tutupModal();
+        try{
+            // Create Category
+            $this->model::create($this->kelas);
+            $this->tutupModal();
 
-        //     // Set Flash Message
-        //     session()->flash('success','Category Created Successfully!!');
+            // Set Flash Message
+            session()->flash('success','Category Created Successfully!!');
 
-        //     // Reset Form Fields After Creating Category
-        //     $this->resetInputFields();
-        // }catch(\Exception $e){
-        //     // Set Flash Message
-        //     session()->flash('error','Something goes wrong while creating category!!');
+            // Reset Form Fields After Creating Category
+            $this->resetInputFields();
+        }catch(\Exception $e){
+            // Set Flash Message
+            session()->flash('error','Something goes wrong while creating category!!');
 
-        //     // Reset Form Fields After Creating Category
-        //     $this->resetInputFields();
+            // Reset Form Fields After Creating Category
+            $this->resetInputFields();
 
-        // }
+        }
     }
     public function update()
     {
         $this->validate([
-            'nama_divisi' => 'required'
+            'kelas.kode_kelas' => 'required',
+            'kelas.tingkat' => 'required',
+            'kelas.nama_kelas' => 'required'
         ]);
 
         try {
             // Update
-            $div = $this->model::find($this->id_divisi);
-            $div->update([
-                'nama_divisi' => $this->nama_divisi
-            ]);
+            $div = $this->model::find($this->kelas['id']);
+            $div->update($this->kelas);
             $this->tutupModal();
 
 
@@ -117,9 +112,10 @@ class TableKelas extends Component
         $data = $this->model::find($id);
 
         if (!$data) {
+            dd($data);
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Gagal menghapus data " . $this->name
+                "message" => "Gagal menghapus data "
             ]);
             return;
         }
@@ -127,7 +123,7 @@ class TableKelas extends Component
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
-            "message" => "Data " . $this->nama_divisi . " berhasil dihapus!"
+            "message" => "Data berhasil dihapus!"
         ]);
     }
     /**
@@ -145,9 +141,11 @@ class TableKelas extends Component
     }
     public function edit($id)
     {
-        $div = $this->model::findOrFail($id);
-        $this->nama_divisi = $div->nama_divisi;
-        $this->id_divisi = $id;
+        $kls = $this->model::findOrFail($id);
+
+        $this->kelas = $kls->toArray();
+        // dd($this->kelas);
+        // $this->id_divisi = $id;
         $this->jikaUpdate = true;
         $this->openModal();
     }

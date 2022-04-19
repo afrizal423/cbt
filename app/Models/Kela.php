@@ -20,7 +20,7 @@ class Kela extends Model
     /**
      * @var array
      */
-    protected $fillable = ['kode_kelas', 'nama_kelas'];
+    protected $fillable = ['kode_kelas', 'nama_kelas', 'tingkat'];
 
     public static function search($query)
     {

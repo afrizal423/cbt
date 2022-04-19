@@ -16,7 +16,6 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
-        "alpinejs": "^3.9.6",
         "sweetalert2": "^11.4.8"
     }
 }
