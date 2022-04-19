@@ -22,6 +22,13 @@ class Kela extends Model
      */
     protected $fillable = ['kode_kelas', 'nama_kelas'];
 
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('kode_kelas', 'like', '%'.$query.'%')
+                ->orWhere('nama_kelas', 'like', '%'.$query.'%');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

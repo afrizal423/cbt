@@ -1,28 +1,39 @@
 @php
 $links = [
     [
-        "href" => "#",
+        "href" => route('admin.dashboard'),
         "text" => "Dasboard",
         "icon" => "fas fa-home",
         "is_multi" => false
     ],
     [
-        "text" => "Kelola Akun",
-        "icon" => "fas fa-users",
+        "text" => "Administrasi",
+        "icon" => "fa fa-list-alt",
         "is_multi" => true,
         "href" => [
             [
-                "section_text" => "Data Akun",
-                "section_icon" => "far fa-circle",
+                "section_text" => "Data kelas",
+                "section_icon" => "fa fa-university fa-fwe",
+                "section_href" => route('admin.data_kelas')
+            ],
+            [
+                "section_text" => "Data Mata Pelajaran",
+                "section_icon" => "fa fa-flask",
                 "section_href" => '#'
             ],
             [
-                "section_text" => "Tambah Akun",
-                "section_icon" => "far fa-circle",
+                "section_text" => "Data Siswa",
+                "section_icon" => "fa fa-users",
                 "section_href" => '#'
             ]
         ]
-    ]
+    ],
+    [
+        "href" => "#",
+        "text" => "Bank Soal",
+        "icon" => "fa fa-book fa-fw",
+        "is_multi" => false
+    ],
 ];
 $navigation_links = json_decode(json_encode($links));
 @endphp
@@ -90,7 +101,7 @@ $navigation_links = json_decode(json_encode($links));
                 @foreach ($link->href as $section)
                 <li class="nav-item">
                   <a href="{{ (url()->current() == $section->section_href) ? '#' : $section->section_href }}" class="nav-link {{ (url()->current() == $section->section_href) ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="{{ $section->section_icon }} nav-icon"></i>
                     <p>{{ $section->section_text }}</p>
                   </a>
                 </li>

@@ -30,10 +30,12 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
     Route::post('proses_login', [ AuthController::class, 'Proses_login'])->name('login.proses_login');
     Route::post('logout', [ AuthController::class, 'logout'])->name('logout');
 
-    // Route::get('/login', [ LoginController::class, "index" ])->name('login');
-
+    // Route admin
     Route::group(['middleware'=> ['auth.admin']], function(){
         Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
+
+        // Route kelas
+        Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");
     });
 
 

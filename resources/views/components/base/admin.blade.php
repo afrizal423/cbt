@@ -52,6 +52,9 @@
         {{-- <script src="../../dist/js/demo.js"></script> --}}
         <livewire:scripts />
         @stack('modals')
-        @stack('script_footer')
+        <!-- AdminLTE for demo purposes -->
+        @isset($script_footer)
+            {{ $script_footer }}
+        @endisset
     </body>
 </html>
