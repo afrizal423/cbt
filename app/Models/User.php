@@ -58,7 +58,14 @@ class User extends Authenticatable
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('name', 'like', '%'.$query.'%')
-                ->orWhere('email', 'like', '%'.$query.'%');
+            : static::where('username', 'like', '%'.$query.'%')
+                ->orWhere('email', 'like', '%'.$query.'%')
+                ->orWhereHas('guru', function($q) use ( $query ){
+                    $q->where('user_id', 'like', '%'.$query.'%')
+                    ->orWhere('nama_guru', 'like', '%'.$query.'%')
+                    ->orWhere('alamat_guru', 'like', '%'.$query.'%')
+                    ->orWhere('jabatan_guru', 'like', '%'.$query.'%')
+                    ->orWhere('notelp_guru', 'like', '%'.$query.'%');
+                });
     }
 }
