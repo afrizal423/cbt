@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                      <a href="" class="-ml- btn btn-primary shadow-none" wire:click.prevent="tambah()">
+                      <a href="{{ route('admin.data_user.tambah') }}" class="-ml- btn btn-primary shadow-none">
                         <span class="fas fa-plus"></span> Tambah Data
                     </a>
             </div>
@@ -63,7 +63,7 @@
                     <td>{{ $usrs->email }}</td>
                     <td>{{ $usrs->level }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" wire:click.prevent="edit('{{ $usrs->id }}')" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" href="{{ route('admin.data_user.update', $usrs->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem('{{ $usrs->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
                     </td>
                 </tr>

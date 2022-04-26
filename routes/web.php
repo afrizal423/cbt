@@ -36,7 +36,14 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");
-        Route::view("data_user",'pages.admin.users.index')->name("data_user");
+
+        // Route data users
+        Route::group(['prefix'=> 'data_user'], function(){
+            Route::view("/",'pages.admin.users.index')->name("data_user");
+            Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
+            Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");
+        });
+
     });
 
 

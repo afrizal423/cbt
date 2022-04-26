@@ -13,8 +13,8 @@ class TableUsers extends Component
     public $name;
 
     public $perPage = 10;
-    public $sortField = "users.id";
-    public $sortAsc = false;
+    public $sortField = "users.username";
+    public $sortAsc = true;
     public $search = '';
     public $kelas, $jikaUpdate;
     protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal"];
@@ -109,7 +109,7 @@ class TableUsers extends Component
     }
     public function delete_item($id)
     {
-        $data = $this->model::find($id);
+        $data = $this->model::with('guru')->find($id);
 
         if (!$data) {
             dd($data);
@@ -119,7 +119,7 @@ class TableUsers extends Component
             ]);
             return;
         }
-
+        $data->guru()->delete();
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
@@ -153,7 +153,7 @@ class TableUsers extends Component
     {
         $user = $this->model::search($this->search)
             // ->whereHas('guru')
-            ->select(['users.email', 'users.username', 'users.level',
+            ->select(['users.id','users.email', 'users.username', 'users.level',
                         'gurus.nama_guru as namanya_guru', 'gurus.jabatan_guru as jabatan_guru',
                         'gurus.notelp_guru as notelpnya_guru'])
             ->join('gurus', 'users.id','=','gurus.user_id')

@@ -34,7 +34,7 @@
         </div>
 
         <div id="table_pagination" class="py-3">
-            {{ $model->links() }}
+            {{ $model->links('vendor.livewire.bootstrap') }}
         </div>
     </div>
 </div>

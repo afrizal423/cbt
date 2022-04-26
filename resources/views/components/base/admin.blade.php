@@ -8,7 +8,6 @@
         @else
         {{ config('app.name', 'Laravel') }}
         @endisset | Laravel 9 - AdminLTE 3</title>
-
         <!-- Google Font: Source Sans Pro -->
         <link
             rel="stylesheet"
@@ -25,6 +24,10 @@
         {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
         @stack('script_head')
+        <!-- Alpine Plugins -->
+        {{-- <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script> --}}
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="{{ asset('inputmask.min.js') }}" ></script>
 
     </head>
     <body class="hold-transition sidebar-mini">
@@ -54,8 +57,9 @@
         {{-- <script src="../../dist/js/demo.js"></script> --}}
         <livewire:scripts />
         {{-- <script src="{{ asset('js/alpine.js') }}"></script> --}}
-        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
         @stack('modals')
+        @stack('scripts')
         <!-- AdminLTE for demo purposes -->
         @isset($script_footer)
             {{ $script_footer }}
