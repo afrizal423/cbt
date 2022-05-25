@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $id
- * @property string $ujian_id
+ * @property string $mapel_id
  * @property string $soal
  * @property mixed $opsi_jawaban
  * @property string $kunci
  * @property string $media_soal
  * @property string $type_soal
  * @property JawabanUjian[] $jawabanUjians
- * @property Ujian $ujian
+ * @property Mapel $mapel
  */
 class Soal extends Model
 {
@@ -25,7 +25,7 @@ class Soal extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ujian_id', 'soal', 'opsi_jawaban', 'kunci', 'media_soal', 'type_soal'];
+    protected $fillable = ['mapel_id', 'soal', 'opsi_jawaban', 'kunci', 'media_soal', 'type_soal'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -38,8 +38,8 @@ class Soal extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function ujian()
+    public function mapel()
     {
-        return $this->belongsTo('App\Models\Ujian');
+        return $this->belongsTo('App\Models\Mapel');
     }
 }

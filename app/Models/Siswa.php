@@ -24,7 +24,7 @@ class Siswa extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nisn', 'nama_siswa', 'tgl_lahir_siswa', 'alamat_siswa'];
+    protected $fillable = ['nisn', 'nama_siswa', 'tgl_lahir_siswa', 'alamat_siswa', 'password'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -26,10 +26,10 @@
         </x-slot>
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('tingkat')" role="button" href="#" style="color: black">
+                {{-- <th><a wire:click.prevent="sortBy('tingkat')" role="button" href="#" style="color: black">
                     Tingkat
                     @include('components.sort-icon', ['field' => 'tingkat'])
-                </a></th>
+                </a></th> --}}
                 <th><a wire:click.prevent="sortBy('kode_kelas')" role="button" href="#" style="color: black">
                     Kode Kelas
                     @include('components.sort-icon', ['field' => 'kode_kelas'])
@@ -44,7 +44,7 @@
         <x-slot name="body">
             @foreach ($kelases as $kls)
                 <tr x-data="window.__controller.dataTableController('{{ $kls->id }}')">
-                    <td>{{ $kls->tingkat }}</td>
+                    {{-- <td>{{ $kls->tingkat }}</td> --}}
                     <td>{{ $kls->kode_kelas }}</td>
                     <td>{{ $kls->nama_kelas }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
@@ -68,11 +68,11 @@
                 </div>
                <div class="modal-body">
                     <form>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleFormControlInput1">Tingkat Kelas</label>
                             <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Tingkat Kelas" wire:model.defer="kelas.tingkat" required>
                             @error('kelas.tingkat') <span class="text-danger error">{{ $message }}</span>@enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Kode Kelas</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kode Kelas" wire:model.defer="kelas.kode_kelas" required>

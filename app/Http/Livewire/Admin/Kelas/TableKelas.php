@@ -56,7 +56,7 @@ class TableKelas extends Component
     {
         $this->validate([
             'kelas.kode_kelas' => 'required',
-            'kelas.tingkat' => 'required',
+            // 'kelas.tingkat' => 'required',
             'kelas.nama_kelas' => 'required'
         ]);
         try{
@@ -82,7 +82,7 @@ class TableKelas extends Component
     {
         $this->validate([
             'kelas.kode_kelas' => 'required',
-            'kelas.tingkat' => 'required',
+            // 'kelas.tingkat' => 'required',
             'kelas.nama_kelas' => 'required'
         ]);
 

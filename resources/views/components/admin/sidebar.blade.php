@@ -22,11 +22,11 @@ $links = [
                 "section_icon" => "fa fa-university fa-fwe",
                 "section_href" => route('admin.data_kelas')
             ],
-            [
-                "section_text" => "Data Mata Pelajaran",
-                "section_icon" => "fa fa-flask",
-                "section_href" => '#'
-            ],
+            // [
+            //     "section_text" => "Data Mata Pelajaran",
+            //     "section_icon" => "fa fa-flask",
+            //     "section_href" => '#'
+            // ],
             [
                 "section_text" => "Data Siswa",
                 "section_icon" => "fa fa-users",
