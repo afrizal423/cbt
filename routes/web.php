@@ -44,6 +44,11 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
             Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");
         });
 
+         // Route data bank soal
+         Route::group(['prefix'=> 'bank_soal'], function(){
+            Route::view("/",'pages.admin.banksoal.index')->name("banksoal");
+        });
+
     });
 
 

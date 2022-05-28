@@ -35,7 +35,7 @@ $links = [
         ]
     ],
     [
-        "href" => "#",
+        "href" => route('admin.banksoal'),
         "text" => "Bank Soal",
         "icon" => "fa fa-book fa-fw",
         "is_multi" => false

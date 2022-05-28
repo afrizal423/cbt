@@ -22,7 +22,21 @@ class Mapel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['kode_mapel', 'nama_mapel', 'kkm_mapel'];
+    protected $fillable = ['kode_mapel',
+                            'nama_mapel',
+                            'kkm_mapel',
+                            'jumlah_opsi_jawaban',
+                            'jumlah_pilihan_ganda',
+                            'jumlah_essai',
+                            'status_mapel'
+                        ];
+
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('kode_mapel', 'like', '%'.$query.'%')
+                ->orWhere('nama_mapel', 'like', '%'.$query.'%');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
