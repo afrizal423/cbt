@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Listsoal;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
          // Route data bank soal
          Route::group(['prefix'=> 'bank_soal'], function(){
             Route::view("/",'pages.admin.banksoal.index')->name("banksoal");
+            Route::get("/{soalId}/listsoal", [ Listsoal::class, 'index' ])->name("listsoal");
         });
 
     });
