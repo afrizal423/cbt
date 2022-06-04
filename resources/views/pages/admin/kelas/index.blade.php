@@ -27,15 +27,12 @@
     <x-slot name="script_footer">
         {{-- custom js disini  --}}
         <script type="text/javascript">
-            window.livewire.on('show', () => {
-                // console.log("buka modal");
-                $('#exampleModal').modal('show');
-                $("#exampleModal").appendTo("body");
-            });
-            window.livewire.on('tutup', () => {
-                // console.log("tutup modal");
+           window.addEventListener('openModal', event => {
+                $("#exampleModal").modal('show');
+            })
+            window.addEventListener('tutupModal', event => {
                 $('.close-modal').click();
-            });
+            })
         </script>
     </x-slot>
 </x-base.admin>

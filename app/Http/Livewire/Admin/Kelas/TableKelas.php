@@ -39,11 +39,11 @@ class TableKelas extends Component
     }
     public function openModal()
     {
-        $this->emit('show');
+        $this->dispatchBrowserEvent('openModal');
     }
     public function tutupModal()
     {
-        $this->emit('tutup');
+        $this->dispatchBrowserEvent('tutupModal');
     }
     /**
      * End Listener

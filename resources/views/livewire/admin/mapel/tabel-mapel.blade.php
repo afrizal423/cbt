@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Mapel</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Mapel" wire:model.defer="mapel.nama_mapel" required>
-                            @error('mapel.nama_kelas') <span class="text-danger error">{{ $message }}</span>@enderror
+                            @error('mapel.nama_mapel') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">KKM Mapel</label>
