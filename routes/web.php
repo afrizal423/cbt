@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Listsoal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Listsoal;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,17 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
          Route::group(['prefix'=> 'bank_soal'], function(){
             Route::view("/",'pages.admin.banksoal.index')->name("banksoal");
             Route::get("/{soalId}/listsoal", [ Listsoal::class, 'index' ])->name("listsoal");
+            Route::get('/{soalId}/tmbhsoal', function () {
+                // return view('welcome');
+                $value = Dekripsi(request()->get('q'));
+                if ($value == "tmbh-soal-essai") {
+                    # soal essai
+                } elseif ($value == "tmbh-soal-pilgan") {
+                    # soal pilihan ganda
+                } else {
+                    abort(403);
+                }
+            })->name('soaltambah');
         });
 
     });

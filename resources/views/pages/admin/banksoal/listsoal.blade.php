@@ -21,7 +21,12 @@
 
     <section class="content">
         <div class="container">
-            {{-- <livewire:admin.mapel.tabel-mapel/> --}}
+            @livewire('soal.list-soal', [
+                'listsoal' => [
+                    'identitas_soal' => $identitas_soal,
+                    'jumlah_soalpilgan' => $jumlah_soalpilgan,
+                    'jumlah_essai' => $jumlah_essai
+                ]])
         </div>
     </section>
 

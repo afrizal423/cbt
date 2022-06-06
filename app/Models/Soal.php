@@ -42,4 +42,14 @@ class Soal extends Model
     {
         return $this->belongsTo('App\Models\Mapel');
     }
+
+    /**
+     * Search query in multiple whereOr
+     */
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('soal', 'like', '%'.$query.'%')
+                ->orWhere('type_soal', 'like', '%'.$query.'%');
+    }
 }
