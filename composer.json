@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
-        "rorecek/laravel-ulid": "^2.0"
+        "rorecek/laravel-ulid": "^2.0",
+        "unisharp/laravel-filemanager": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

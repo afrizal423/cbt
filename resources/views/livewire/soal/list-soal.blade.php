@@ -19,15 +19,15 @@
                     </div>
                 @endif
                 @php
-                    $linksoalessai = Enkripsi("tmbh-soal-essai");
-                    $linksoalpilgan = Enkripsi("tmbh-soal-pilgan");
+                    $linksoalessai = Enkripsi("tmbhessai");
+                    $linksoalpilgan = Enkripsi("tmbhpilgan");
                 @endphp
                 @if ($listsoal['jumlah_soalpilgan'] < $listsoal['identitas_soal']->jumlah_pilihan_ganda)
                 <a href="" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-check"></span> Tambah Soal Pilihan Ganda
                 </a>
                 @elseif ($listsoal['jumlah_essai'] < $listsoal['identitas_soal']->jumlah_essai)
-                <a href="{{ route('admin.soaltambah', [
+                <a href="{{ route('admin.soaltambah.essai', [
                     'soalId' => $listsoal['identitas_soal']->id,
                     'q' => $linksoalessai]) }}" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-align-justify"></span> Tambah Soal Essai

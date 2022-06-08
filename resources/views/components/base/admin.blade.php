@@ -18,7 +18,7 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/css/adminlte.min.css') }}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <livewire:styles />
+        @livewireStyles
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
@@ -55,7 +55,7 @@
         <script src="{{ asset('vendor/adminlte3/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         {{-- <script src="../../dist/js/demo.js"></script> --}}
-        <livewire:scripts />
+        @livewireScripts
         {{-- <script src="{{ asset('js/alpine.js') }}"></script> --}}
 
         @stack('modals')
