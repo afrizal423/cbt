@@ -16,10 +16,19 @@ class ListJawabansoal extends Model
 {
     use HasUlid;
 
+    public $timestamps = false;
     /**
      * @var array
      */
     protected $fillable = ['soal_id', 'type_jawaban', 'text_jawaban'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function soalnya()
+    {
+        return $this->belongsTo('App\Models\Soal');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

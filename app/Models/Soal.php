@@ -25,7 +25,7 @@ class Soal extends Model
     /**
      * @var array
      */
-    protected $fillable = ['mapel_id', 'soal', 'opsi_jawaban', 'kunci', 'media_soal', 'type_soal'];
+    protected $fillable = ['mapel_id', 'no_soal', 'soal', 'opsi_jawaban', 'kunci', 'media_soal', 'type_soal'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -41,6 +41,14 @@ class Soal extends Model
     public function mapel()
     {
         return $this->belongsTo('App\Models\Mapel');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function listJawaban()
+    {
+        return $this->hasMany('App\Models\ListJawabansoal');
     }
 
     /**

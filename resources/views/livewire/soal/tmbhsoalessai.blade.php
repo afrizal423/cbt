@@ -1,4 +1,21 @@
 <section>
+    @if(session()->has('success'))
+                <script>
+                Swal.fire(
+                        'Berhasil!',
+                        'Data telah tersimpan di database.',
+                        'success'
+                    ).then(function() {
+                        window.location = "{{ route('admin.listsoal',  $mapelnya->id ) }}";
+                    });
+                </script>
+                @endif
+
+                @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -14,8 +31,8 @@
                             <a href="{{ route('admin.banksoal') }}">Bank Soal</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.listsoal',  $soalId->id ) }}">Soal
-                                {{$soalId->nama_mapel}}</a>
+                            <a href="{{ route('admin.listsoal',  $mapelnya->id ) }}">Soal
+                                {{$mapelnya->nama_mapel}}</a>
                         </li>
                         <li class="breadcrumb-item active">Tambah Soal Essai</li>
                     </ol>
@@ -45,11 +62,11 @@
                         <div class="form-group" wire:ignore>
                             <textarea
                                 name="inputSoalEssai"
-                                class="form-control @error('users.guru.alamat_guru') is-invalid @enderror"
-                                placeholder="Masukkan Alamat Pegawai"
-                                wire:model.defer="users.guru.alamat_guru"
+                                class="form-control @error('soal.soal') is-invalid @enderror"
+                                placeholder="Masukkan Soal"
+                                wire:model.defer="soal.soal"
                                 required="required"></textarea>
-                            @error('users.guru.alamat_guru')
+                            @error('soal.soal')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -82,11 +99,11 @@
                             <div class="row">
                                 <div class="col-11">
                                     <textarea
-                                        class="form-control @error('users.guru.alamat_guru') is-invalid @enderror"
+                                        class="form-control @error('soal.kunci.0') is-invalid @enderror"
                                         placeholder="Masukkan Kunci Jawaban"
-                                        wire:model.defer="users.guru.alamat_guru" rows="5"
+                                        wire:model="soal.kunci.0" rows="5"
                                         ></textarea>
-                                    @error('users.guru.alamat_guru')
+                                    @error('soal.kunci.0')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -105,11 +122,11 @@
                             <div class="row">
                                 <div class="col-11">
                                     <textarea
-                                        class="form-control @error('users.guru.alamat_guru') is-invalid @enderror"
+                                        class="form-control @error('soal.kunci.{{$key+1}}') is-invalid @enderror"
                                         placeholder="Masukkan Variasi Kunci Jawaban"
-                                        wire:model.defer="users.guru.alamat_guru" rows="5"
+                                        wire:model.defer="soal.kunci.{{$key+1}}" rows="5"
                                         ></textarea>
-                                    @error('users.guru.alamat_guru')
+                                    @error('soal.kunci.{{$key+1}}')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -131,7 +148,7 @@
                 <!-- button save -->
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('admin.listsoal',  $soalId->id ) }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('admin.listsoal',  $mapelnya->id ) }}" class="btn btn-secondary">Cancel</a>
                     @if ($action == "ubahUsers")
                     <button type="submit" class="btn btn-primary float-right" wire:click.prevent="ubah()">Simpan Perubahan</button>
                     @else
@@ -165,8 +182,8 @@
         editor.on('change', function(event){
             console.log(event.editor.getData())
             // ubah message jadi variable ke simpan db nantinya
-            // true artinya defer
-            // @this.set('message', event.editor.getData(), true);
+            // pada params ke 3, jika true artinya defer
+            @this.set('soal.soal', event.editor.getData());
         })
 //   CKEDITOR.replace('inputJawaban0', options);
 </script>
