@@ -39,32 +39,23 @@
         </x-slot>
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('kode_mapel')" role="button" href="#" style="color: black">
-                    Kode Mapel
-                    @include('components.sort-icon', ['field' => 'kode_mapel'])
+                <th><a wire:click.prevent="sortBy('soal')" role="button" href="#" style="color: black">
+                    Pertanyaan
+                    @include('components.sort-icon', ['field' => 'soal'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('nama_mapel')" role="button" href="#" style="color: black">
-                    Nama Mapel
-                    @include('components.sort-icon', ['field' => 'nama_mapel'])
-                </a></th>
-                <th><a wire:click.prevent="sortBy('status_mapel')" role="button" href="#" style="color: black">
-                    Status
-                    @include('components.sort-icon', ['field' => 'status_mapel'])
+                <th><a wire:click.prevent="sortBy('type_soal')" role="button" href="#" style="color: black">
+                    Type Soal
+                    @include('components.sort-icon', ['field' => 'type_soal'])
                 </a></th>
                 <th>Action</th>
             </tr>
         </x-slot>
         <x-slot name="body">
-            {{-- @foreach ($mapels as $mpl)
+            @foreach ($soals as $mpl)
                 <tr x-data="window.__controller.dataTableController('{{ $mpl->id }}')">
-                    <td>{{ $mpl->kode_mapel }}</td>
-                    <td>{{ $mpl->nama_mapel }}</td>
+                    <td>{!! \Illuminate\Support\Str::limit($mpl->soal, 50, $end='...') !!}</td>
                     <td>
-                        @if ($mpl->status_mapel)
-                        <a class="btn btn-warning" wire:click.prevent="ubahStatusMapel(false,'{{ $mpl->id }}')">Nonaktifkan</a>
-                        @else
-                        <a class="btn btn-primary" wire:click.prevent="ubahStatusMapel(true,'{{ $mpl->id }}')">Aktifkan</a>
-                        @endif
+                        {{ $mpl->type_soal }}
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('admin.listsoal',  $mpl->id ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
@@ -72,7 +63,7 @@
                         <a role="button" x-on:click.prevent="deleteItem('{{ $mpl->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
                     </td>
                 </tr>
-            @endforeach --}}
+            @endforeach
         </x-slot>
     </x-data-table>
 
