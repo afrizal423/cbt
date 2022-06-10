@@ -22,23 +22,10 @@
     <section class="content">
         <div class="container">
             @livewire('soal.list-soal', [
-                'listsoal' => [
-                    'identitas_soal' => $identitas_soal,
-                    'jumlah_soalpilgan' => $jumlah_soalpilgan,
-                    'jumlah_essai' => $jumlah_essai
-                ]])
+                'idsoal' => $identitas_soal->id
+                ])
         </div>
     </section>
 
-    <x-slot name="script_footer">
-        {{-- custom js disini  --}}
-        <script type="text/javascript">
-            window.addEventListener('openModal', event => {
-                $("#exampleModal").modal('show');
-            })
-            window.addEventListener('tutupModal', event => {
-                $('.close-modal').click();
-            })
-        </script>
-    </x-slot>
+
 </x-base.admin>

@@ -17,11 +17,65 @@ class ListSoal extends Component
     public $sortAsc = false;
     public $search = '';
     protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal"];
-    public $soal, $jikaUpdate, $listsoal;
+    public $soal, $jikaUpdate, $idsoal, $showSoal = [];
+
+
+    public function openModalSoal()
+    {
+        // $this->emit('show');
+        $this->dispatchBrowserEvent('openModalSoal');
+    }
+
+
+
+    public function showDataSoal($id)
+    {
+        $mpl = $this->model::with('listJawaban')->findOrFail($id);
+        return response()->json($mpl,200);
+    }
+
+    public function delete_item($id)
+    {
+        $data = $this->model::with('listJawaban')->find($id);
+
+        if (!$data) {
+            // dd($data);
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Gagal menghapus data "
+            ]);
+            return;
+        }
+        $data->listJawaban()->delete();
+        $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data berhasil dihapus!"
+        ]);
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = !$this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
+
+        $this->sortField = $field;
+    }
 
     public function get_pagination_data()
     {
         $soalnya = $this->model::search($this->search)
+            ->select(
+                [
+                    'soals.id as id',
+                    'soals.soal as soal',
+                    'soals.type_soal as type_soal'
+                ]
+            )
+            ->join('list_jawabansoals', 'soals.id','=','list_jawabansoals.soal_id')
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
@@ -34,7 +88,7 @@ class ListSoal extends Component
     public function render()
     {
         $data = $this->get_pagination_data();
-        // dd($this->listsoal);
+        // dd($data['soals']);
         return view($data['view'], $data);
     }
 }

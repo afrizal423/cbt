@@ -18,23 +18,13 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
-                @php
-                    $linksoalessai = Enkripsi("tmbhessai");
-                    $linksoalpilgan = Enkripsi("tmbhpilgan");
-                @endphp
-                @if ($listsoal['jumlah_soalpilgan'] < $listsoal['identitas_soal']->jumlah_pilihan_ganda)
                 <a href="" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-check"></span> Tambah Soal Pilihan Ganda
                 </a>
-                @elseif ($listsoal['jumlah_essai'] < $listsoal['identitas_soal']->jumlah_essai)
                 <a href="{{ route('admin.soaltambah.essai', [
-                    'soalId' => $listsoal['identitas_soal']->id,
-                    'q' => $linksoalessai]) }}" class="-ml- btn btn-primary shadow-none">
+                    'soalId' => $idsoal]) }}" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-align-justify"></span> Tambah Soal Essai
                 </a>
-                @else
-                Soal sudah terisi semua untuk ujian mata pelajaran {{$listsoal['identitas_soal']->nama_mapel}}.
-                @endif
             </div>
         </x-slot>
         <x-slot name="head">
@@ -58,8 +48,9 @@
                         {{ $mpl->type_soal }}
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ route('admin.listsoal',  $mpl->id ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
-                        <a role="button" wire:click.prevent="edit('{{ $mpl->id }}')" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
+                        {{-- <a role="button" data-toggle="modal" data-target="#myModal" onclick="showDtails('{{$mpl->id}}')"><i class="fa fa-16px fa-eye"></i></a> --}}
+                        <a role="button"  data-toggle="modal" data-target="#modalDetailSoal" onclick="showDtails('{{$mpl->id}}')" onclick="showDtails('{{$mpl->id}}')" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                        <a role="button" href="{{ route('admin.listsoal',  $mpl->id ) }}" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem('{{ $mpl->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
                     </td>
                 </tr>
@@ -67,4 +58,69 @@
         </x-slot>
     </x-data-table>
 
+    <div wire:ignore.self class="modal fade" id="modalDetailSoal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Soal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true close-btn">×</span>
+                    </button>
+                </div>
+               <div class="modal-body">
+                    <div class="container">
+                        <div>
+                            <!-- soal -->
+                            <p>Soal:</p>
+                            <div class="soal">
+                            </div>
+                        </div>
+                        <div>
+                            <!-- jawaban -->
+                            <p>Jawaban:</p>
+                            <div class="jawaban">
+                            </div>
+                            <div class="listjawaban">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <x-slot name="script_footer">
+        {{-- custom js disini  --}}
+        <script type="text/javascript">
+            function showDtails(soalId){
+                $.ajax({
+                            url : `/api/${soalId}/soalDetail`,
+                            headers : {
+                                'Content-Type':'application/json'
+                            },
+                            type: 'GET',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            success:function(data){
+
+                                $('.soal').html(data.soal)
+                                $('.jawaban').html(data.kunci)
+                                console.log(data);
+
+                            },
+
+                        });
+            }
+            window.addEventListener('openModal', event => {
+                $("#exampleModal").modal('show');
+            })
+            window.addEventListener('tutupModal', event => {
+                $('.close-modal').click();
+            })
+        </script>
+    </x-slot>
 </div>

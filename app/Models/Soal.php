@@ -58,6 +58,10 @@ class Soal extends Model
     {
         return empty($query) ? static::query()
             : static::where('soal', 'like', '%'.$query.'%')
-                ->orWhere('type_soal', 'like', '%'.$query.'%');
+                ->orWhere('type_soal', 'like', '%'.$query.'%')
+                ->orWhereHas('listJawaban', function($q) use ( $query ){
+                    $q->where('soal_id', 'like', '%'.$query.'%')
+                    ->orWhere('text_jawaban', 'like', '%'.$query.'%');
+                });
     }
 }

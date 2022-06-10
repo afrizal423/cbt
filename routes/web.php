@@ -7,6 +7,7 @@ use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 
 /*
 |--------------------------------------------------------------------------

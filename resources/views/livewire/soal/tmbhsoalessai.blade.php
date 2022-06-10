@@ -101,7 +101,7 @@
                                     <textarea
                                         class="form-control @error('soal.kunci.0') is-invalid @enderror"
                                         placeholder="Masukkan Kunci Jawaban"
-                                        wire:model="soal.kunci.0" rows="5"
+                                        wire:model.defer="soal.kunci.0" rows="5"
                                         ></textarea>
                                     @error('soal.kunci.0')
                                     <span class="invalid-feedback" role="alert">
@@ -183,7 +183,7 @@
             console.log(event.editor.getData())
             // ubah message jadi variable ke simpan db nantinya
             // pada params ke 3, jika true artinya defer
-            @this.set('soal.soal', event.editor.getData());
+            @this.set('soal.soal', event.editor.getData(), true);
         })
 //   CKEDITOR.replace('inputJawaban0', options);
 </script>
