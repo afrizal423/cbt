@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tambah Soal Essai</h1>
+                    <h1>Edit Soal Essai</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -149,11 +149,8 @@
             <div class="row">
                 <div class="col-12">
                     <a onclick="history.back()" class="btn btn-secondary">Cancel</a>
-                    @if ($action == "ubahUsers")
-                    <button type="submit" class="btn btn-primary float-right" wire:click.prevent="ubah()">Simpan Perubahan</button>
-                    @else
-                    <button type="submit" class="btn btn-primary float-right" wire:click.prevent="simpan()">Simpan Data</button>
-                    @endif
+                    <button type="submit" class="btn btn-primary float-right" wire:click.prevent="update()">Simpan Perubahan</button>
+
                     {{-- <input type="submit" value="Tambah Akun" class="btn btn-success float-right"> --}}
                 </div>
             </div>

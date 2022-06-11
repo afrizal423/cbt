@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
             Route::view("/",'pages.admin.banksoal.index')->name("banksoal");
             Route::get("/{soalId}/listsoal", [ Listsoal::class, 'index' ])->name("listsoal");
             Route::view("/{soalId}/tmbhsoalessai",'pages.admin.banksoal.soal.tmbhsoalessai')->name("soaltambah.essai");
+            Route::view("/{mapelId}/editsoalessai/{soalId}",'pages.admin.banksoal.soal.updatesoalessai')->name("soaledit.essai");
+            Route::view("/{mapelId}/showsoalessai/{soalId}",'pages.admin.banksoal.soal.showsoalessai')->name("soalshow.essai");
             // Route::get('/{soalId}/tmbhsoalessai', Tmbhsoalessai::class)->name('soaltambah.essai');
         });
 
