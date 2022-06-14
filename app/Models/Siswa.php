@@ -26,6 +26,15 @@ class Siswa extends Model
      */
     protected $fillable = ['nisn', 'nama_siswa', 'tgl_lahir_siswa', 'alamat_siswa', 'password'];
 
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('nisn', 'like', '%'.$query.'%')
+                ->orWhere('nama_siswa', 'like', '%'.$query.'%')
+                ->orWhere('alamat_siswa', 'like', '%'.$query.'%');
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

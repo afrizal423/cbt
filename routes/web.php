@@ -59,6 +59,12 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
             // Route::get('/{soalId}/tmbhsoalessai', Tmbhsoalessai::class)->name('soaltambah.essai');
         });
 
+        // Route data users
+        Route::group(['prefix'=> 'data_siswa'], function(){
+            Route::view("/",'pages.admin.siswa.index')->name("data_siswa");
+            // Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
+            // Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");
+        });
     });
 
 

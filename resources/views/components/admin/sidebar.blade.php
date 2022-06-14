@@ -30,7 +30,7 @@ $links = [
             [
                 "section_text" => "Data Siswa",
                 "section_icon" => "fa fa-users",
-                "section_href" => '#'
+                "section_href" => route('admin.data_siswa')
             ]
         ]
     ],
