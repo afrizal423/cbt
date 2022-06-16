@@ -23,12 +23,12 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
-        @stack('script_head')
+
         <!-- Alpine Plugins -->
         {{-- <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script> --}}
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="{{ asset('inputmask.min.js') }}" ></script>
-
+        @stack('script_head')
     </head>
     <body class="hold-transition sidebar-mini">
         <!-- Site wrapper -->

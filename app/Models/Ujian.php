@@ -35,6 +35,36 @@ class Ujian extends Model
      * @var array
      */
     protected $fillable = ['mapel_id', 'guru_id', 'kelas_id', 'judul', 'jenis_ujian', 'tgl_mulai_ujian', 'waktu_mulai_ujian', 'tgl_selesai_ujian', 'waktu_selesai_ujian', 'code_ujian', 'status_ujian'];
+
+    /**
+     * Yang ditampilkan di tabel
+     * nama mapel, judul, jenisujian, nama kelas, statusujian
+     */
+
+     /**
+     * Search query in multiple whereOr
+     */
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('judul', 'like', '%'.$query.'%')
+                ->orWhere('jenis_ujian', 'like', '%'.$query.'%')
+                ->orWhere('tgl_mulai_ujian', 'like', '%'.$query.'%')
+                ->orWhere('waktu_mulai_ujian', 'like', '%'.$query.'%')
+                ->orWhere('tgl_selesai_ujian', 'like', '%'.$query.'%')
+                ->orWhere('waktu_selesai_ujian', 'like', '%'.$query.'%')
+                ->orWhereHas('guru', function($q) use ( $query ){
+                    $q->where('nama_guru', 'like', '%'.$query.'%');
+                })
+                ->orWhereHas('kelasnya', function($q) use ( $query ){
+                    $q->where('nama_kelas', 'like', '%'.$query.'%')
+                    ->orWhere('kode_kelas', 'like', '%'.$query.'%');
+                })
+                ->orWhereHas('mapel', function($q) use ( $query ){
+                    $q->where('kode_mapel', 'like', '%'.$query.'%')
+                    ->orWhere('nama_mapel', 'like', '%'.$query.'%');
+                });
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -48,7 +78,7 @@ class Ujian extends Model
      */
     public function guru()
     {
-        return $this->belongsTo('App\Models\Guru');
+        return $this->belongsTo('App\Models\Guru', 'guru_id');
     }
 
     /**

@@ -18,6 +18,7 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
+                @if (Auth::user()->level == "admin")
                 <a href="" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-check"></span> Tambah Soal Pilihan Ganda
                 </a>
@@ -25,6 +26,17 @@
                     'soalId' => $idsoal]) }}" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-align-justify"></span> Tambah Soal Essai
                 </a>
+                @endif
+                @if (Auth::user()->level == "guru")
+                <a href="" class="-ml- btn btn-primary shadow-none">
+                    <span class="fas fa-check"></span> Tambah Soal Pilihan Ganda
+                </a>
+                <a href="{{ route('guru.soaltambah.essai', [
+                    'soalId' => $idsoal]) }}" class="-ml- btn btn-primary shadow-none">
+                    <span class="fas fa-align-justify"></span> Tambah Soal Essai
+                </a>
+                @endif
+
             </div>
         </x-slot>
         <x-slot name="head">

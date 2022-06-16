@@ -1,5 +1,28 @@
 <?php
 
+if (!function_exists('printJenisUjian')) {
+
+    /**
+     * Convert Array into Object in deep
+     *
+     * @param array $array
+     * @return
+     */
+    function printJenisUjian($str)
+    {
+        if ($str == "QZ") {
+            return "Quiz";
+        } elseif ($str == "UH") {
+            return "Ulangan Harian";
+        } elseif ($str == "UTS") {
+            return "Ujian Tengah Semester";
+        } elseif ($str == "UAS") {
+            return "Ujian Akhir Semester";
+        }
+
+    }
+}
+
 if (!function_exists('array_to_object')) {
 
     /**

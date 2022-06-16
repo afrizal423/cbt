@@ -105,6 +105,7 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
          // Route data users
          Route::group(['prefix'=> 'ujian','as'=>'ujian.'], function(){
             Route::view("/",'pages.admin.ujian.index')->name("index");
+            Route::view("/tmbhujian",'pages.admin.ujian.tambahujian')->name("tambah");
             // Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
             // Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");
         });
