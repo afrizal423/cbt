@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateAdmin
+class AuthenticateGuru
 {
     /**
      * Handle an incoming request.
@@ -23,7 +23,7 @@ class AuthenticateAdmin
 
         $user = Auth::user();
 
-        if ($user->level == "admin") {
+        if ($user->level == "guru") {
             return $next($request);
         }
 

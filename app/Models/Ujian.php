@@ -54,7 +54,7 @@ class Ujian extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function kela()
+    public function kelasnya()
     {
         return $this->belongsTo('App\Models\Kela', 'kelas_id');
     }

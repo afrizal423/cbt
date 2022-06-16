@@ -28,7 +28,7 @@
                     </button>
                 </div>
                 @endif
-                <form action="{{ route('admin.login.proses_login') }}" method="post">
+                <form action="{{ route('login.proses_login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input

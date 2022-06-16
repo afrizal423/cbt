@@ -23,9 +23,12 @@ class AuthController extends Controller
             if ($user->level == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
+            if ($user->level == 'guru') {
+                return redirect()->route('guru.dashboard');
+            }
             return redirect()->intended('/');
         }
-        return redirect()->route('admin.login')
+        return redirect()->route('login')
             ->withInput()
             ->withErrors(['login_gagal' => 'Data yang anda masukkan salah.']);
     }
@@ -33,6 +36,6 @@ class AuthController extends Controller
     {
        $request->session()->flush();
        Auth::logout();
-       return redirect()->route('admin.login');
+       return redirect()->route('login');
     }
 }

@@ -49,13 +49,13 @@
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                             <a
                                 class="btn btn-default btn-flat float-right"
-                                href="{{ route('admin.logout') }}"
+                                href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
 
                                 <form
                                     id="logout-form"
-                                    action="{{ route('admin.logout') }}"
+                                    action="{{ route('logout') }}"
                                     method="POST"
                                     style="display: none;">
                                     @csrf

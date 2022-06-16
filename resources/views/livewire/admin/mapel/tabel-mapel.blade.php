@@ -59,7 +59,12 @@
                         @endif
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
+                        @if (Auth::user()->level == "admin")
                         <a role="button" href="{{ route('admin.listsoal',  $mpl->id ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                        @endif
+                        @if (Auth::user()->level == "guru")
+                        <a role="button" href="{{ route('guru.listsoal',  $mpl->id ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                        @endif
                         <a role="button" wire:click.prevent="edit('{{ $mpl->id }}')" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem('{{ $mpl->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
                     </td>

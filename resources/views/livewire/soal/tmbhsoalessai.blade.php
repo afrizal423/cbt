@@ -6,7 +6,12 @@
                         'Data telah tersimpan di database.',
                         'success'
                     ).then(function() {
+                        @if(Auth::user()->level == "admin")
                         window.location = "{{ route('admin.listsoal',  $mapelnya->id ) }}";
+                        @endif
+                        @if(Auth::user()->level == "guru")
+                        window.location = "{{ route('guru.listsoal',  $mapelnya->id ) }}";
+                        @endif
                     });
                 </script>
                 @endif

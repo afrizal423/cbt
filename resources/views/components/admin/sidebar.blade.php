@@ -1,4 +1,5 @@
 @php
+$u = Auth::user();
 $links = [
     [
         "href" => route('admin.dashboard'),
@@ -22,14 +23,9 @@ $links = [
                 "section_icon" => "fa fa-university fa-fwe",
                 "section_href" => route('admin.data_kelas')
             ],
-            // [
-            //     "section_text" => "Data Mata Pelajaran",
-            //     "section_icon" => "fa fa-flask",
-            //     "section_href" => '#'
-            // ],
             [
                 "section_text" => "Data Siswa",
-                "section_icon" => "fa fa-users",
+                "section_icon" => "fa fa-address-book",
                 "section_href" => route('admin.data_siswa')
             ]
         ]
@@ -37,11 +33,66 @@ $links = [
     [
         "href" => route('admin.banksoal'),
         "text" => "Bank Soal",
-        "icon" => "fa fa-book fa-fw",
+        "icon" => "fa fa-book",
         "is_multi" => false
     ],
+    [
+        "text" => "Ujian",
+        "icon" => "fa fa-keyboard",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "List Ujian",
+                "section_icon" => "fa fa-font",
+                "section_href" => route('admin.ujian.index')
+            ],
+            [
+                "section_text" => "Penilaian",
+                "section_icon" => "fa fa-graduation-cap",
+                "section_href" => "#"
+            ]
+        ]
+    ],
 ];
-$navigation_links = json_decode(json_encode($links));
+
+// link guru
+$links_guru = [
+    [
+        "href" => route('guru.dashboard'),
+        "text" => "Dasboard",
+        "icon" => "fas fa-home",
+        "is_multi" => false
+    ],
+    [
+        "href" => route('guru.banksoal'),
+        "text" => "Bank Soal",
+        "icon" => "fa fa-book",
+        "is_multi" => false
+    ],
+    [
+        "text" => "Ujian",
+        "icon" => "fa fa-keyboard",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "List Ujian",
+                "section_icon" => "fa fa-font",
+                "section_href" => route('guru.ujian.index')
+            ],
+            [
+                "section_text" => "Penilaian",
+                "section_icon" => "fa fa-graduation-cap",
+                "section_href" => "#"
+            ]
+        ]
+    ],
+];
+if ($u->level == "admin") {
+    $navigation_links = json_decode(json_encode($links));
+} elseif ($u->level == "guru") {
+    $navigation_links = json_decode(json_encode($links_guru));
+}
+
 @endphp
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
