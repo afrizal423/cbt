@@ -172,7 +172,9 @@
 
 <x-slot name="script_footer">
     {{-- custom js disini  --}}
-    <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script> --}}
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+
 <script>
   var options = {
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
