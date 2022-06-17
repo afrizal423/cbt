@@ -143,7 +143,7 @@ class TableKelas extends Component
     {
         $kls = $this->model::findOrFail($id);
 
-        $this->kelas = $kls;
+        $this->kelas = $kls->toArray();
         // dd($this->kelas);
         // $this->id_divisi = $id;
         $this->jikaUpdate = true;
