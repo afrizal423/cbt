@@ -17,8 +17,26 @@ class TableUjian extends Component
     public $sortAsc = false;
     public $search = '';
     protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal"];
-    public $soal, $jikaUpdate, $idsoal, $showSoal = [];
+    public $ujian, $jikaUpdate, $idsoal, $showSoal = [];
 
+    public function openModal()
+    {
+        $this->dispatchBrowserEvent('openModal');
+    }
+    public function tutupModal()
+    {
+        $this->dispatchBrowserEvent('tutupModal');
+    }
+
+
+    public function show($id)
+    {
+        $kls = $this->model::where('id','=',$id)->with(['guru', 'kelasnya', 'mapel'])->first();
+
+        $this->ujian = $kls->toArray();
+        // dd($this->ujian);
+        $this->openModal();
+    }
     public function ubahStatusUjian(bool $statusnya, string $idnya)
     {
         $dt = $this->model::find($idnya);
@@ -52,6 +70,7 @@ class TableUjian extends Component
                 [
                     'ujians.id as id',
                     'mapels.nama_mapel as mapel',
+                    'mapels.id as mapelid',
                     'ujians.judul as judul',
                     'ujians.jenis_ujian as jenis_ujian',
                     'kelas.nama_kelas as nama_kelas',
@@ -70,6 +89,12 @@ class TableUjian extends Component
         ];
     }
 
+    public function mount()
+    {
+        $kls = $this->model::with(['guru', 'kelasnya', 'mapel'])->first();
+
+        $this->ujian = $kls->toArray();
+    }
     public function render()
     {
         $data = $this->get_pagination_data();

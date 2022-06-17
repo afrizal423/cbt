@@ -251,6 +251,16 @@ $(document).ready(function() {
             // pada params ke 3, jika true artinya defer
             @this.set('ujian.kelas_id', mpl);
     });
+
+    @if ($action == "ubahUjian")
+    $('#mapelnya').val("{{ $idmapel }}");
+    $('#mapelnya').trigger('change');
+    @this.set('ujian.mapel_id', "{{ $idmapel }}");
+
+    $('#kelasnya').val("{{ $idkelas }}");
+    $('#kelasnya').trigger('change');
+    @this.set('ujian.kelas_id', "{{ $idkelas }}");
+    @endif
 });
 </script>
 </x-slot>
