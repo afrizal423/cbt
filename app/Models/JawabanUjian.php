@@ -25,7 +25,14 @@ class JawabanUjian extends Model
     /**
      * @var array
      */
-    protected $fillable = ['soal_id', 'siswa_id', 'ujian_id', 'jawaban_siswa', 'bobot_nilai'];
+    protected $fillable = ['soal_id',
+                    'siswa_id',
+                    'ujian_id',
+                    'jawaban_siswa',
+                    'bobot_nilai',
+                    'ragu_jawaban', // boolean, siswa memberi mark jika ragu pada jawaban
+                    'selesai_ujian', // validasi siswa bahwa siswa ingin menyelesaikan ujian kondisi apapun
+                    'rekomendasi_bobot_nilai'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

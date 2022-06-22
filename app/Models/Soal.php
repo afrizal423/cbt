@@ -25,7 +25,14 @@ class Soal extends Model
     /**
      * @var array
      */
-    protected $fillable = ['mapel_id', 'no_soal', 'soal', 'opsi_jawaban', 'kunci', 'media_soal', 'type_soal'];
+    protected $fillable = ['mapel_id',
+                        'no_soal',
+                        'soal',
+                        'opsi_jawaban',
+                        'kunci',
+                        'media_soal',
+                        'type_soal',
+                        'bobot_soal'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
