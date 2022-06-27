@@ -35,10 +35,11 @@ class Updatesoalessai extends Component
     public function mount(Mapel $mapelId, $soalId)
     {
         $this->mapelnya = $mapelId;
-        $dt = Soal::select(['soal','kunci','list_jawabansoals.text_jawaban'])
+        $dt = Soal::select(['soal','kunci','bobot_soal','list_jawabansoals.text_jawaban'])
             ->join('list_jawabansoals', 'soals.id','=','list_jawabansoals.soal_id')
             ->find($soalId)->toArray();
         $this->soal['soal'] = $dt['soal'];
+        $this->soal['bobot_soal'] = $dt['bobot_soal'];
         $this->soal['kunci'][0] = $dt['kunci'];
         if ($dt['text_jawaban'] != null) {
             $jwbvariasi = json_decode($dt['text_jawaban']);
@@ -58,6 +59,7 @@ class Updatesoalessai extends Component
     {
         $this->validate([
             'soal.soal' => 'required|min:6',
+            'soal.bobot_soal' => 'required|numeric',
             'soal.kunci.0' => 'required|min:3',
             'soal.kunci.*' => 'min:3',
         ]);
@@ -66,6 +68,7 @@ class Updatesoalessai extends Component
             $soalnya = Soal::with('listJawaban')->find($this->soalId);
             $soalnya->mapel_id = $this->mapelnya->id;
             $soalnya->soal = $this->soal['soal'];
+            $soalnya->bobot_soal = $this->soal['bobot_soal'];
             $soalnya->kunci = $this->soal['kunci'][0];
             array_splice($this->soal['kunci'],0,1);
             // array_splice()

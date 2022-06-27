@@ -39,7 +39,7 @@
                             <a href="{{ route('admin.listsoal',  $mapelnya->id ) }}">Soal
                                 {{$mapelnya->nama_mapel}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Tambah Soal Essai</li>
+                        <li class="breadcrumb-item active">Show Soal Essai</li>
                     </ol>
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <div class="container">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Soal Essai</h3>
+                        <h3 class="card-title"></h3>
                         <div class="card-tools">
                             <button
                                 type="button"
@@ -65,6 +65,8 @@
                     </div>
                     <div class="card-body">
                         {{-- tampilin soal --}}
+                        Bobot Soal: {{ $soal['bobot_soal'] }} <br> <br>
+                        Soal: <br>
                         {!! $soal['soal'] !!}
                     </div>
                     <!-- /.card-body -->

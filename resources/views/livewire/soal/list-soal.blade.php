@@ -45,6 +45,10 @@
                     Pertanyaan
                     @include('components.sort-icon', ['field' => 'soal'])
                 </a></th>
+                <th><a wire:click.prevent="sortBy('bobot_soal')" role="button" href="#" style="color: black">
+                    Point Soal
+                    @include('components.sort-icon', ['field' => 'bobot_soal'])
+                </a></th>
                 <th><a wire:click.prevent="sortBy('type_soal')" role="button" href="#" style="color: black">
                     Type Soal
                     @include('components.sort-icon', ['field' => 'type_soal'])
@@ -56,6 +60,9 @@
             @foreach ($soals as $mpl)
                 <tr x-data="window.__controller.dataTableController('{{ $mpl->id }}')">
                     <td>{!! \Illuminate\Support\Str::limit($mpl->soal, 50, $end='...') !!}</td>
+                    <td>
+                        {{ $mpl->bobot_soal }}
+                    </td>
                     <td>
                         {{ $mpl->type_soal }}
                     </td>

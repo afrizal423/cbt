@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Soal;
 use App\Models\Soal;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class ListSoal extends Component
 {
@@ -13,7 +14,7 @@ class ListSoal extends Component
     public $name;
 
     public $perPage = 10;
-    public $sortField = "id";
+    public $sortField = "soals.id";
     public $sortAsc = false;
     public $search = '';
     protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal"];
@@ -72,10 +73,12 @@ class ListSoal extends Component
                 [
                     'soals.id as id',
                     'soals.soal as soal',
-                    'soals.type_soal as type_soal'
+                    'soals.type_soal as type_soal',
+                    'soals.bobot_soal as bobot_soal',
+                    // DB::raw('sum(soals.bobot_soal) as jumlah_bobot_soal')
                 ]
             )
-            ->join('list_jawabansoals', 'soals.id','=','list_jawabansoals.soal_id')
+            // ->join('list_jawabansoals', 'soals.id','=','list_jawabansoals.soal_id')
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 

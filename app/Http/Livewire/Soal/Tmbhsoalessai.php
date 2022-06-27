@@ -35,6 +35,7 @@ class Tmbhsoalessai extends Component
     {
         $this->validate([
             'soal.soal' => 'required|min:6',
+            'soal.bobot_soal' => 'required|numeric',
             'soal.kunci.0' => 'required|min:3',
             'soal.kunci.*' => 'min:3',
         ]);
@@ -44,6 +45,7 @@ class Tmbhsoalessai extends Component
             $soalnya->mapel_id = $this->mapelnya->id;
             $soalnya->soal = $this->soal['soal'];
             $soalnya->kunci = $this->soal['kunci'][0];
+            $soalnya->bobot_soal = $this->soal['bobot_soal'];
             array_splice($this->soal['kunci'],0,1);
             // array_splice()
             // param1 array, param2 yang ingin dihapus, param 3 brp jumlah yng ingin dihapus

@@ -52,7 +52,7 @@
         <div class="container">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Soal Essai</h3>
+                        <h3 class="card-title"></h3>
                         <div class="card-tools">
                             <button
                                 type="button"
@@ -64,9 +64,27 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputName">Bobot Soal</label>
+                            <input
+                                type="number"
+                                id="inputName"
+                                class="form-control @error('soal.bobot_soal') is-invalid @enderror"
+                                placeholder="Masukkan Bobot Nilai Pada Soal Ini"
+                                wire:model.defer="soal.bobot_soal"
+                                required="required"
+                                autocomplete="name">
+                            @error('soal.bobot_soal')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                         <div class="form-group" wire:ignore>
+                            <label for="soal">Soal</label>
                             <textarea
                                 name="inputSoalEssai"
+                                id="soal"
                                 class="form-control @error('soal.soal') is-invalid @enderror"
                                 placeholder="Masukkan Soal"
                                 wire:model.defer="soal.soal"
