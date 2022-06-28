@@ -7,7 +7,7 @@
             {{ $judul }}
         @else
         {{ config('app.name', 'Laravel') }}
-        @endisset | Administrator CBTApp</title>
+        @endisset | Siswa CBTApp</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link

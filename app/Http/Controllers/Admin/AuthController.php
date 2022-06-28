@@ -4,10 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function Proses_login_siswa(Request $request)
+    {
+        request()->validate(
+            [
+                'nisn' => 'required',
+                'password' => 'required',
+            ]
+        );
+        $loginRequest = Siswa::where('nisn', $request->get('nisn'))->first();
+
+        if (isset($loginRequest->nisn)) {
+            if ($loginRequest->nisn != "" || $loginRequest->nisn != null) {
+                // dd($loginRequest->nisn);
+                Auth::guard('siswa')->loginUsingId($loginRequest->id);
+                return redirect()->route('siswa.dashboard');
+            }
+        }
+
+        return redirect()->route('login.siswa')
+            ->withInput()
+            ->withErrors(['login_gagal' => 'Data yang anda masukkan salah.']);
+    }
+
     public function Proses_login(Request $request)
     {
         request()->validate(

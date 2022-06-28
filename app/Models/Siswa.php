@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Rorecek\Ulid\HasUlid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 /**
  * @property string $id
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property JawabanUjian[] $jawabanUjians
  * @property Nilai[] $nilais
  */
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
     use HasUlid;
 

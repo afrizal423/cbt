@@ -30,29 +30,29 @@ $links = [
             ]
         ]
     ],
-    [
-        "href" => route('admin.banksoal'),
-        "text" => "Bank Soal",
-        "icon" => "fa fa-book",
-        "is_multi" => false
-    ],
-    [
-        "text" => "Ujian",
-        "icon" => "fa fa-keyboard",
-        "is_multi" => true,
-        "href" => [
-            [
-                "section_text" => "List Ujian",
-                "section_icon" => "fa fa-font",
-                "section_href" => route('admin.ujian.index')
-            ],
-            [
-                "section_text" => "Penilaian",
-                "section_icon" => "fa fa-graduation-cap",
-                "section_href" => "#"
-            ]
-        ]
-    ],
+    // [
+    //     "href" => route('admin.banksoal'),
+    //     "text" => "Bank Soal",
+    //     "icon" => "fa fa-book",
+    //     "is_multi" => false
+    // ],
+    // [
+    //     "text" => "Ujian",
+    //     "icon" => "fa fa-keyboard",
+    //     "is_multi" => true,
+    //     "href" => [
+    //         [
+    //             "section_text" => "List Ujian",
+    //             "section_icon" => "fa fa-font",
+    //             "section_href" => route('admin.ujian.index')
+    //         ],
+    //         [
+    //             "section_text" => "Penilaian",
+    //             "section_icon" => "fa fa-graduation-cap",
+    //             "section_href" => "#"
+    //         ]
+    //     ]
+    // ],
 ];
 
 // link guru

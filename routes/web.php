@@ -21,8 +21,17 @@ use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('nyoba');
+    return view('pages.siswa.auth.login');
+})->name('login.siswa');
+Route::post('proses_login_siswa', [ AuthController::class, 'Proses_login_siswa'])->name('login.proses_login_siswa');
+
+// siswa area
+Route::group(['middleware' => ['auth.siswa']],function(){
+    Route::get('listUjian', function(){
+        echo Auth::guard('siswa')->user()->nisn;
+    })->name('siswa.dashboard');
+});
+
 
 // login guru dan admin
 Route::get('/login', function(){
