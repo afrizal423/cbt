@@ -17,16 +17,12 @@
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/css/adminlte.min.css') }}">
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         @livewireStyles
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-        {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
         <!-- Alpine Plugins -->
-        {{-- <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script> --}}
-        <script defer src="{{ asset('vendor/alpinejs/cdn.min.js') }}"></script>
         <script src="{{ asset('inputmask.min.js') }}" ></script>
         @stack('script_head')
     </head>

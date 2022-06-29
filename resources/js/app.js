@@ -1,5 +1,8 @@
-require('./bootstrap');
+import './bootstrap';
+import '../css/app.css';
 // import 'alpinejs';
+import '/node_modules/alpinejs/dist/cdn.min.js';
+
 import swal from 'sweetalert2';
 window.Swal = swal;
 

@@ -8,7 +8,7 @@
         @else
         {{ config('app.name', 'Laravel') }}
         @endisset | Siswa CBTApp</title>
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Google Font: Source Sans Pro -->
         <link
             rel="stylesheet"
