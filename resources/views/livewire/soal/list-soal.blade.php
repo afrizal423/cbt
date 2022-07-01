@@ -28,7 +28,8 @@
                 </a>
                 @endif
                 @if (Auth::user()->level == "guru")
-                <a href="" class="-ml- btn btn-primary shadow-none">
+                <a href="{{ route('guru.soaltambah.pilgan', [
+                    'soalId' => $idsoal]) }}" class="-ml- btn btn-primary shadow-none">
                     <span class="fas fa-check"></span> Tambah Soal Pilihan Ganda
                 </a>
                 <a href="{{ route('guru.soaltambah.essai', [

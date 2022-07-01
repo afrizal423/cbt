@@ -12,6 +12,10 @@
         <link
             rel="stylesheet"
             href="{{ asset('font/font.css') }}">
+             <!-- icheck bootstrap -->
+        <link
+        rel="stylesheet"
+        href="{{ asset('vendor/adminlte3/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
         {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
