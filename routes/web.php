@@ -110,6 +110,9 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
             Route::view("/{mapelId}/showsoalessai/{soalId}",'pages.admin.banksoal.soal.showsoalessai')->name("soalshow.essai");
             // Route::get('/{soalId}/tmbhsoalessai', Tmbhsoalessai::class)->name('soaltambah.essai');
             Route::view("/{soalId}/tmbhsoalpilgan",'pages.admin.banksoal.soal.tmbhsoalpilgan')->name("soaltambah.pilgan");
+            Route::view("/{mapelId}/editsoalpilgan/{soalId}",'pages.admin.banksoal.soal.updatesoalpilgan')->name("soaledit.pilgan");
+            Route::view("/{mapelId}/showsoalpilgan/{soalId}",'pages.admin.banksoal.soal.showsoalpilgan')->name("soalshow.pilgan");
+
 
         });
 

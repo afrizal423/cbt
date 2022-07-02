@@ -79,14 +79,30 @@
                         ] ) }}" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
                         @endif
                         @if (Auth::user()->level == "guru")
-                        <a role="button" href="{{ route('guru.soalshow.essai',  [
-                            'mapelId' => $idsoal,
-                            'soalId' => $mpl->id
-                        ] ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
-                        <a role="button" href="{{ route('guru.soaledit.essai',  [
-                            'mapelId' => $idsoal,
-                            'soalId' => $mpl->id
-                        ] ) }}" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
+
+                            @if ($mpl->type_soal == 'essai')
+                                {{-- show soal  --}}
+                                <a role="button" href="{{ route('guru.soalshow.essai',  [
+                                    'mapelId' => $idsoal,
+                                    'soalId' => $mpl->id
+                                ] ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                                {{-- edit soal  --}}
+                                <a role="button" href="{{ route('guru.soaledit.essai',  [
+                                    'mapelId' => $idsoal,
+                                    'soalId' => $mpl->id
+                                ] ) }}" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
+                            @else
+                             {{-- show soal  --}}
+                             <a role="button" href="{{ route('guru.soalshow.pilgan',  [
+                                'mapelId' => $idsoal,
+                                'soalId' => $mpl->id
+                            ] ) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                            <a role="button" href="{{ route('guru.soaledit.pilgan',  [
+                                'mapelId' => $idsoal,
+                                'soalId' => $mpl->id
+                            ] ) }}" class="mr-3"><i class="fa fa-16px fa-pen" style="color: rgb(255, 187, 0)"></i></a>
+                            @endif
+
                         @endif
 
                         <a role="button" x-on:click.prevent="deleteItem('{{ $mpl->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
