@@ -115,18 +115,22 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="form-group" wire:ignore>
+                        <div class="form-group" >
                             @foreach ($idListJawaban as $key => $val )
                             <div class="row">
                                 <div class="col-1">
                                     <small>Kunci jawaban?</small><br>
                                     <div class="icheck-peterriver d-inline">
-                                        <input type="checkbox" id="checkboxPrimary1" wire:model="kunciId" value="{{$val}}">
-                                        <label for="checkboxPrimary1">
+                                        <input type="checkbox" id="checkboxPrimary{{$key}}" wire:model="kunciId" value="{{$val}}"
+                                        @if (count($kunciId) >= 1 && $kunciId[0] != $val)
+                                            disabled
+                                        @endif
+                                        >
+                                        <label for="checkboxPrimary{{$key}}">
                                         </label>
-                                      </div>
+                                    </div>
                                 </div>
-                                <div class="col-11">
+                                <div class="col-11" wire:ignore>
                                     <textarea
                                         name="text_jawaban{{$key}}"
                                         class="form-control @error('soal.text_jawaban.{{$key}}') is-invalid @enderror"

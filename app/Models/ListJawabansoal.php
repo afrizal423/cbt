@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $soal_id
  * @property string $type_jawaban
  * @property mixed $text_jawaban
+ * @property string $keyPilgan
  * @property Soal $soal
  */
 class ListJawabansoal extends Model
@@ -20,7 +21,7 @@ class ListJawabansoal extends Model
     /**
      * @var array
      */
-    protected $fillable = ['soal_id', 'type_jawaban', 'text_jawaban'];
+    protected $fillable = ['soal_id', 'type_jawaban', 'text_jawaban', 'keyPilgan'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
