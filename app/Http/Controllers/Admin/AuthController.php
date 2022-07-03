@@ -62,4 +62,11 @@ class AuthController extends Controller
        Auth::logout();
        return redirect()->route('login');
     }
+
+    public function logout_siswa(Request $request)
+    {
+       $request->session()->flush();
+       Auth::guard('siswa')->logout();
+       return redirect()->route('login.siswa');
+    }
 }

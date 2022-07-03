@@ -24,11 +24,12 @@ Route::get('/', function () {
     return view('pages.siswa.auth.login');
 })->name('login.siswa');
 Route::post('proses_login_siswa', [ AuthController::class, 'Proses_login_siswa'])->name('login.proses_login_siswa');
+Route::post('siswa-logout', [ AuthController::class, 'logout_siswa'])->name('logout_siswa');
 
 // siswa area
 Route::group(['middleware' => ['auth.siswa']],function(){
     Route::get('listUjian', function(){
-        echo Auth::guard('siswa')->user()->nisn;
+        return view('pages.siswa.landing.index');
     })->name('siswa.dashboard');
 });
 
