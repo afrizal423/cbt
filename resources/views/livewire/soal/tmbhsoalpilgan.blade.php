@@ -1,4 +1,10 @@
 <section>
+    @if ($jumlahSoalMapel == $jumlahSoal)
+        <script>
+            alert("Soal pilihan ganda sudah penuh dari kuota !");
+            window.location = "{{ route('guru.listsoal',  $mapelnya->id ) }}";
+        </script>
+    @endif
     @if(session()->has('success'))
                 <script>
                 Swal.fire(

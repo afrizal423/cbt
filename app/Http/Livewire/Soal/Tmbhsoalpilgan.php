@@ -11,6 +11,7 @@ use App\Models\ListJawabansoal;
 class Tmbhsoalpilgan extends Component
 {
     public $mapelnya, $action, $soal, $jumlahPilihan, $kunciId = [];
+    public int $jumlahSoal, $jumlahSoalMapel;
     public $idListJawaban= [];
     public $inputs = [];
 
@@ -66,6 +67,13 @@ class Tmbhsoalpilgan extends Component
         $this->jumlahPilihan = Mapel::select('jumlah_opsi_jawaban')
                                 ->where('id', $this->mapelnya->id)
                                 ->first();
+        $this->jumlahSoal = Soal::where('mapel_id', $this->mapelnya->id)
+                            ->where('type_soal', 'pilgan')
+                            ->get()
+                            ->count();
+        $this->jumlahSoalMapel = Mapel::where('id', $this->mapelnya->id)
+                            ->first()
+                            ->jumlah_pilihan_ganda;
         $ulid = new Ulid;
         for ($i=0; $i < $this->jumlahPilihan['jumlah_opsi_jawaban'] ; $i++) {
             array_push($this->idListJawaban, $ulid->generate());

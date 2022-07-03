@@ -10,6 +10,7 @@ use Livewire\Component;
 class Tmbhsoalessai extends Component
 {
     public $mapelnya, $action, $soal;
+    public int $jumlahSoal, $jumlahSoalMapel;
     public $inputs = [];
     public $i = 1;
 
@@ -70,6 +71,13 @@ class Tmbhsoalessai extends Component
     public function mount(Mapel $soalId)
     {
         $this->mapelnya = $soalId;
+        $this->jumlahSoal = Soal::where('mapel_id', $this->mapelnya->id)
+                            ->where('type_soal', 'essai')
+                            ->get()
+                            ->count();
+        $this->jumlahSoalMapel = Mapel::where('id', $this->mapelnya->id)
+                            ->first()
+                            ->jumlah_essai;
         // dd($soalId);
     }
 
