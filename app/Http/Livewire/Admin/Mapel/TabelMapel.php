@@ -61,6 +61,7 @@ class TabelMapel extends Component
             'mapel.nama_mapel' => 'required|min:3|max:30',
             'mapel.kkm_mapel' => 'required|numeric',
             'mapel.jumlah_pilihan_ganda' => 'required|numeric',
+            'mapel.jumlah_opsi_jawaban' => 'numeric',
             'mapel.jumlah_essai' => 'required|numeric',
         ]);
 
@@ -97,10 +98,11 @@ class TabelMapel extends Component
     {
         // dd($this->mapel);
         $this->validate([
-            'mapel.kode_mapel' => 'required|min:3|max:30',
-            'mapel.nama_mapel' => 'required|min:3|max:30',
+            'mapel.kode_mapel' => 'required|min:3|max:100',
+            'mapel.nama_mapel' => 'required|min:3|max:100',
             'mapel.kkm_mapel' => 'required|numeric',
             'mapel.jumlah_pilihan_ganda' => 'required|numeric',
+            'mapel.jumlah_opsi_jawaban' => 'numeric',
             'mapel.jumlah_essai' => 'required|numeric',
         ]);
 
@@ -117,7 +119,7 @@ class TabelMapel extends Component
             $this->resetInputFields();
         }catch(\Exception $e){
             // Set Flash Message
-            session()->flash('error','Something goes wrong while creating category!!');
+            session()->flash('error',$e);
 
             // Reset Form Fields After Creating Category
             $this->resetInputFields();

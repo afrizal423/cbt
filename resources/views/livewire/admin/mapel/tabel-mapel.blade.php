@@ -110,12 +110,23 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">Jumlah Soal Essai</label>
-                                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Jumlah Jumlah Soal Essai" wire:model.defer="mapel.jumlah_essai" required>
-                                    @error('mapel.jumlah_essai') <span class="text-danger error">{{ $message }}</span>@enderror
+                                    <label for="opsihawaban">Jumlah Opsi Jawaban</label>
+                                    <input type="number" class="form-control" id="opsihawaban" placeholder="Jumlah Opsi Jawaban (a,b,c,d,e)" wire:model.defer="mapel.jumlah_opsi_jawaban" required>
+                                    @error('mapel.jumlah_opsi_jawaban') <span class="text-danger error">{{ $message }}</span>@enderror
                                 </div>
                             </div>
                         </div>
+                        <small>
+                            *Jika tidak ada soal pilihan ganda isi jumlah soal pilihan ganda menjadi 0, biarkan kosong jumlah opsi
+                        </small>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Jumlah Soal Essai</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Jumlah Jumlah Soal Essai" wire:model.defer="mapel.jumlah_essai" required>
+                            @error('mapel.jumlah_essai') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                        <small>
+                            *Jika tidak ada soal essai isikan 0
+                        </small>
                     </form>
                 </div>
                 <div class="modal-footer">

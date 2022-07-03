@@ -15,7 +15,7 @@ class CreateMapelsTable extends Migration
     {
         Schema::create('mapels', function (Blueprint $table) {
             $table->char('id', 26)->primary();
-            $table->string('kode_mapel', 10)->nullable();
+            $table->string('kode_mapel', 200)->nullable();
             $table->string('nama_mapel', 200)->nullable();
             $table->float('kkm_mapel', 0, 0)->nullable();
             $table->integer('jumlah_opsi_jawaban')->nullable()->default(5);
