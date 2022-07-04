@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "afrizalmy/laraindo",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/afrizal423/laraindo.git",
-                "reference": "e55ab2edc67fe5319e630f62a5fa2da3339c0b7a"
+                "reference": "dda0b5d0ed9f80a2f6753f78f4b4d22add5c2f2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/afrizal423/laraindo/zipball/e55ab2edc67fe5319e630f62a5fa2da3339c0b7a",
-                "reference": "e55ab2edc67fe5319e630f62a5fa2da3339c0b7a",
+                "url": "https://api.github.com/repos/afrizal423/laraindo/zipball/dda0b5d0ed9f80a2f6753f78f4b4d22add5c2f2b",
+                "reference": "dda0b5d0ed9f80a2f6753f78f4b4d22add5c2f2b",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "issues": "https://github.com/afrizal423/laraindo/issues",
                 "source": "https://github.com/afrizal423/laraindo"
             },
-            "time": "2022-02-08T23:04:51+00:00"
+            "time": "2022-07-04T13:18:38+00:00"
         },
         {
             "name": "brick/math",
