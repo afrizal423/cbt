@@ -92,8 +92,19 @@ class TableUjian extends Component
     public function mount()
     {
         $kls = $this->model::with(['guru', 'kelasnya', 'mapel'])->first();
-
-        $this->ujian = $kls->toArray();
+        if ($kls != null) {
+            $this->ujian = $kls->toArray();
+        } else {
+            $this->ujian['mapel']['nama_mapel'] = null;
+            $this->ujian['kelasnya']['nama_kelas'] = null;
+            $this->ujian['judul'] = null;
+            $this->ujian['jenis_ujian'] = null;
+            $this->ujian['tgl_mulai_ujian'] = null;
+            $this->ujian['waktu_mulai_ujian'] = null;
+            $this->ujian['tgl_selesai_ujian'] = null;
+            $this->ujian['waktu_selesai_ujian'] = null;
+            $this->ujian['code_ujian'] = null;
+        }
     }
     public function render()
     {

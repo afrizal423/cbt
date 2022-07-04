@@ -46,6 +46,6 @@ class AkunSeeder extends Seeder
         $guru2->jabatan_guru = "guru tetap";
         $guru2->notelp_guru = $faker->phoneNumber();
         $guru2->foto_guru = "soon";
-        $admin->guru()->save($guru2);
+        $adminguru->guru()->save($guru2);
     }
 }
