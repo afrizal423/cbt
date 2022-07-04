@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $nama_siswa
  * @property string $tgl_lahir_siswa
  * @property string $alamat_siswa
+ * @property string $kelas_id
  * @property IkutUjian[] $ikutUjians
  * @property JawabanUjian[] $jawabanUjians
  * @property Nilai[] $nilais
@@ -26,7 +27,12 @@ class Siswa extends Authenticatable
     /**
      * @var array
      */
-    protected $fillable = ['nisn', 'nama_siswa', 'tgl_lahir_siswa', 'alamat_siswa', 'password'];
+    protected $fillable = ['nisn',
+                        'nama_siswa',
+                        'tgl_lahir_siswa',
+                        'alamat_siswa',
+                        'password',
+                        'kelas_id'];
 
     public static function search($query)
     {

@@ -26,10 +26,6 @@
         </x-slot>
         <x-slot name="head">
             <tr>
-                {{-- <th><a wire:click.prevent="sortBy('tingkat')" role="button" href="#" style="color: black">
-                    Tingkat
-                    @include('components.sort-icon', ['field' => 'tingkat'])
-                </a></th> --}}
                 <th><a wire:click.prevent="sortBy('nisn')" role="button" href="#" style="color: black">
                     NISN
                     @include('components.sort-icon', ['field' => 'nisn'])
@@ -37,6 +33,10 @@
                 <th><a wire:click.prevent="sortBy('nama_siswa')" role="button" href="#" style="color: black">
                     Nama Siswa
                     @include('components.sort-icon', ['field' => 'nama_siswa'])
+                </a></th>
+                <th><a wire:click.prevent="sortBy('nama_kelas')" role="button" href="#" style="color: black">
+                    Kelas
+                    @include('components.sort-icon', ['field' => 'nama_kelas'])
                 </a></th>
                 <th>Action</th>
             </tr>
@@ -47,6 +47,7 @@
                     {{-- <td>{{ $siswa->tingkat }}</td> --}}
                     <td>{{ $siswa->nisn }}</td>
                     <td>{{ $siswa->nama_siswa }}</td>
+                    <td>{{ $siswa->nama_kelas }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click.prevent="edit('{{ $siswa->id }}')" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem('{{ $siswa->id }}')" href="#"><i class="fa fa-16px fa-trash" style="color: red"></i></a>
@@ -93,6 +94,17 @@
                                 required="required"></textarea>
                             @error('siswa.alamat_siswa') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
+                        <!-- kelas -->
+                        <div class="form-group" wire:ignore>
+                            <label for="exampleFormControlSelect1">Kelas</label>
+                            <select class="form-control" id="kelasnya" wire:model.defer="siswa.kelas_id"style="width: 100%;">
+                                <option value="">Silahkan Pilih</option>
+                                @foreach ($klsnya as $kls)
+                                <option value="{{ $kls->id }}" wire:key="{{ $kls->id }}" @if ($kls->id == $siswa->kelas_id) selected @endif>{{ $kls->nama_kelas }}</option>
+                                @endforeach
+                            </select>
+                            @error('siswa.kelas_id') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Password Akun Siswa</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Password Akun Siswa" wire:model.defer="siswa.password" required>
@@ -112,4 +124,31 @@
             </div>
         </div>
     </div>
+
 </div>
+@push('script_head')
+<link href="{{ asset('vendor/adminlte3/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('vendor/adminlte3/plugins/select2/css/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+
+@endpush
+@push('scripts')
+<script src="{{ asset('vendor/adminlte3/plugins/select2/js/select2.full.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#kelasnya').select2({
+            theme: 'bootstrap4'
+        });
+        $('#kelasnya').on('change', function (e) {
+                var mpl = $('#kelasnya').select2("val");
+                // pada params ke 3, jika true artinya defer
+                @this.set('siswa.kelas_id', mpl, true);
+        });
+
+        @if ($jikaUpdate)
+        $('#kelasnya').val("{{ $siswa->kelas_id }}");
+        $('#kelasnya').trigger('change');
+        @this.set('ujian.kelas_id', "{{ $siswa->kelas_id }}");
+        @endif
+    });
+</script>
+@endpush

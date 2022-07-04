@@ -38,6 +38,8 @@ class SiswaSeeder extends Seeder
         $siszal->tgl_lahir_siswa = $faker->dateTimeBetween('2016-01-01', '2017-12-31');
         $siszal->alamat_siswa = $faker->address();
         $siszal->password = 123;
+        $kelass = \App\Models\Kela::inRandomOrder()->first()->toArray();
+        $siszal->kelas_id = $kelass['id'];
         $siszal->save();
 
         // dummy
@@ -48,6 +50,8 @@ class SiswaSeeder extends Seeder
             $siswa->tgl_lahir_siswa = $faker->dateTimeBetween('2016-01-01', '2017-12-31');
             $siswa->alamat_siswa = $faker->address();
             $siswa->password = "siswa";
+            $kelas = \App\Models\Kela::inRandomOrder()->first()->toArray();
+            $siswa->kelas_id = $kelas['id'];
             $siswa->save();
         }
     }

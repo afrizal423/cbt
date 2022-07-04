@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Siswa;
 
+use App\Models\Kela;
 use App\Models\Siswa;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,10 +11,10 @@ class TableSiswa extends Component
 {
     use WithPagination;
     public $model = Siswa::class;
-    public $name;
+    public $klsnya;
 
     public $perPage = 10;
-    public $sortField = "id";
+    public $sortField = "siswas.id";
     public $sortAsc = false;
     public $search = '';
     public $siswa, $jikaUpdate;
@@ -144,7 +145,7 @@ class TableSiswa extends Component
     public function edit($id)
     {
         $kls = $this->model::findOrFail($id);
-
+        // dd($this->kelasAll);
         $this->siswa = $kls->toArray();
         // dd($this->siswa);
         // $this->id_divisi = $id;
@@ -154,6 +155,14 @@ class TableSiswa extends Component
     public function get_pagination_data()
     {
         $ssw = $this->model::search($this->search)
+            ->select([
+                'siswas.id as id',
+                'siswas.nisn as nisn',
+                'siswas.nama_siswa as nama_siswa',
+                'kelas.id as id_kelas',
+                'kelas.nama_kelas as nama_kelas'
+            ])
+            ->join('kelas', 'kelas.id','=','siswas.kelas_id')
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
@@ -165,8 +174,9 @@ class TableSiswa extends Component
 
     public function render()
     {
+        $this->klsnya = Kela::all();
         $data = $this->get_pagination_data();
-
+        // dd($data['siswas']);
         return view($data['view'], $data);
     }
 }

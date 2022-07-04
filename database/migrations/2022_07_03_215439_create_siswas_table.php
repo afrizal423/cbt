@@ -20,6 +20,7 @@ class CreateSiswasTable extends Migration
             $table->date('tgl_lahir_siswa')->nullable();
             $table->string('alamat_siswa', 200)->nullable();
             $table->string('password', 100)->nullable();
+            $table->char('kelas_id', 26)->nullable();
         });
     }
 
