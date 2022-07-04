@@ -20,8 +20,8 @@ class AkunSeeder extends Seeder
 
         $admin = new \App\Models\User;
         $admin->email= "me@afrizalmy.com";
-        $admin->username= "afrizal";
-        $admin->password= Hash::make("afrizal");
+        $admin->username= "admin";
+        $admin->password= Hash::make("admin");
         $admin->level = "admin";
         $admin->save();
 
@@ -32,5 +32,20 @@ class AkunSeeder extends Seeder
         $guru->notelp_guru = $faker->phoneNumber();
         $guru->foto_guru = "soon";
         $admin->guru()->save($guru);
+
+        $adminguru = new \App\Models\User;
+        $adminguru->email= "guru@afrizalmy.com";
+        $adminguru->username= "guru";
+        $adminguru->password= Hash::make("guru");
+        $adminguru->level = "guru";
+        $adminguru->save();
+
+        $guru2 = new \App\Models\Guru;
+        $guru2->nama_guru = "Ini Guru";
+        $guru2->alamat_guru = $faker->address();
+        $guru2->jabatan_guru = "guru tetap";
+        $guru2->notelp_guru = $faker->phoneNumber();
+        $guru2->foto_guru = "soon";
+        $admin->guru()->save($guru2);
     }
 }

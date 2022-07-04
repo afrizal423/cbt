@@ -82,7 +82,7 @@ class TableSiswa extends Component
     public function update()
     {
         $this->validate([
-            'siswa.nisn' => 'required|min:3|unique:siswas,nisn|numeric',
+            'siswa.nisn' => 'required|min:3|unique:siswas,nisn,'.$this->siswa['id'],
             'siswa.nama_siswa' => 'required|min:3',
             'siswa.tgl_lahir_siswa' => 'required|date',
         ]);
