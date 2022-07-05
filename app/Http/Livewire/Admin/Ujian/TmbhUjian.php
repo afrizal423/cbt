@@ -25,7 +25,8 @@ class TmbhUjian extends Component
             'ujian.tgl_mulai_ujian' => 'required',
             'ujian.waktu_mulai_ujian' => 'required',
             'ujian.tgl_selesai_ujian' => 'required',
-            'ujian.waktu_selesai_ujian' => 'required'
+            'ujian.waktu_selesai_ujian' => 'required',
+            'ujian.keterlambatan_ujian' => 'numeric',
         ]);
 
         try {
@@ -47,7 +48,8 @@ class TmbhUjian extends Component
             'ujian.tgl_mulai_ujian' => 'required',
             'ujian.waktu_mulai_ujian' => 'required',
             'ujian.tgl_selesai_ujian' => 'required',
-            'ujian.waktu_selesai_ujian' => 'required'
+            'ujian.waktu_selesai_ujian' => 'required',
+            'ujian.keterlambatan_ujian' => 'numeric',
         ]);
         // dd($this->ujian);
         try {
