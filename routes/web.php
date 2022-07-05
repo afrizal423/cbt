@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
+use App\Models\Ujian;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::group(['middleware' => ['auth.siswa']],function(){
     Route::get('listUjian', function(){
         return view('pages.siswa.landing.index');
     })->name('siswa.dashboard');
+
+    Route::get('ikutUjian/{ujian_id}', function($ujian_id){
+        dd(Ujian::with(['guru', 'mapel'])->where('id',$ujian_id)->first()->toArray());
+    })->name('siswa.ikutujian');
 });
 
 

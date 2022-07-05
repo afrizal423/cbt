@@ -25,7 +25,7 @@
     <!-- custom script head -->
     @stack('script_head')
   </head>
-  <body>
+  <body class="bodynya">
     @include('components.siswa.navbar')
     {{ $slot }}
 

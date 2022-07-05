@@ -1,0 +1,56 @@
+/* Landing siswa  */
+.landing-siswa {
+    padding-top: 10px;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-left: 0;
+    margin-right: 0;
+}
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-left: 0;
+  margin-right: 0;
+}
+.border-sidekanan-landing-siswa {
+    background-color: #2198f3;
+    border-radius: 15px;
+    /* padding: 20px; */
+}
+.border-sidekiri-landing-siswa {
+    border-radius: 15px;
+    /* padding: 20px; */
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .landing-siswa {
+        padding-top: 10px;
+    }
+
+    [class*="border-sidekanan-landing-siswa"] {
+        margin-top: 1em;
+    }
+}
+.list-ujian {
+    margin-top: 1em;
+    border-radius: 8px;
+}
+
+.list-ujian:hover{
+    transform: scale(1.0);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+
+/* end Landing siswa  */
+
+

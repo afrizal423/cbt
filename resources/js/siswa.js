@@ -1,4 +1,5 @@
 import './siswa/package';
+import '../css/siswa.css';
 
 window.logoutSiswa = function () {
     Swal.fire({
