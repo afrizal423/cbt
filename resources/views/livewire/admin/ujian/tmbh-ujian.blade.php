@@ -181,11 +181,11 @@
 
                         <!-- keterlambatan -->
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Keterlambatan</label>
-                            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Keterlambatan Hadir Pengerjaan (menit)" wire:model.defer="ujian.keterlambatan_ujian" required>
+                            <label for="xzc">Keterlambatan</label>
+                            <input type="number" class="form-control" id="xzc" placeholder="Keterlambatan Hadir Pengerjaan (satuan menit)" wire:model.defer="ujian.keterlambatan_ujian" required>
                             @error('ujian.keterlambatan_ujian') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
-                        <small>*Isikan angka 0 jika tidak tolelir terlambat. (satuan menit)</small>
+                        <small>*Default 1 menit untuk keterlambatan.</small>
 
                         <!-- KOde ujian -->
                         <div class="form-group">

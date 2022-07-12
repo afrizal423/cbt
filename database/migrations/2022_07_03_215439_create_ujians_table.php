@@ -24,7 +24,7 @@ class CreateUjiansTable extends Migration
             $table->time('waktu_mulai_ujian')->nullable();
             $table->date('tgl_selesai_ujian')->nullable();
             $table->time('waktu_selesai_ujian')->nullable();
-            $table->integer('keterlambatan_ujian')->nullable();
+            $table->integer('keterlambatan_ujian')->nullable()->default(1);
             $table->string('code_ujian', 20)->nullable();
             $table->boolean('status_ujian')->nullable()->default(false);
         });

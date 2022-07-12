@@ -8,11 +8,10 @@
                         $sekarang = Carbon\Carbon::now();
                         $mulai = Carbon\Carbon::parse($listUjian->tgl_mulai_ujian.' '.$listUjian->waktu_mulai_ujian);
                         $selesai = Carbon\Carbon::parse($listUjian->tgl_selesai_ujian.' '.$listUjian->waktu_selesai_ujian);
-                        $result = $sekarang->gte($mulai);
-
-                        if ($result) {
-                            echo "hai";
-                        };
+                        $waktuMulaiUjian = $sekarang->gte($mulai);
+                        $mulaiUjian = Carbon\Carbon::parse($listUjian->tgl_mulai_ujian.' '.$listUjian->waktu_mulai_ujian);
+                        $batasWaktuIkut = $mulaiUjian->addMinutes($listUjian->keterlambatan_ujian);
+                        // echo $batasWaktuIkut;
                     @endphp
                     <div class="table-responsive">
                         <table class="table table-borderless">
@@ -97,8 +96,16 @@
                     <div class="box-ikutujian-kanan">
                         Waktu boleh mengerjakan ujian adalah saat tombol "MULAI" berwarna hijau!
                     </div>
-                    <div id="demo">
-
+                    <div class="text-center">
+                        @if (!$waktuMulaiUjian)
+                        <button type="button" class="btn btn-info"><div id="demo"></div></button>
+                        @elseif (!$sekarang->lte($batasWaktuIkut))
+                        <button type="button" class="btn btn-danger">Anda telat!</button>
+                        @elseif ($waktuMulaiUjian && $sekarang->lte($batasWaktuIkut))
+                        <button type="button" class="btn btn-success">Mulai</button>
+                        @else
+                        <button type="button" class="btn btn-danger">Ujian telah selesai!</button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -109,7 +116,7 @@
 @push('scripts')
 <script>
     // Mengatur waktu akhir perhitungan mundur
-var countDownDate = new Date("{{$listUjian->tgl_mulai_ujian.' '}}07:09:30").getTime();
+var countDownDate = new Date("{{$mulai}}").getTime();
 
 // Memperbarui hitungan mundur setiap 1 detik
 var x = setInterval(function() {
@@ -133,7 +140,7 @@ var x = setInterval(function() {
   // Jika hitungan mundur selesai, tulis beberapa teks
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    location.reload();
   }
 }, 1000);
 </script>
