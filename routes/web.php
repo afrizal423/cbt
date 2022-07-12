@@ -34,7 +34,12 @@ Route::group(['middleware' => ['auth.siswa']],function(){
     })->name('siswa.dashboard');
 
     Route::get('ikutUjian/{ujian_id}', function($ujian_id){
-        dd(Ujian::with(['guru', 'mapel'])->where('id',$ujian_id)->first()->toArray());
+        // dd();
+        $stts = Ujian::with(['guru', 'mapel'])->where('id',$ujian_id)->first()->toArray();
+        if ($stts['status_ujian'] == false) {
+            return redirect()->route('siswa.dashboard');
+        }
+        return view('pages.siswa.landing.ikut-ujian');
     })->name('siswa.ikutujian');
 });
 
