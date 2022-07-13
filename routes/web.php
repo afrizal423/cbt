@@ -41,6 +41,26 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         }
         return view('pages.siswa.landing.ikut-ujian');
     })->name('siswa.ikutujian');
+
+    Route::post('joinExam/{ujian_id}', function(Request $request, $ujian_id){
+        $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
+        $sekarang = Carbon\Carbon::now();
+        $mulai = Carbon\Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+        $waktuMulaiUjian = $sekarang->gte($mulai);
+        $mulaiUjian = Carbon\Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+        $batasWaktuIkut = $mulaiUjian->addMinutes($stts->keterlambatan_ujian);
+
+        // jika token benar dan waktumulaiujian lbh dari atau sama dgn didatabase dan tidak lebih dari keterlambatan
+        if ($request->input('token_ujian') == $stts->code_ujian && $waktuMulaiUjian && $sekarang->lte($batasWaktuIkut)) {
+             //proses session disini
+
+            // proses insert data ikutujians
+
+            //ambil data soal dimasukkan ke table jawaban ujians
+            dd($sekarang->lte($batasWaktuIkut));
+        }
+        return redirect()->back();
+    })->name('siswa.joinExam');
 });
 
 
