@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Ujian;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Listsoal;
 use Illuminate\Support\Facades\Auth;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
-use App\Models\Ujian;
+use App\Models\IkutUjian;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +36,11 @@ Route::group(['middleware' => ['auth.siswa']],function(){
     })->name('siswa.dashboard');
 
     Route::get('ikutUjian/{ujian_id}', function($ujian_id){
-        // dd();
+        // $siswa = Auth::guard('siswa')->user();
         $stts = Ujian::with(['guru', 'mapel'])->where('id',$ujian_id)->first()->toArray();
+        // dd(IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('status', true)->first());
+
+
         if ($stts['status_ujian'] == false) {
             return redirect()->route('siswa.dashboard');
         }
@@ -44,20 +49,31 @@ Route::group(['middleware' => ['auth.siswa']],function(){
 
     Route::post('joinExam/{ujian_id}', function(Request $request, $ujian_id){
         $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
-        $sekarang = Carbon\Carbon::now();
-        $mulai = Carbon\Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+        $sekarang = Carbon::now();
+        $mulai = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
         $waktuMulaiUjian = $sekarang->gte($mulai);
-        $mulaiUjian = Carbon\Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+        $mulaiUjian = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+        $akhirUjian = Carbon::parse($stts->tgl_selesai_ujian.' '.$stts->waktu_selesai_ujian);
         $batasWaktuIkut = $mulaiUjian->addMinutes($stts->keterlambatan_ujian);
+        $siswa = Auth::guard('siswa')->user();
+        $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', false)->count();
+        // dd($cekSudahUjian);
+        /**
+         * Backup
+         *
+         * jika token benar dan waktumulaiujian lbh dari atau sama dgn didatabase dan tidak lebih dari keterlambatan
+         * if ($request->input('token_ujian') == $stts->code_ujian && $waktuMulaiUjian && $sekarang->lte($batasWaktuIkut)) {
+         *
+        */
 
-        // jika token benar dan waktumulaiujian lbh dari atau sama dgn didatabase dan tidak lebih dari keterlambatan
-        if ($request->input('token_ujian') == $stts->code_ujian && $waktuMulaiUjian && $sekarang->lte($batasWaktuIkut)) {
+        // jika token benar dan waktu tidak lebih dari batas akhir ujian
+        if ($request->input('token_ujian') == $stts->code_ujian && $sekarang->lt($akhirUjian)) {
              //proses session disini
 
             // proses insert data ikutujians
 
             //ambil data soal dimasukkan ke table jawaban ujians
-            dd($sekarang->lte($batasWaktuIkut));
+            dd(true);
         }
         return redirect()->back();
     })->name('siswa.joinExam');

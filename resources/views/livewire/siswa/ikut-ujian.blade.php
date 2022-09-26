@@ -12,6 +12,7 @@
                             $selesai = Carbon\Carbon::parse($listUjian->tgl_selesai_ujian.' '.$listUjian->waktu_selesai_ujian);
                             $waktuMulaiUjian = $sekarang->gte($mulai);
                             $mulaiUjian = Carbon\Carbon::parse($listUjian->tgl_mulai_ujian.' '.$listUjian->waktu_mulai_ujian);
+                            $akhirUjian = Carbon\Carbon::parse($listUjian->tgl_selesai_ujian.' '.$listUjian->waktu_selesai_ujian);
                             $batasWaktuIkut = $mulaiUjian->addMinutes($listUjian->keterlambatan_ujian);
                             // echo $batasWaktuIkut;
                         @endphp
@@ -71,7 +72,7 @@
                                 <tr>
                                     <td>Durasi Ujian</td>
                                     <td>:</td>
-                                    <td>{{jam_menit($selesai->diffInMinutes($mulai))}} Menit</td>
+                                    <td>{{$selesai->diffInMinutes($mulai)}} Menit</td>
                                 </tr>
                                 <tr>
                                     <td>Dimulai Pada Jam</td>
@@ -101,8 +102,10 @@
                         <div class="text-center">
                             @if (!$waktuMulaiUjian)
                             <button type="button" class="btn btn-info"><div id="demo"></div></button>
-                            @elseif (!$sekarang->lte($batasWaktuIkut))
+                            @elseif (!$sekarang->lte($akhirUjian))
                             <button type="button" class="btn btn-danger">Anda telat!</button>
+                            @elseif ($cekSudahUjian > 0)
+                            <button type="button" class="btn btn-primary">Anda Sudah Menyelesaikan Ujian :)</button>
                             @elseif ($waktuMulaiUjian && $sekarang->lte($batasWaktuIkut))
                             <button type="submit" class="btn btn-success">Mulai</button>
                             @else
