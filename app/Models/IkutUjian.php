@@ -23,7 +23,7 @@ class IkutUjian extends Model
     /**
      * @var array
      */
-    protected $fillable = ['siswa_id', 'ujian_id', 'status'];
+    protected $fillable = ['siswa_id', 'ujian_id', 'status', 'sudah_ujian'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

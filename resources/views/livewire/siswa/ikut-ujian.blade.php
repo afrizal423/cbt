@@ -71,7 +71,7 @@
                                 <tr>
                                     <td>Durasi Ujian</td>
                                     <td>:</td>
-                                    <td>{{$selesai->diffInMinutes($mulai)}} Menit</td>
+                                    <td>{{jam_menit($selesai->diffInMinutes($mulai))}} Menit</td>
                                 </tr>
                                 <tr>
                                     <td>Dimulai Pada Jam</td>

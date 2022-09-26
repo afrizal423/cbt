@@ -1,5 +1,36 @@
 <?php
 
+if (!function_exists('jam_menit')) {
+
+    /**
+     * Convert Array into Object in deep
+     *
+     * @param array $array
+     * @return
+     */
+    function jam_menit($waktu){
+        if(($waktu>0) && ($waktu<60)){
+            $lama=number_format($waktu,2)." detik";
+            return $lama;
+        }
+        if(($waktu>60) && ($waktu<3600)){
+            $detik=fmod($waktu,60);
+            $menit=$waktu-$detik;
+            $menit=$menit/60;
+            $lama=$menit." Menit ";
+            return $lama;
+        }
+        elseif($waktu >3600){
+            $detik=fmod($waktu,60);
+            $tempmenit=($waktu-$detik)/60;
+            $menit=fmod($tempmenit,60);
+            $jam=($tempmenit-$menit)/60;
+            $lama=$jam." Jam ".$menit;
+            return $lama;
+        }
+    }
+}
+
 if (!function_exists('printJenisUjian')) {
 
     /**

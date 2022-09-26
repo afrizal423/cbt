@@ -63,7 +63,7 @@ class TmbhUjian extends Component
     }
 
     public function mount(){
-        $this->mapel = Mapel::all();
+        $this->mapel = Mapel::where('status_mapel', true)->get();
         $this->kelas = Kela::all();
         if ($this->action == "ubahUjian") {
             $this->ujian = Ujian::findOrFail($this->ujianId)->toArray();

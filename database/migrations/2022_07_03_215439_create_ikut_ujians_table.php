@@ -17,7 +17,8 @@ class CreateIkutUjiansTable extends Migration
             $table->char('id', 26)->unique('ikut_ujian_pk');
             $table->char('siswa_id', 26)->nullable()->index('siswa_ikut_ujian_fk');
             $table->char('ujian_id', 26)->nullable()->index('status_ujian_siswa_fk');
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(true)->nullable();
+            $table->boolean('sudah_ujian')->default(false)->nullable();
         });
     }
 
