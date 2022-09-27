@@ -68,9 +68,9 @@ Route::group(['middleware' => ['auth.siswa']],function(){
 
         // jika token benar dan waktu tidak lebih dari batas akhir ujian
         if ($request->input('token_ujian') == $stts->code_ujian && $sekarang->lt($akhirUjian)) {
-             //proses session disini
-
             // proses insert data ikutujians
+
+            // proses insert pengacakan soal
 
             //ambil data soal dimasukkan ke table jawaban ujians
             dd(true);

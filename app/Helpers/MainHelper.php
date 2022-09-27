@@ -17,7 +17,7 @@ if (!function_exists('jam_menit')) {
             $detik=fmod($waktu,60);
             $menit=$waktu-$detik;
             $menit=$menit/60;
-            $lama=$menit." Menit ";
+            $lama=$menit." Menit ".number_format($detik,2)." detik";
             return $lama;
         }
         elseif($waktu >3600){
@@ -25,7 +25,7 @@ if (!function_exists('jam_menit')) {
             $tempmenit=($waktu-$detik)/60;
             $menit=fmod($tempmenit,60);
             $jam=($tempmenit-$menit)/60;
-            $lama=$jam." Jam ".$menit;
+            $lama=$jam." Jam ".$menit." Menit ".number_format($detik,2)." detik";
             return $lama;
         }
     }
