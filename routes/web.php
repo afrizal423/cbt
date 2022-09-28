@@ -58,6 +58,12 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         $siswa = Auth::guard('siswa')->user();
         $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', false)->count();
         // dd($cekSudahUjian);
+
+        // cek token
+        if ($request->input('token_ujian') == null || $request->input('token_ujian') == '') {
+            return redirect()->back()->withErrors(['token' => 'Token Ujian Tidak Boleh Kosong', 'anu' => 'mengGG']);
+        }
+
         /**
          * Backup
          *
@@ -75,7 +81,8 @@ Route::group(['middleware' => ['auth.siswa']],function(){
             //ambil data soal dimasukkan ke table jawaban ujians
             dd(true);
         }
-        return redirect()->back();
+
+        // return redirect()->back();
     })->name('siswa.joinExam');
 });
 

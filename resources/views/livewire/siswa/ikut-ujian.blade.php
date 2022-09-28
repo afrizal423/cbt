@@ -99,6 +99,15 @@
                         <div class="box-ikutujian-kanan">
                             Waktu boleh mengerjakan ujian adalah saat tombol "MULAI" berwarna hijau!
                         </div>
+                        @if ($errors->any())
+
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @foreach ($errors->all() as $e)
+                            <span>- {{$e}}</span> <br>
+                            @endforeach
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
                         <div class="text-center">
                             @if (!$waktuMulaiUjian)
                             <button type="button" class="btn btn-info"><div id="demo"></div></button>
@@ -106,7 +115,7 @@
                             <button type="button" class="btn btn-danger">Anda telat!</button>
                             @elseif ($cekSudahUjian > 0)
                             <button type="button" class="btn btn-primary">Anda Sudah Menyelesaikan Ujian :)</button>
-                            @elseif ($waktuMulaiUjian && $sekarang->lte($batasWaktuIkut))
+                            @elseif ($waktuMulaiUjian && $sekarang->lte($akhirUjian))
                             <button type="submit" class="btn btn-success">Mulai</button>
                             @else
                             <button type="button" class="btn btn-danger">Ujian telah selesai!</button>
