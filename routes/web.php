@@ -11,6 +11,7 @@ use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 use App\Models\IkutUjian;
+use App\Models\SoalnyaSiswaUjian;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,12 +57,15 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         $akhirUjian = Carbon::parse($stts->tgl_selesai_ujian.' '.$stts->waktu_selesai_ujian);
         $batasWaktuIkut = $mulaiUjian->addMinutes($stts->keterlambatan_ujian);
         $siswa = Auth::guard('siswa')->user();
-        $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', false)->count();
+        // $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', false)->count();
         // dd($cekSudahUjian);
 
         // cek token
         if ($request->input('token_ujian') == null || $request->input('token_ujian') == '') {
-            return redirect()->back()->withErrors(['token' => 'Token Ujian Tidak Boleh Kosong', 'anu' => 'mengGG']);
+            return redirect()->back()->withErrors(['token' => 'Token Ujian Tidak Boleh Kosong']);
+        }
+        if ($request->input('token_ujian') != $stts->code_ujian) {
+            return redirect()->back()->withErrors(['token' => 'Token Ujian Salah']);
         }
 
         /**
@@ -75,10 +79,36 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         // jika token benar dan waktu tidak lebih dari batas akhir ujian
         if ($request->input('token_ujian') == $stts->code_ujian && $sekarang->lt($akhirUjian)) {
             // proses insert data ikutujians
-
+            IkutUjian::updateOrCreate([
+                'siswa_id' => $siswa->id,
+                'ujian_id' => $ujian_id
+            ]);
             // proses insert pengacakan soal
+            $u = Ujian::select('mapel_id')->with([
+                'mapel' => function($q){
+                    $q->select('id');
+                    $q->with(
+                        [
+                            'soals' => function($q){
+                                $q->inRandomOrder();// jika random. klo gak hapus aja
+                                $q->select('id', 'mapel_id');
+                            }
+                        ]
+                    );
+                }
+            ])->where('id', $ujian_id)->first()->toArray();
+            $data = [];
+            foreach ($u['mapel']['soals'] as $key => $value) {
+                array_push($data, $value['id']);
+            }
+            // echo '<pre>' . var_export($data, true) . '</pre>';
+            // echo json_encode($data);
+            SoalnyaSiswaUjian::updateOrCreate([
+                'siswa_id' => $siswa->id,
+                'ujian_id' => $ujian_id],
+                ['listsoal' => json_encode($data)]
+            );
 
-            //ambil data soal dimasukkan ke table jawaban ujians
             dd(true);
         }
 
