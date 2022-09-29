@@ -102,6 +102,8 @@
                         @if ($errors->any())
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> <br>
+                            <span>Keterangan: </span> <br>
                             @foreach ($errors->all() as $e)
                             <span>- {{$e}}</span> <br>
                             @endforeach

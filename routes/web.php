@@ -109,12 +109,34 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                 ['listsoal' => json_encode($data)]
             );
 
-            dd(true);
+            return redirect()->route('ujian_playground', [
+                'ujian_id' => $ujian_id,
+                'nomor_soal' => 1]);
         }
 
         // return redirect()->back();
     })->name('siswa.joinExam');
 });
+
+Route::get('exam/{ujian_id}/{nomor_soal}', function(Request $request, $ujian_id, $nomor_soal){
+    $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
+    $sekarang = Carbon::now();
+    $mulai = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
+    $waktuMulaiUjian = $sekarang->gte($mulai);
+    $akhirUjian = Carbon::parse($stts->tgl_selesai_ujian.' '.$stts->waktu_selesai_ujian);
+    $siswa = Auth::guard('siswa')->user();
+    $cekSoal = SoalnyaSiswaUjian::where('siswa_id', $siswa->id)
+                    ->where('ujian_id', $ujian_id)
+                    ->count();
+
+    if ($sekarang->lt($akhirUjian) && $waktuMulaiUjian && $cekSoal == 1) {
+        dd($cekSoal);
+    }
+    return redirect()->route('siswa.ikutujian', [
+        'ujian_id' => $ujian_id
+    ])->withErrors(['token' => 'Token Ujian Kosong']);
+
+})->name('ujian_playground');
 
 
 // login guru dan admin
