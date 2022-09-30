@@ -2,16 +2,18 @@
 
 use Carbon\Carbon;
 use App\Models\Ujian;
+use App\Models\IkutUjian;
 use Illuminate\Http\Request;
+use App\Models\SoalnyaSiswaUjian;
 use App\Http\Controllers\Listsoal;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Siswa\UjianPlayground;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
-use App\Models\IkutUjian;
-use App\Models\SoalnyaSiswaUjian;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,7 +120,7 @@ Route::group(['middleware' => ['auth.siswa']],function(){
     })->name('siswa.joinExam');
 });
 
-Route::get('exam/{ujian_id}/{nomor_soal}', function(Request $request, $ujian_id, $nomor_soal){
+Route::get('exam/{ujian_id}/{nomor_soal}', function($ujian_id, $nomor_soal){
     $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
     $sekarang = Carbon::now();
     $mulai = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
@@ -130,7 +132,9 @@ Route::get('exam/{ujian_id}/{nomor_soal}', function(Request $request, $ujian_id,
                     ->count();
 
     if ($sekarang->lt($akhirUjian) && $waktuMulaiUjian && $cekSoal == 1) {
-        dd($cekSoal);
+        return App::call('App\Http\Controllers\Siswa\UjianPlayground@index', [
+            'ujian_id' => $ujian_id
+        ]);
     }
     return redirect()->route('siswa.ikutujian', [
         'ujian_id' => $ujian_id
