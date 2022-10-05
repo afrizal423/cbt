@@ -13,7 +13,7 @@
                         @if ($soal->mapel->soals[0]->type_soal == "pilgan")
                         @foreach ($listjawaban as $jwban)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" wire:model.defer="jawaban.siswa" value="{{$jwban->id}}">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                 {!! json_decode($jwban->text_jawaban) !!}
                                 </label>
@@ -25,7 +25,7 @@
                         @endphp --}}
                         @else
                         <div class="jawaban-essai">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" wire:model.defer="jawaban.siswa"></textarea>
                         </div>
                         @endif
                     </div>
@@ -40,8 +40,14 @@
                     @endif
 
                 </div>
-                <div class="col-md-4 text-center">
-                    1
+                <div class="col-md-4 text-center" style="padding-top: 10px">
+                    <div class="">
+                        <input class="form-check-input" type="checkbox" value="@php
+                            true;
+                        @endphp" wire:model.defer="jawaban.ragu-ragu">
+                        <label class="form-check-label" for="flexCheckDefault">Ragu - ragu
+                        </label>
+                    </div>
                 </div>
                 <div class="col-md-4 text-end">
                     @if ($nomor_soal != count($listsoal))

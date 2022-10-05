@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Siswa;
 
+use App\Models\JawabanUjian;
 use App\Models\ListJawabansoal;
 use App\Models\Ujian;
 use Livewire\Component;
@@ -10,10 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class UjianPlayground extends Component
 {
-    public $ujian_id, $soal, $listsoal, $soal_id, $listjawaban;
+    public $ujian_id, $soal, $listsoal, $soal_id, $listjawaban, $jawaban;
     public int $nomor_soal = 1;
 
     public function showSoal($nosoal){
+        // dd($this->jawaban);
+        JawabanUjian::updateOrCreate([
+            'siswa_id' => Auth::guard('siswa')->user()->id,
+            'ujian_id' => $this->ujian_id,
+            'soal_id' => $this->soal_id],
+            [
+                'jawaban_siswa' => isset($this->jawaban['siswa']) ? json_encode($this->jawaban['siswa']) : null,
+                'ragu_jawaban' => isset($this->jawaban['ragu-ragu']) ? $this->jawaban['ragu-ragu'] : false
+            ]
+        );
         $this->soal = Ujian::select('mapel_id')->with([
             'mapel' => function($q) use($nosoal){
                 $q->select('id');
@@ -65,7 +76,15 @@ class UjianPlayground extends Component
 
         $this->listjawaban = ListJawabansoal::where('soal_id', $this->soal_id)->get();
 
-
+        JawabanUjian::updateOrCreate([
+            'siswa_id' => Auth::guard('siswa')->user()->id,
+            'ujian_id' => $this->ujian_id,
+            'soal_id' => $this->soal_id],
+            [
+                'jawaban_siswa' => isset($this->jawaban['siswa']) ? json_encode($this->jawaban['siswa']) : null,
+                'ragu_jawaban' => isset($this->jawaban['ragu-ragu']) ? $this->jawaban['ragu-ragu'] : false
+            ]
+        );
     }
     public function render()
     {
