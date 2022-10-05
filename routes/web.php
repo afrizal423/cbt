@@ -112,15 +112,14 @@ Route::group(['middleware' => ['auth.siswa']],function(){
             );
 
             return redirect()->route('ujian_playground', [
-                'ujian_id' => $ujian_id,
-                'nomor_soal' => 1]);
+                'ujian_id' => $ujian_id]);
         }
 
         // return redirect()->back();
     })->name('siswa.joinExam');
 });
 
-Route::get('exam/{ujian_id}/{nomor_soal}', function($ujian_id, $nomor_soal){
+Route::get('exam/{ujian_id}', function($ujian_id){
     $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
     $sekarang = Carbon::now();
     $mulai = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);

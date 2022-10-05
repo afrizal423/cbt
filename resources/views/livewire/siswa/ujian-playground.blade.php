@@ -36,14 +36,7 @@
             <div class="row" style="padding-top: 12px">
                 <div class="col-md-4">
                     @if ($nomor_soal != 1)
-                    <a href="
-                    @php
-                        echo route('ujian_playground', [
-                            'ujian_id' => $ujian_id,
-                            'nomor_soal' => $nomor_soal-1
-                        ]);
-                    @endphp
-                    " class="btn btn-primary" role="button">Soal Sebelumnya</a>
+                    <a  wire:click="showSoal({{$nomor_soal-1}})" class="btn btn-primary" role="button">Soal Sebelumnya</a>
                     @endif
 
                 </div>
@@ -52,14 +45,7 @@
                 </div>
                 <div class="col-md-4 text-end">
                     @if ($nomor_soal != count($listsoal))
-                    <a href="
-                        @php
-                            echo route('ujian_playground', [
-                                'ujian_id' => $ujian_id,
-                                'nomor_soal' => $nomor_soal+1
-                            ]);
-                        @endphp
-                    " class="btn btn-primary" role="button">Soal Selanjutnya</a>
+                    <a wire:click="showSoal({{$nomor_soal+1}})" class="btn btn-primary" role="button">Soal Selanjutnya</a>
                     @endif
                 </div>
             </div>
@@ -74,14 +60,7 @@
                         <div class="row">
                             @for ($i = 0; $i < count($listsoal); $i++)
                             <div class="col-md">
-                                <a href="
-                                @php
-                                    echo route('ujian_playground', [
-                                        'ujian_id' => $ujian_id,
-                                        'nomor_soal' => $i+1
-                                    ]);
-                                @endphp
-                                " class="btn
+                                <a wire:click="showSoal({{$i+1}})" class="btn
                                 @if ($i+1 == $nomor_soal)
                                 btn-primary
                                 @else

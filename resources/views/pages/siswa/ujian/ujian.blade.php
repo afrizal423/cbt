@@ -4,7 +4,7 @@
     </x-slot>
     <div class="container landing-siswa">
         <livewire:siswa.ujian-playground :ujian_id="request()->ujian_id"
-            :nomor_soal="request()->nomor_soal"/>
+            />
     </div>
 
 
