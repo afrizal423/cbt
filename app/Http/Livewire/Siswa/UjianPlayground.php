@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Siswa;
 
+use App\Models\ListJawabansoal;
 use App\Models\Ujian;
 use Livewire\Component;
 use App\Models\SoalnyaSiswaUjian;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UjianPlayground extends Component
 {
-    public $ujian_id, $nomor_soal, $soal, $listsoal;
+    public $ujian_id, $nomor_soal, $soal, $listsoal, $soal_id, $listjawaban;
 
     public function mount(){
 
@@ -32,7 +33,10 @@ class UjianPlayground extends Component
             }
         ])->where('id',$this->ujian_id)->first();
 
-        // dd($u->toJson());
+        $this->soal_id = $this->soal->mapel->soals[0]->id;
+
+        $this->listjawaban = ListJawabansoal::where('soal_id', $this->soal_id)->get();
+
 
     }
     public function render()

@@ -9,6 +9,25 @@
                 <div class="card-body">
                     <div class="card-text">
                         {!! $soal->mapel->soals[0]->soal !!}
+                        <br>
+                        @if ($soal->mapel->soals[0]->type_soal == "pilgan")
+                        @foreach ($listjawaban as $jwban)
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                {!! json_decode($jwban->text_jawaban) !!}
+                                </label>
+                            </div>
+                        @endforeach
+
+                        {{-- @php
+                            var_dump($listjawaban);
+                        @endphp --}}
+                        @else
+                        <div class="jawaban-essai">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
