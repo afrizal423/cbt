@@ -49,10 +49,16 @@ class UjianPlayground extends Component
         $this->listjawaban = ListJawabansoal::where('soal_id', $this->soal_id)->get();
 
         $this->nomor_soal = $nosoal;
+
+        $u = JawabanUjian::where('siswa_id', Auth::guard('siswa')->user()->id)
+                            ->where('ujian_id', $this->ujian_id)
+                            ->where('soal_id', $this->soal_id)
+                            ->first();
+        $this->jawaban['siswa'] = json_decode($u->jawaban_siswa);
+        $this->jawaban['ragu-ragu'] = $u->ragu_jawaban;
     }
 
     public function mount(){
-
         $this->soal = Ujian::select('mapel_id')->with([
             'mapel' => function($q){
                 $q->select('id');
@@ -76,6 +82,13 @@ class UjianPlayground extends Component
 
         $this->listjawaban = ListJawabansoal::where('soal_id', $this->soal_id)->get();
 
+        $u = JawabanUjian::where('siswa_id', Auth::guard('siswa')->user()->id)
+                            ->where('ujian_id', $this->ujian_id)
+                            ->where('soal_id', $this->soal_id)
+                            ->first();
+        $this->jawaban['siswa'] = json_decode($u->jawaban_siswa);
+        $this->jawaban['ragu-ragu'] = $u->ragu_jawaban;
+
         JawabanUjian::updateOrCreate([
             'siswa_id' => Auth::guard('siswa')->user()->id,
             'ujian_id' => $this->ujian_id,
@@ -85,6 +98,9 @@ class UjianPlayground extends Component
                 'ragu_jawaban' => isset($this->jawaban['ragu-ragu']) ? $this->jawaban['ragu-ragu'] : false
             ]
         );
+
+
+
     }
     public function render()
     {

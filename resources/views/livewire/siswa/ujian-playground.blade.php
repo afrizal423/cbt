@@ -25,7 +25,7 @@
                         @endphp --}}
                         @else
                         <div class="jawaban-essai">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" wire:model.defer="jawaban.siswa"></textarea>
+                            <textarea class="form-control" rows="8" wire:model.defer="jawaban.siswa"></textarea>
                         </div>
                         @endif
                     </div>
