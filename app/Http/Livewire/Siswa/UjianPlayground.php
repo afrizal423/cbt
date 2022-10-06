@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UjianPlayground extends Component
 {
-    public $ujian_id, $soal, $listsoal, $soal_id, $listjawaban, $jawaban;
+    public $ujian_id, $soal, $listsoal, $soal_id, $listjawaban, $jawaban, $siswaRagu;
     public int $nomor_soal = 1;
 
     public function showSoal($nosoal){
@@ -25,6 +25,11 @@ class UjianPlayground extends Component
                 'ragu_jawaban' => isset($this->jawaban['ragu-ragu']) ? $this->jawaban['ragu-ragu'] : false
             ]
         );
+
+        $this->siswaRagu = JawabanUjian::where('siswa_id', Auth::guard('siswa')->user()->id)
+                                ->where('ujian_id', $this->ujian_id)
+                                ->get()
+                                ->toArray();
         $this->soal = Ujian::select('mapel_id')->with([
             'mapel' => function($q) use($nosoal){
                 $q->select('id');
@@ -89,6 +94,11 @@ class UjianPlayground extends Component
         $this->jawaban['siswa'] = json_decode($u->jawaban_siswa);
         $this->jawaban['ragu-ragu'] = $u->ragu_jawaban;
 
+        $this->siswaRagu = JawabanUjian::where('siswa_id', Auth::guard('siswa')->user()->id)
+                                ->where('ujian_id', $this->ujian_id)
+                                ->get()
+                                ->toArray();
+        // dd($this->siswaRagu);
         JawabanUjian::updateOrCreate([
             'siswa_id' => Auth::guard('siswa')->user()->id,
             'ujian_id' => $this->ujian_id,
@@ -99,9 +109,8 @@ class UjianPlayground extends Component
             ]
         );
 
-
-
     }
+
     public function render()
     {
         return view('livewire.siswa.ujian-playground');

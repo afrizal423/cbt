@@ -68,9 +68,23 @@
                             <div class="col-md">
                                 <a wire:click="showSoal({{$i+1}})" class="btn
                                 @if ($i+1 == $nomor_soal)
-                                btn-primary
+                                @foreach ($siswaRagu as $ragu)
+                                        @if ($ragu['soal_id'] == $listsoal[$i] && $ragu['ragu_jawaban'])
+                                            btn-warning
+                                            @break
+                                        @elseif ($ragu['soal_id'] == $listsoal[$i])
+                                            btn-primary
+                                        @endif
+                                @endforeach
                                 @else
-                                btn-outline-primary
+                                    @foreach ($siswaRagu as $ragu)
+                                        @if ($ragu['soal_id'] == $listsoal[$i] && $ragu['ragu_jawaban'])
+                                            btn-warning
+                                            @break
+                                        @elseif ($ragu['soal_id'] == $listsoal[$i])
+                                            btn-outline-primary
+                                        @endif
+                                    @endforeach
                                 @endif" role="button">{{$i+1}}</a>
                             </div>
                             @endfor

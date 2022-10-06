@@ -112,4 +112,12 @@ class Ujian extends Model
     {
         return $this->hasMany('App\Models\Nilai');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SoalSiswas()
+    {
+        return $this->hasMany('App\Models\SoalnyaSiswaUjian');
+    }
 }
