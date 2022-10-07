@@ -44,7 +44,7 @@
                         {{-- <input type="username" class="form-control" placeholder="username" autocomplete="off"> --}}
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                {{-- <span class="fas fa-envelope"></span> --}}
                             </div>
                         </div>
                         @error('username')
@@ -53,7 +53,7 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="show_hide_password">
                         {{-- <input type="password" class="form-control" placeholder="Password"> --}}
                         <input
                             id="password"
@@ -65,7 +65,7 @@
                             autocomplete="current-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true" style="color: rgb(87, 87, 87);"></i></a>
                             </div>
                         </div>
                         @error('password')
@@ -115,4 +115,24 @@
             <!-- /.login-card-body -->
         </div>
     </div>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "fa-eye-slash" );
+                $('#show_hide_password i').removeClass( "fa-eye" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password i').addClass( "fa-eye" );
+            }
+        });
+    });
+</script>
+@endpush
 </x-base.auth>
+
