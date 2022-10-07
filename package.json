@@ -5,17 +5,17 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "axios": "^0.27",
+        "axios": "^1.1",
         "laravel-vite-plugin": "^0.6.1",
         "lodash": "^4.17.21",
-        "postcss": "^8.4.16",
-        "vite": "^3.1.3",
+        "postcss": "^8.4.17",
+        "vite": "^3.1.6",
         "vite-plugin-full-reload": "^1.0.4"
     },
     "dependencies": {
-        "alpinejs": "^3.10.3",
-        "bootstrap": "^5.2.1",
+        "alpinejs": "^3.10.4",
+        "bootstrap": "^5.2.2",
         "inputmask": "^5.0.7",
-        "sweetalert2": "^11.4.33"
+        "sweetalert2": "^11.4.38"
     }
 }
