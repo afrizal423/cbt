@@ -134,7 +134,12 @@ Route::get('exam/{ujian_id}', function($ujian_id){
         return App::call('App\Http\Controllers\Siswa\UjianPlayground@index', [
             'ujian_id' => $ujian_id
         ]);
+    } elseif (!$sekarang->lt($akhirUjian)) {
+        return redirect()->route('siswa.ikutujian', [
+            'ujian_id' => $ujian_id
+        ])->withErrors(['ujian' => 'Waktu ujian telah selesai.']);
     }
+
     return redirect()->route('siswa.ikutujian', [
         'ujian_id' => $ujian_id
     ])->withErrors(['token' => 'Token Ujian Kosong']);

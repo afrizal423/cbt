@@ -30,7 +30,7 @@ class UjianPlayground extends Component
                                 ->where('ujian_id', $this->ujian_id)
                                 ->get()
                                 ->toArray();
-        $this->soal = Ujian::select('mapel_id')->with([
+        $this->soal = Ujian::select('mapel_id','tgl_selesai_ujian','waktu_selesai_ujian')->with([
             'mapel' => function($q) use($nosoal){
                 $q->select('id');
                 $q->with(
@@ -64,7 +64,7 @@ class UjianPlayground extends Component
     }
 
     public function mount(){
-        $this->soal = Ujian::select('mapel_id')->with([
+        $this->soal = Ujian::select('mapel_id','tgl_selesai_ujian','waktu_selesai_ujian')->with([
             'mapel' => function($q){
                 $q->select('id');
                 $q->with(
@@ -82,6 +82,8 @@ class UjianPlayground extends Component
                 );
             }
         ])->where('id',$this->ujian_id)->first();
+
+        // dd($this->soal);
 
         $this->soal_id = $this->soal->mapel->soals[0]->id;
 
