@@ -27,6 +27,10 @@ use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 */
 
 Route::get('/', function () {
+    $u = Auth::guard('siswa')->user();
+    if ($u != null) {
+        return redirect()->route('siswa.dashboard');
+    }
     return view('pages.siswa.auth.login');
 })->name('login.siswa');
 Route::post('proses_login_siswa', [ AuthController::class, 'Proses_login_siswa'])->name('login.proses_login_siswa');
