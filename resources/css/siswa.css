@@ -54,6 +54,10 @@ h3 {
     [class*="border-sidekanan-landing-siswa"] {
         margin-top: 1em;
     }
+
+    .tombol-selesai-ujian{
+        margin-top: 15px;
+    }
 }
 .list-ujian {
     margin-top: 1em;
@@ -68,12 +72,19 @@ h3 {
 
 /* end Landing siswa  */
 
-/* end ujian siswa  */
+/* ujian siswa  */
 .font-header-card-ujian {
     font-size: 14pt;
 }
-
-
 /* end ujian siswa  */
 
+.tombol-selesai{
+    margin: 20px;
+}
 
+@media only screen and (min-width: 768px) {
+
+    .tombol-selesai-ujian{
+        margin-top: 15px;
+    }
+}

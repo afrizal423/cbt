@@ -92,6 +92,9 @@
                     </div>
                 </div>
             </div>
+            <div class="card tombol-selesai-ujian">
+                <button type="button" class="btn btn-outline-danger tombol-selesai" wire:click.self="tombolHentikanUjian">Hentikan Ujian</button>
+            </div>
         </div>
     </div>
 </div>
@@ -99,6 +102,26 @@
 @php
     $mulai = Carbon\Carbon::parse($soal->tgl_selesai_ujian.' '.$soal->waktu_selesai_ujian);
 @endphp
+
+<script>
+    window.addEventListener('openModal', event => {
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menghentikan ujian?',
+            html: "Jika anda menghentikan Ujian, maka ujian dianggap <b style='color:green'>selesai!</b>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, Saya menghentikan ujian!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emit('hentikanUjian');
+            }
+        })
+    })
+
+</script>
 <script>
     // Mengatur waktu akhir perhitungan mundur
 var countDownDate = new Date("{{$mulai}}").getTime();
