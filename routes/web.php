@@ -14,6 +14,7 @@ use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Siswa\UjianPlayground;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
+use App\Jobs\penilaianUjianSiswa;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +150,16 @@ Route::get('exam/{ujian_id}', function($ujian_id){
     ])->withErrors(['token' => 'Token Ujian Kosong']);
 
 })->name('ujian_playground');
+
+
+/** ini eksperipen */
+Route::get('nilai/{ujian_id}', function ($ujian_id) {
+    $siswa = Auth::guard('siswa')->user();
+    $dt['siswa_id'] = $siswa->id;
+    $dt['ujian_id'] = $ujian_id;
+    penilaianUjianSiswa::dispatch($dt);
+});
+/** hapus jika sudah selesai */
 
 
 // login guru dan admin
