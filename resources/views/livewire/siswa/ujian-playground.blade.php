@@ -13,7 +13,7 @@
                         @if ($soal->mapel->soals[0]->type_soal == "pilgan")
                         @foreach ($listjawaban as $jwban)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" wire:model.defer="jawaban.siswa" value="{{$jwban->id}}">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" wire:model.defer="jawaban.siswa" value="{{$jwban->keyPilgan}}">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                 {!! json_decode($jwban->text_jawaban) !!}
                                 </label>
