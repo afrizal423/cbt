@@ -35,14 +35,13 @@ class penilaianUjianSiswa implements ShouldQueue
     {
         // delay biar ada jeda
         // sleep(5);
-        // var_dump($this->siswa);
         $u = Ujian::select('mapel_id')->with([
             'mapel' => function($q){
                 $q->select('id');
                 $q->with(
                     [
                         'soals' => function($q){
-                            $q->select('id', 'mapel_id','type_soal','kunci');
+                            $q->select('id', 'mapel_id','type_soal','kunci','bobot_soal');
                         }
                     ]
                 );
@@ -55,9 +54,32 @@ class penilaianUjianSiswa implements ShouldQueue
                     ->first()->toArray();
             if ($value['type_soal'] == 'pilgan') {
                 if (json_decode($j['jawaban_siswa']) == $value['kunci']) {
-                    echo PHP_EOL.' '.json_decode($j['jawaban_siswa']).' ini pilgan kunci jawabannya= '.$value['kunci'];
+                    JawabanUjian::updateOrCreate(
+                        [
+                            'siswa_id' => $this->siswa['siswa_id'],
+                            'ujian_id' => $this->siswa['ujian_id'],
+                            'soal_id' => $value['id']
+                        ],
+                        [
+                            'rekomendasi_bobot_nilai' => $value['bobot_soal'],
+                            'bobot_nilai' => $value['bobot_soal']
+                        ]
+                    );
+
+                    //echo PHP_EOL.' bener';
                 } else {
-                    echo PHP_EOL.'SALAH '.json_decode($j['jawaban_siswa']).' ini pilgan kunci jawabannya= '.$value['kunci'];
+                    JawabanUjian::updateOrCreate(
+                        [
+                            'siswa_id' => $this->siswa['siswa_id'],
+                            'ujian_id' => $this->siswa['ujian_id'],
+                            'soal_id' => $value['id']
+                        ],
+                        [
+                            'rekomendasi_bobot_nilai' => null,
+                            'bobot_nilai' => null
+                        ]
+                    );
+                    //echo PHP_EOL.'SALAH ';
                 }
 
 
