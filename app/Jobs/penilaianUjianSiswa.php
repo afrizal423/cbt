@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use Afrizalmy\TextSearch\TfIdfJaccard;
 use App\Models\JawabanUjian;
+use App\Models\ListJawabansoal;
 use App\Models\Ujian;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -24,6 +26,20 @@ class penilaianUjianSiswa implements ShouldQueue
     public function __construct($data)
     {
         $this->siswa = $data;
+    }
+
+    public function findNilaiMax(array $dataAsli, array $hasilPerhitungan, int $bobot_nilai): array
+    {
+        $maxValue = max($hasilPerhitungan);
+        $maxIndex = array_search($maxValue, $hasilPerhitungan);
+        $jawabanNya = $dataAsli[$maxIndex];
+        $hasil = [
+            "nilai" => floatval($maxValue->similarity) * $bobot_nilai,
+            "index" => $maxIndex,
+            "text_jawaban" => $jawabanNya
+        ];
+
+        return $hasil;
     }
 
     /**
@@ -76,7 +92,7 @@ class penilaianUjianSiswa implements ShouldQueue
                         ],
                         [
                             'rekomendasi_bobot_nilai' => null,
-                            'bobot_nilai' => null
+                            'bobot_nilai' => 0
                         ]
                     );
                     //echo PHP_EOL.'SALAH ';
@@ -84,7 +100,28 @@ class penilaianUjianSiswa implements ShouldQueue
 
 
             } elseif ($value['type_soal'] == 'essai') {
-                // echo json_decode($j['jawaban_siswa']).' ini esai'.PHP_EOL;
+                echo PHP_EOL.json_decode($j['jawaban_siswa']).' '.PHP_EOL;
+                PHP_EOL;
+                $lj = ListJawabansoal::select('text_jawaban')
+                                ->where('soal_id', $value['id'])
+                                ->first()
+                                ->toArray();
+                $listjawaban = json_decode($lj['text_jawaban']);
+                array_push($listjawaban, $value['kunci']);
+                var_dump($listjawaban);
+                PHP_EOL;
+                $tfidfjaccard = new TfIdfJaccard();
+                $tfidfjaccard->document($listjawaban)
+                                    ->query($j['jawaban_siswa'])
+                                    ->HitungTFIDF();
+                $hasilakhir = $tfidfjaccard->HitungJaccard();
+                echo json_encode($hasilakhir).PHP_EOL;
+                PHP_EOL;
+                echo "didapatkan".PHP_EOL;
+                var_dump($this->findNilaiMax($listjawaban, $hasilakhir, $value['bobot_soal']));
+                PHP_EOL;
+                PHP_EOL;
+                PHP_EOL;
             }
         }
     }

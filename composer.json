@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "afrizalmy/laraindo": "^1.0",
+        "afrizalmy/textsearch-id": "^1.0",
         "browner12/helpers": "^3.4",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",

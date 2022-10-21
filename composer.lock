@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d20108f4b2618d55aea308a66b6c8339",
+    "content-hash": "76679bd5985190dc23c9b81cfdeb12a5",
     "packages": [
         {
             "name": "afrizalmy/laraindo",
@@ -66,6 +66,51 @@
                 "source": "https://github.com/afrizal423/laraindo"
             },
             "time": "2022-07-04T13:18:38+00:00"
+        },
+        {
+            "name": "afrizalmy/textsearch-id",
+            "version": "v1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/afrizal423/text-search.git",
+                "reference": "98be9b53a50846422edfcbd2d7a41453066bb2f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/afrizal423/text-search/zipball/98be9b53a50846422edfcbd2d7a41453066bb2f1",
+                "reference": "98be9b53a50846422edfcbd2d7a41453066bb2f1",
+                "shasum": ""
+            },
+            "require": {
+                "sastrawi/sastrawi": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Afrizalmy\\TextSearch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "afrizal423",
+                    "email": "me@afrizalmy.com"
+                }
+            ],
+            "description": "Package untuk menghitung kesamaan teks dengan metode TF-IDF dan Jaccard Similarity",
+            "homepage": "https://github.com/afrizal423/text-search",
+            "keywords": [
+                "bahasa",
+                "indonesia",
+                "indonesian",
+                "pemeringkatan kata",
+                "pencarian kata"
+            ],
+            "support": {
+                "issues": "https://github.com/afrizal423/text-search/issues",
+                "source": "https://github.com/afrizal423/text-search"
+            },
+            "time": "2022-06-22T01:47:11+00:00"
         },
         {
             "name": "brick/math",
@@ -3416,6 +3461,66 @@
                 "source": "https://github.com/rorecek/laravel-ulid/tree/v2.0.5"
             },
             "time": "2022-02-09T12:10:12+00:00"
+        },
+        {
+            "name": "sastrawi/sastrawi",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sastrawi/sastrawi.git",
+                "reference": "31fd4261dd4980cc57447f44d1aec4bd69e2abec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sastrawi/sastrawi/zipball/31fd4261dd4980cc57447f44d1aec4bd69e2abec",
+                "reference": "31fd4261dd4980cc57447f44d1aec4bd69e2abec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.7",
+                "squizlabs/php_codesniffer": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Sastrawi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Librian",
+                    "email": "andylibrian@gmail.com",
+                    "homepage": "http://andylibrian.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "PHP library for stemming Indonesian language (Bahasa Indonesia)",
+            "homepage": "https://github.com/sastrawi/sastrawi",
+            "keywords": [
+                "bahasa",
+                "indonesia",
+                "indonesian",
+                "kata dasar",
+                "root word",
+                "stem"
+            ],
+            "support": {
+                "issues": "https://github.com/sastrawi/sastrawi/issues",
+                "source": "https://github.com/sastrawi/sastrawi"
+            },
+            "time": "2016-10-22T03:19:27+00:00"
         },
         {
             "name": "symfony/console",
