@@ -21,7 +21,61 @@
     <section class="content">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <p>
+                                    <span style="font-size: 16pt">
+                                        Jumlah Guru
+                                    </span>
+                                </p>
+                                <p>
+                                    <span style="font-size: 15pt">
+                                        {{$guru}}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <p>
+                                    <span style="font-size: 16pt">
+                                        Jumlah Siswa
+                                    </span>
+                                </p>
+                                <p>
+                                    <span style="font-size: 15pt">
+                                        {{$siswa}}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <p>
+                                    <span style="font-size: 16pt">
+                                        Jumlah Kelas
+                                    </span>
+                                </p>
+                                <p>
+                                    <span style="font-size: 15pt">
+                                        {{$kelas}}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -35,7 +89,7 @@
                             {{ __('You are logged in!') }}
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

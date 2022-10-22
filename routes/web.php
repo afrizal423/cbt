@@ -12,6 +12,7 @@ use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Siswa\UjianPlayground;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 use App\Jobs\penilaianUjianSiswa;
@@ -181,7 +182,7 @@ Route::post('logout', [ AuthController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
     // Route admin
     Route::group(['middleware'=> ['auth.admin']], function(){
-        Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
+        Route::get('dashboard', [ Dashboard::class, 'index'])->name('dashboard');
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");
