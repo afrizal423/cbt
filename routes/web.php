@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\DashboardGuru;
 use App\Http\Controllers\Siswa\UjianPlayground;
 use App\Http\Livewire\Soal\ListSoal as SoalListSoal;
 use App\Jobs\penilaianUjianSiswa;
@@ -226,7 +227,8 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
 
     // Route guru
     Route::group(['middleware'=> ['auth.guru']], function(){
-        Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
+        // Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
+        Route::get('dashboard', [ DashboardGuru::class, 'index'])->name('dashboard');
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");
