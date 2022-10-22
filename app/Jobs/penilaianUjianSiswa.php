@@ -34,7 +34,7 @@ class penilaianUjianSiswa implements ShouldQueue
         $maxIndex = array_search($maxValue, $hasilPerhitungan);
         $jawabanNya = $dataAsli[$maxIndex];
         $hasil = [
-            "nilai" => floatval($maxValue->similarity) * $bobot_nilai,
+            "nilai" => $maxValue->similarity * $bobot_nilai,
             "index" => $maxIndex,
             "text_jawaban" => $jawabanNya
         ];

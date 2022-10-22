@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76679bd5985190dc23c9b81cfdeb12a5",
+    "content-hash": "afd3afc88feee5d1967c31ed97d9960f",
     "packages": [
         {
             "name": "afrizalmy/laraindo",
@@ -69,21 +69,22 @@
         },
         {
             "name": "afrizalmy/textsearch-id",
-            "version": "v1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/afrizal423/text-search.git",
-                "reference": "98be9b53a50846422edfcbd2d7a41453066bb2f1"
+                "reference": "69c70d2612005f1a80d6cd784210f7080dd1b020"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/afrizal423/text-search/zipball/98be9b53a50846422edfcbd2d7a41453066bb2f1",
-                "reference": "98be9b53a50846422edfcbd2d7a41453066bb2f1",
+                "url": "https://api.github.com/repos/afrizal423/text-search/zipball/69c70d2612005f1a80d6cd784210f7080dd1b020",
+                "reference": "69c70d2612005f1a80d6cd784210f7080dd1b020",
                 "shasum": ""
             },
             "require": {
                 "sastrawi/sastrawi": "^1.2"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -110,7 +111,7 @@
                 "issues": "https://github.com/afrizal423/text-search/issues",
                 "source": "https://github.com/afrizal423/text-search"
             },
-            "time": "2022-06-22T01:47:11+00:00"
+            "time": "2022-10-22T11:38:48+00:00"
         },
         {
             "name": "brick/math",
