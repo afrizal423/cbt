@@ -34,7 +34,7 @@ class Ujian extends Model
     /**
      * @var array
      */
-    protected $fillable = ['mapel_id', 'guru_id', 'kelas_id', 'judul', 'jenis_ujian', 'tgl_mulai_ujian', 'waktu_mulai_ujian', 'tgl_selesai_ujian', 'waktu_selesai_ujian', 'code_ujian', 'status_ujian', 'keterlambatan_ujian'];
+    protected $fillable = ['mapel_id', 'guru_id', 'kelas_id', 'judul', 'jenis_ujian', 'tgl_mulai_ujian', 'waktu_mulai_ujian', 'tgl_selesai_ujian', 'waktu_selesai_ujian', 'code_ujian', 'status_ujian', 'keterlambatan_ujian', 'status_penilaian_ujian'];
 
     /**
      * Yang ditampilkan di tabel
