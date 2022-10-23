@@ -32,7 +32,9 @@ class JawabanUjian extends Model
                     'bobot_nilai',
                     'ragu_jawaban', // boolean, siswa memberi mark jika ragu pada jawaban
                     'selesai_ujian', // validasi siswa bahwa siswa ingin menyelesaikan ujian kondisi apapun
-                    'rekomendasi_bobot_nilai'];
+                    'rekomendasi_bobot_nilai',
+                    'data_rekomendasi_nilai'
+                ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

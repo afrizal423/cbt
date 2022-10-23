@@ -30,13 +30,24 @@ class penilaianUjianSiswa implements ShouldQueue
 
     public function findNilaiMax(array $dataAsli, array $hasilPerhitungan, int $bobot_nilai): array
     {
+        $dt = [];
+        foreach ($dataAsli as $key => $value) {
+            $tmp = [];
+            foreach ($hasilPerhitungan as $values) {
+                $tmp["text"] = $dataAsli[$key];
+                $tmp["similarity"] = $hasilPerhitungan[$key]->similarity;
+            }
+            array_push($dt, $tmp);
+        }
+
         $maxValue = max($hasilPerhitungan);
         $maxIndex = array_search($maxValue, $hasilPerhitungan);
         $jawabanNya = $dataAsli[$maxIndex];
         $hasil = [
             "nilai" => $maxValue->similarity * $bobot_nilai,
             "index" => $maxIndex,
-            "text_jawaban" => $jawabanNya
+            "text_jawaban" => $jawabanNya,
+            "data" => $dt
         ];
 
         return $hasil;
@@ -108,6 +119,7 @@ class penilaianUjianSiswa implements ShouldQueue
                                 ->toArray();
                 $listjawaban = json_decode($lj['text_jawaban']);
                 array_push($listjawaban, $value['kunci']);
+                echo "list jawaban".PHP_EOL;
                 var_dump($listjawaban);
                 PHP_EOL;
                 $tfidfjaccard = new TfIdfJaccard();
@@ -118,7 +130,19 @@ class penilaianUjianSiswa implements ShouldQueue
                 echo json_encode($hasilakhir).PHP_EOL;
                 PHP_EOL;
                 echo "didapatkan".PHP_EOL;
-                var_dump($this->findNilaiMax($listjawaban, $hasilakhir, $value['bobot_soal']));
+                $final = $this->findNilaiMax($listjawaban, $hasilakhir, $value['bobot_soal']);
+                JawabanUjian::updateOrCreate(
+                    [
+                        'siswa_id' => $this->siswa['siswa_id'],
+                        'ujian_id' => $this->siswa['ujian_id'],
+                        'soal_id' => $value['id']
+                    ],
+                    [
+                        'rekomendasi_bobot_nilai' => round($final['nilai']),
+                        'bobot_nilai' => round($final['nilai']),
+                        'data_rekomendasi_nilai' => json_encode($final['data'])
+                    ]
+                );
                 PHP_EOL;
                 PHP_EOL;
                 PHP_EOL;
