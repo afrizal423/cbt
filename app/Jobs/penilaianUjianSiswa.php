@@ -61,7 +61,7 @@ class penilaianUjianSiswa implements ShouldQueue
     public function handle()
     {
         // delay biar ada jeda
-        // sleep(5);
+        sleep(5);
         $u = Ujian::select('mapel_id')->with([
             'mapel' => function($q){
                 $q->select('id');
@@ -111,25 +111,17 @@ class penilaianUjianSiswa implements ShouldQueue
 
 
             } elseif ($value['type_soal'] == 'essai') {
-                echo PHP_EOL.json_decode($j['jawaban_siswa']).' '.PHP_EOL;
-                PHP_EOL;
                 $lj = ListJawabansoal::select('text_jawaban')
                                 ->where('soal_id', $value['id'])
                                 ->first()
                                 ->toArray();
                 $listjawaban = json_decode($lj['text_jawaban']);
                 array_push($listjawaban, $value['kunci']);
-                echo "list jawaban".PHP_EOL;
-                var_dump($listjawaban);
-                PHP_EOL;
                 $tfidfjaccard = new TfIdfJaccard();
                 $tfidfjaccard->document($listjawaban)
                                     ->query($j['jawaban_siswa'])
                                     ->HitungTFIDF();
                 $hasilakhir = $tfidfjaccard->HitungJaccard();
-                echo json_encode($hasilakhir).PHP_EOL;
-                PHP_EOL;
-                echo "didapatkan".PHP_EOL;
                 $final = $this->findNilaiMax($listjawaban, $hasilakhir, $value['bobot_soal']);
                 JawabanUjian::updateOrCreate(
                     [
@@ -143,9 +135,6 @@ class penilaianUjianSiswa implements ShouldQueue
                         'data_rekomendasi_nilai' => json_encode($final['data'])
                     ]
                 );
-                PHP_EOL;
-                PHP_EOL;
-                PHP_EOL;
             }
         }
     }
