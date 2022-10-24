@@ -82,7 +82,7 @@ $links_guru = [
             [
                 "section_text" => "Penilaian",
                 "section_icon" => "fa fa-graduation-cap",
-                "section_href" => "#"
+                "section_href" => route('guru.ujian.penilaian.index')
             ]
         ]
     ],

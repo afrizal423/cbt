@@ -25,7 +25,10 @@
                 @endif
                 @if (Auth::user()->level == "guru")
                 <a href="{{ route('guru.ujian.tambah') }}" class="-ml- btn btn-primary shadow-none">
-                    Tambah Ujian
+                    <i class="fa fa-plus"></i> Tambah Ujian
+                </a>
+                <a href="{{ route('guru.ujian.penilaian.index') }}" class="-ml- btn btn-primary shadow-none">
+                    <i class="fa fa-graduation-cap"></i> Nilai Ujian
                 </a>
                 @endif
 
