@@ -25,13 +25,14 @@ class TableUjian extends Component
     }
     public function tutupModal()
     {
+        $this->ujian = [];
         $this->dispatchBrowserEvent('tutupModal');
     }
 
 
     public function show($id)
     {
-        $kls = $this->model::where('id','=',$id)->with(['guru', 'kelasnya', 'mapel'])->first();
+        $kls = $this->model::where('id','=',$id)->with(['kelasnya', 'mapel'])->first();
 
         $this->ujian = $kls->toArray();
         // dd($this->ujian);
@@ -91,7 +92,7 @@ class TableUjian extends Component
 
     public function mount()
     {
-        $kls = $this->model::with(['guru', 'kelasnya', 'mapel'])->first();
+        $kls = $this->model::with(['kelasnya', 'mapel'])->first();
         if ($kls != null) {
             $this->ujian = $kls->toArray();
         } else {

@@ -18,6 +18,25 @@ class TablePenilaianUjian extends Component
     public $search = '';
     public $ujian, $jikaUpdate, $idsoal, $showSoal = [];
 
+
+    public function openModal()
+    {
+        $this->dispatchBrowserEvent('openModal');
+    }
+    public function tutupModal()
+    {
+        $this->dispatchBrowserEvent('tutupModal');
+    }
+
+    public function show($id)
+    {
+        $kls = $this->model::where('id','=',$id)->with(['kelasnya', 'mapel'])->withCount(['ikutUjians as jumlah_ikut_ujian'])->first();
+
+        $this->ujian = $kls->toArray();
+        // dd($this->ujian);
+        $this->openModal();
+    }
+
     public function get_pagination_data()
     {
         $soalnya = $this->model::search($this->search)
@@ -43,6 +62,24 @@ class TablePenilaianUjian extends Component
             "view" => 'livewire.guru.ujian.table-penilaian-ujian',
             "ujians" => $soalnya
         ];
+    }
+
+    public function mount()
+    {
+        $kls = $this->model::with(['kelasnya', 'mapel'])->withCount(['ikutUjians as jumlah_ikut_ujian'])->first();
+        if ($kls != null) {
+            $this->ujian = $kls->toArray();
+        } else {
+            $this->ujian['mapel']['nama_mapel'] = null;
+            $this->ujian['kelasnya']['nama_kelas'] = null;
+            $this->ujian['judul'] = null;
+            $this->ujian['jenis_ujian'] = null;
+            $this->ujian['tgl_mulai_ujian'] = null;
+            $this->ujian['waktu_mulai_ujian'] = null;
+            $this->ujian['tgl_selesai_ujian'] = null;
+            $this->ujian['waktu_selesai_ujian'] = null;
+            $this->ujian['jumlah_ikut_ujian'] = null;
+        }
     }
 
     public function render()

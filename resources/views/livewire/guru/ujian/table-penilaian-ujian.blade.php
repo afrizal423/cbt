@@ -52,7 +52,7 @@
 
                     </td>
                     <td>
-                        {{ $ujn->judul }}
+                        <a href="" wire:click.prevent="show('{{ $ujn->id }}')"">{{ $ujn->judul }}</a>
                     </td>
                     <td>
                         {{ printJenisUjian($ujn->jenis_ujian) }}
@@ -69,4 +69,65 @@
             @endforeach
         </x-slot>
     </x-data-table>
+
+    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Lihat Data Ujian</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true close-btn">×</span>
+                    </button>
+                </div>
+               <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                              <tr>
+                                <td>Mapel</td>
+                                <td>:</td>
+                                <td>{{$ujian['mapel']['nama_mapel']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Kelas</td>
+                                <td>:</td>
+                                <td>{{$ujian['kelasnya']['nama_kelas']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Judul Ujian</td>
+                                <td>:</td>
+                                <td>{{$ujian['judul']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Jenis Ujian</td>
+                                <td>:</td>
+                                <td>{{$ujian['jenis_ujian']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Tanggal Waktu Mulai Ujian</td>
+                                <td>:</td>
+                                <td>{{$ujian['tgl_mulai_ujian']}} {{$ujian['waktu_mulai_ujian']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Tanggal Waktu Selesai Ujian</td>
+                                <td>:</td>
+                                <td>{{$ujian['tgl_selesai_ujian']}} {{$ujian['waktu_selesai_ujian']}}</td>
+                              </tr>
+                              <tr>
+                                <td>Jumlah Peserta Mengikuti Ujian</td>
+                                <td>:</td>
+                                <td>{{$ujian['jumlah_ikut_ujian']}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
