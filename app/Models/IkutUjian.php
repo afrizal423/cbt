@@ -40,4 +40,17 @@ class IkutUjian extends Model
     {
         return $this->belongsTo('App\Models\Ujian');
     }
+
+    /**
+     * Search query in multiple whereOr
+     */
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::whereHas('siswa', function($q) use ( $query ){
+                    $q->where('nisn', 'like', '%'.$query.'%')
+                    ->orWhere('nama_siswa', 'like', '%'.$query.'%')
+                    ->orWhere('alamat_siswa', 'like', '%'.$query.'%');
+                });
+    }
 }

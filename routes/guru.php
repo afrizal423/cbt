@@ -4,6 +4,7 @@ use App\Http\Controllers\Listsoal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\DashboardGuru;
+use App\Http\Controllers\Guru\PesertaUjian;
 
 Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
 
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
 
             Route::group(['prefix'=> 'penilaian','as'=>'penilaian.'], function(){
                 Route::view("/",'pages.guru.ujian.indexpenilaianujian')->name("index");
+                Route::get("pesertaujian/{ujianId}", [ PesertaUjian::class, 'index' ])->name("peserta_ujian");
             });
             // Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
             // Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");

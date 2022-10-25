@@ -61,7 +61,9 @@
                         {{ $ujn->nama_kelas }}
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a href="#" class="-ml- btn btn-outline-primary shadow-none">
+                        <a href="{{ route('guru.ujian.penilaian.peserta_ujian', [
+                            'ujianId' => $ujn->id
+                        ]) }}" class="-ml- btn btn-outline-primary shadow-none">
                             Nilai Ujian
                         </a>
                     </td>
