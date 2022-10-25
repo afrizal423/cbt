@@ -16,6 +16,6 @@
         "alpinejs": "^3.10.4",
         "bootstrap": "^5.2.2",
         "inputmask": "^5.0.7",
-        "sweetalert2": "^11.6.0"
+        "sweetalert2": "^11.6.2"
     }
 }
