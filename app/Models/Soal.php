@@ -71,4 +71,20 @@ class Soal extends Model
                     ->orWhere('text_jawaban', 'like', '%'.$query.'%');
                 });
     }
+
+    /**
+     * cari buat di listsoalpenilaian ujian
+     *
+     * @param [type] $query
+     * @return void
+     */
+    public static function cari($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('soal', 'like', '%'.$query.'%')
+                ->orWhere('type_soal', 'like', '%'.$query.'%')
+                ->orWhereHas('jawabanUjians', function($q) use ( $query ){
+                    $q->Where('jawaban_siswa', 'like', '%'.$query.'%');
+                });
+    }
 }

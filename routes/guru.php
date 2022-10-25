@@ -40,6 +40,7 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
             Route::group(['prefix'=> 'penilaian','as'=>'penilaian.'], function(){
                 Route::view("/",'pages.guru.ujian.indexpenilaianujian')->name("index");
                 Route::get("pesertaujian/{ujianId}", [ PesertaUjian::class, 'index' ])->name("peserta_ujian");
+                Route::get("pesertaujian/{ujianId}/listsoal", [ PesertaUjian::class, 'listsoal' ])->name("list_soal");
             });
             // Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
             // Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");

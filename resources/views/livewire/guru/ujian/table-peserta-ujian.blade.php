@@ -32,7 +32,7 @@
                     @include('components.sort-icon', ['field' => 'nama_siswa'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('nilai_ujian')" role="button" href="#" style="color: black">
-                    Total Nilai
+                    Nilai
                     @include('components.sort-icon', ['field' => 'nilai_ujian'])
                 </a></th>
                 <th>Action</th>
@@ -44,12 +44,17 @@
                     <td>
                         {{ $peserta->nisn }}
                     </td>
-                    <td>{!! \Illuminate\Support\Str::limit($peserta->nama_siswa, 50, $end='...') !!}</td>
+                    <td>{!! \Illuminate\Support\Str::limit($peserta->nama_siswa, 20, $end='...') !!}</td>
                     <td>
                         {{ $peserta->nilai_ujian }}
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
-
+                        <a href="{{ route('guru.ujian.penilaian.list_soal', [
+                            'ujianId' => $ujian_id,
+                            'siswaId' => $peserta->siswa_id
+                        ]) }}" class="-ml- btn btn-outline-primary shadow-none">
+                            Nilai Ujian
+                        </a>
                     </td>
                 </tr>
             @endforeach

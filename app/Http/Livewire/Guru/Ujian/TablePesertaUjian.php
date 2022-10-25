@@ -34,6 +34,7 @@ class TablePesertaUjian extends Component
             ->select(
                 [
                     'ikut_ujians.id as id',
+                    'siswas.id as siswa_id',
                     'siswas.nisn as nisn',
                     'siswas.nama_siswa as nama_siswa',
                     'nilais.nilai_ujian as nilai_ujian'
