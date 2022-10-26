@@ -65,4 +65,27 @@
         </x-slot>
     </x-data-table>
 
+    <div class="card" style="padding: 20px">
+        <div class="row">
+            <div class="col-6">
+                <h1 style="font-size: 16pt"><b>
+                    Nilai Akhir:
+                </b>
+            </h1>
+            <span style="font-size: 25px">
+                <b>
+                    {{$total_score}}
+                </b>
+            </span>
+            </div>
+            <div class="col-6" style="padding-top: 20px">
+                <span class="float-right">
+                    <a href="" class="-ml- btn btn-primary shadow-none">
+                        Simpan Nilai
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -11,11 +11,11 @@ class TableListsoalpenilaianUjian extends Component
     use WithPagination;
     public $model = Soal::class;
 
-    public $perPage = 10;
+    public $perPage = 5;
     public $sortField = "soals.type_soal";
     public $sortAsc = false;
     public $search = '';
-    public $ujian_id, $mapel_id, $siswa_id;
+    public $ujian_id, $mapel_id, $siswa_id, $total_score;
 
     public function sortBy($field)
     {
@@ -28,8 +28,30 @@ class TableListsoalpenilaianUjian extends Component
         $this->sortField = $field;
     }
 
+    private function hitungNA()
+    {
+        $soalnya = $this->model::cari($this->search)
+            ->select(
+                [
+                    'jawaban_ujians.bobot_nilai as score'
+                ]
+            )
+            ->where('soals.mapel_id', $this->mapel_id)
+            ->leftJoin('jawaban_ujians', function ($join) {
+                $join->on('soals.id','=','jawaban_ujians.soal_id')
+                ->where('jawaban_ujians.siswa_id', $this->siswa_id)
+                ->where('jawaban_ujians.ujian_id', $this->ujian_id);
+            })
+
+            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            ->get();
+        $this->total_score = array_sum(array_column($soalnya->toArray(), 'score'));
+        // dd();
+    }
+
     public function get_pagination_data()
     {
+        $this->hitungNA();
         $soalnya = $this->model::cari($this->search)
             ->select(
                 [
