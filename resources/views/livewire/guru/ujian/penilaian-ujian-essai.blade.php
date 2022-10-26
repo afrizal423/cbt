@@ -117,7 +117,7 @@
 
     <div class="row">
         <div class="col-12">
-            <a onclick="history.back()" class="btn btn-secondary">Cancel</a>
+            <a onclick="history.back()" class="btn btn-secondary">Kembali</a>
             <button type="submit" class="btn btn-primary float-right" wire:click.prevent="simpanNilai()">Simpan Nilai</button>
 
             {{-- <input type="submit" value="Tambah Akun" class="btn btn-success float-right"> --}}
