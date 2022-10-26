@@ -43,21 +43,25 @@
             </tr>
         </x-slot>
         <x-slot name="body">
-            @foreach ($soalnya as $peserta)
-                <tr x-data="window.__controller.dataTableController('{{ $peserta->id }}')">
-                    <td>{!! \Illuminate\Support\Str::limit($peserta->soal, 50, $end='...') !!}</td>
+            @foreach ($soalnya as $soal)
+                <tr x-data="window.__controller.dataTableController('{{ $soal->id }}')">
+                    <td>{!! \Illuminate\Support\Str::limit($soal->soal, 50, $end='...') !!}</td>
                     <td>
-                        {{ $peserta->point_soal }}
+                        {{ $soal->point_soal }}
                     </td>
                     <td>
-                        {{ $peserta->type_soal }}
+                        {{ $soal->type_soal }}
                     </td>
                     <td>
-                        {{ $peserta->score }}
+                        {{ $soal->score }}
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a href="" class="-ml- btn btn-outline-primary shadow-none">
-                            Beri nilai
+                        <a href="{{ route('guru.ujian.penilaian.nilai_soal', [
+                            'ujianId' => $ujian_id,
+                            'siswaId' => $siswa_id,
+                            'soalId' => $soal->id
+                        ]) }}" class="-ml- btn btn-outline-primary shadow-none">
+                            Beri Nilai
                         </a>
                     </td>
                 </tr>

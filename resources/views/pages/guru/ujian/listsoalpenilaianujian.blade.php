@@ -14,7 +14,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('guru.ujian.penilaian.peserta_ujian', [
                     'ujianId' => $ujian->id
                 ]) }}">Peserta Ujian {{ $ujian->mapel->nama_mapel }}</a></li>
-                <li class="breadcrumb-item active">Nilai dari {!! \Illuminate\Support\Str::limit($siswa->nama_siswa, 15, $end='...') !!}</li>
+                <li class="breadcrumb-item active">Peserta {!! \Illuminate\Support\Str::limit($siswa->nama_siswa, 15, $end='...') !!}</li>
               </ol>
             </div>
           </div>
