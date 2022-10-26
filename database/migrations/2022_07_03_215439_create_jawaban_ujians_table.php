@@ -23,6 +23,7 @@ class CreateJawabanUjiansTable extends Migration
             $table->boolean('ragu_jawaban')->nullable();
             $table->boolean('selesai_ujian')->nullable();
             $table->float('rekomendasi_bobot_nilai', 0, 0)->nullable();
+            $table->json('data_rekomendasi_nilai')->nullable();
 
             $table->unique(['id'], 'jawaban_ujian_pk');
         });

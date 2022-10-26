@@ -14,12 +14,12 @@ class UjiansTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('ujians')->delete();
-        
+
         \DB::table('ujians')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => '01ge17rk63nfzk87z1sd4fm5xd',
                 'mapel_id' => '01g732g64qmcd0vs0x3x1aedrz',
@@ -27,16 +27,17 @@ class UjiansTableSeeder extends Seeder
                 'kelas_id' => '01g6qas85p236m57nr72ewcsdg',
                 'judul' => 'UH Bahasa Indonesia Kelas 6C',
                 'jenis_ujian' => 'UH',
-                'tgl_mulai_ujian' => '2022-10-12',
+                'tgl_mulai_ujian' => '2022-10-21',
                 'waktu_mulai_ujian' => '04:00:00',
-                'tgl_selesai_ujian' => '2022-10-12',
+                'tgl_selesai_ujian' => '2022-12-26',
                 'waktu_selesai_ujian' => '23:59:00',
                 'keterlambatan_ujian' => 1,
                 'code_ujian' => '123',
                 'status_ujian' => true,
+                'status_penilaian_ujian' => false,
             ),
         ));
-        
-        
+
+
     }
 }
