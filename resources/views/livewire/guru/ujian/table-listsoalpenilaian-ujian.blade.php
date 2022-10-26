@@ -84,7 +84,7 @@
             </div>
             <div class="col-6" style="padding-top: 20px">
                 <span class="float-right">
-                    <a href="" class="-ml- btn btn-primary shadow-none">
+                    <a class="-ml- btn btn-primary shadow-none" wire:click.prevent="simpanNilai()">
                         Simpan Nilai
                     </a>
                 </span>
@@ -93,3 +93,19 @@
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+    window.addEventListener('suksesUbah', event => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Nilai telah disimpan',
+            showConfirmButton: false,
+            timer: 1800
+        }).then(() => {
+            location.reload();
+        })
+        // location.reload()
+    })
+</script>
+@endpush

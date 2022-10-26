@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Guru\Ujian;
 
 use App\Models\Soal;
+use App\Models\Nilai;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -79,6 +80,19 @@ class TableListsoalpenilaianUjian extends Component
         ];
     }
 
+    public function simpanNilai()
+    {
+        // memperbarui nilai
+        $this->hitungNA();
+        // masukkan nilai
+        Nilai::updateOrCreate([
+            'siswa_id' => $this->siswa_id,
+            'ujian_id' => $this->ujian_id
+        ], [
+            'nilai_ujian' => $this->total_score
+        ]);
+        $this->dispatchBrowserEvent('suksesUbah');
+    }
     public function render()
     {
         $data = $this->get_pagination_data();

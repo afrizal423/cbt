@@ -2,6 +2,7 @@
 
 use App\Models\Ujian;
 use App\Models\IkutUjian;
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\SoalnyaSiswaUjian;
@@ -62,6 +63,13 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id
             ]);
+
+            // inisialisasi nilai null
+            Nilai::updateOrCreate([
+                'siswa_id' => $siswa->id,
+                'ujian_id' => $ujian_id
+            ]);
+
             // proses insert pengacakan soal
             $u = Ujian::select('mapel_id')->with([
                 'mapel' => function($q){
