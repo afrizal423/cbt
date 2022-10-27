@@ -62,12 +62,16 @@ Route::group(['middleware' => ['auth.siswa']],function(){
             IkutUjian::updateOrCreate([
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id
+            ],[
+                'status' => true
             ]);
 
-            // inisialisasi nilai null
+            // inisialisasi nilai 0
             Nilai::updateOrCreate([
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id
+            ],[
+                'nilai_ujian' => 0
             ]);
 
             // proses insert pengacakan soal

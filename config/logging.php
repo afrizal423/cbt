@@ -51,6 +51,11 @@ return [
     */
 
     'channels' => [
+        'jobku' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/jobku.log'),
+            'level' => 'debug',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
