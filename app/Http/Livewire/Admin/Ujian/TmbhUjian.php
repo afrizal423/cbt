@@ -5,8 +5,11 @@ namespace App\Http\Livewire\Admin\Ujian;
 use App\Models\Kela;
 use App\Models\Mapel;
 use App\Models\Ujian;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\IkutUjian;
+use Illuminate\Support\Facades\Auth;
+use App\Jobs\inisialisasiKehadiranUjian;
+use App\Models\Nilai;
 
 class TmbhUjian extends Component
 {
@@ -30,7 +33,10 @@ class TmbhUjian extends Component
         ]);
 
         try {
-           Ujian::create($this->ujian);
+           $uj = Ujian::create($this->ujian);
+           $dt['ujian_id'] = $uj->id;
+           $dt['kelas_id'] = $uj->kelas_id;
+           inisialisasiKehadiranUjian::dispatch($dt);
            session()->flash('success','Data telah ditambahkan!!');
         } catch (\Exception $e) {
             //throw $th;
@@ -55,6 +61,11 @@ class TmbhUjian extends Component
         try {
             $u = Ujian::findOrFail($this->ujianId);
             $u->update($this->ujian);
+            IkutUjian::where('ujian_id', $this->ujianId)->delete();
+            Nilai::where('ujian_id', $this->ujianId)->delete();
+            $dt['ujian_id'] = $u->id;
+            $dt['kelas_id'] = $u->kelas_id;
+            inisialisasiKehadiranUjian::dispatch($dt);
             session()->flash('success','Data telah ditambahkan!!');
          } catch (\Exception $e) {
              //throw $th;
