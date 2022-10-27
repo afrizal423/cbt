@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Guru;
+use App\Models\Kela;
+use App\Models\Mapel;
 use Illuminate\Database\Seeder;
 
 class UjiansTableSeeder extends Seeder
@@ -14,18 +17,19 @@ class UjiansTableSeeder extends Seeder
      */
     public function run()
     {
-
+        $mapel = Mapel::first();
+        $guru = Guru::where('nama_guru', 'Ini Guru')->first();
+        $kelas = Kela::all();
 
         \DB::table('ujians')->delete();
 
-        \DB::table('ujians')->insert(array (
-            0 =>
-            array (
+        foreach ($kelas as $key => $kls) {
+            \DB::table('ujians')->insert(array (
                 'id' => '01ge17rk63nfzk87z1sd4fm5xd',
-                'mapel_id' => '01g732g64qmcd0vs0x3x1aedrz',
-                'guru_id' => '01ge17pg2y7hz5q82gxn8s1jaj',
-                'kelas_id' => '01g6qas85p236m57nr72ewcsdg',
-                'judul' => 'UH Bahasa Indonesia Kelas 6C',
+                'mapel_id' => $mapel->id,
+                'guru_id' => $guru->id,
+                'kelas_id' => $kls->id,
+                'judul' => 'UH Bahasa Indonesia Kelas '.$kls->nama_kelas,
                 'jenis_ujian' => 'UH',
                 'tgl_mulai_ujian' => '2022-10-21',
                 'waktu_mulai_ujian' => '04:00:00',
@@ -35,8 +39,10 @@ class UjiansTableSeeder extends Seeder
                 'code_ujian' => '123',
                 'status_ujian' => true,
                 'status_penilaian_ujian' => false,
-            ),
         ));
+        }
+
+
 
 
     }
