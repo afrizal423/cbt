@@ -18,6 +18,8 @@ class CreateNilaisTable extends Migration
             $table->char('ujian_id', 26)->nullable()->index('nilai_ujian_siswa_fk');
             $table->char('siswa_id', 26)->nullable()->index('hasil_siswa_fk');
             $table->float('nilai_ujian', 0, 0)->nullable();
+            $table->boolean('status_penilaian')->nullable();
+
         });
     }
 
