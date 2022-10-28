@@ -88,9 +88,42 @@
                     </div>
                     <div class="card-body">
                         {{-- tampilin jawaban --}}
-                        @foreach ($soal['text_jawaban'] as $jwbn)
-                            <li>{!! $jwbn !!}</li>
+                        @foreach ($soal['text_jawaban'] as $jwban)
+                        <div class="row">
+                            <div class="col-1">
+                                <small>Kunci jawaban?</small><br>
+                                <div class="icheck-peterriver d-inline">
+                                    <input type="checkbox" id="checkboxPrimary"
+                                    @if ($jwban['keyPilgan'] == $soal['kunci'])
+                                        checked disabled
+                                    @else
+                                        disabled
+                                    @endif
+                                    >
+                                    <label for="checkboxPrimary">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-11">
+                                <div
+                                @if ($jwban['keyPilgan'] == $soal['kunci'])
+                                style="border-style: dashed; color: rgb(27, 164, 255)"
+                                @else
+                                style="border-style: groove;"
+                                @endif
+                                >
+                                    <div style="padding-top: 10px; color: black">
+                                        {!! json_decode($jwban['text_jawaban']) !!}
+                                    </div>
+                                </div>
+
+                             </textarea>
+                            </div>
+                        </div> <br>
                         @endforeach
+                        {{-- @foreach ($soal['text_jawaban'] as $jwbn)
+                            <li>{!! $jwbn !!}</li>
+                        @endforeach --}}
                     </div>
                     <!-- /.card-body -->
                 </div>

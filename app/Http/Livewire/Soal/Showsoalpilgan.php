@@ -22,12 +22,12 @@ class Showsoalpilgan extends Component
 
         $this->soal['soal'] = $dt['soal'];
         $this->soal['bobot_soal'] = $dt['bobot_soal'];
-        $this->kunciId[0] = $dt['kunci'];
-        $this->soal['text_jawaban'] = [];
-        foreach ($dt['list_jawaban'] as $key => $value) {
-            array_push($this->idListJawaban, $value['keyPilgan']);
-            array_push($this->soal['text_jawaban'], json_decode($value['text_jawaban']));
-        }
+        $this->soal['kunci'] = $dt['kunci'];
+        $this->soal['text_jawaban'] = $dt['list_jawaban'];
+        // foreach ($dt['list_jawaban'] as $key => $value) {
+        //     array_push($this->idListJawaban, $value['keyPilgan']);
+        //     array_push($this->soal['text_jawaban'], json_decode($value['text_jawaban']));
+        // }
         // dd($this->soal);
     }
     public function render()
