@@ -14,7 +14,7 @@ class CreateIkutUjiansTable extends Migration
     public function up()
     {
         Schema::create('ikut_ujians', function (Blueprint $table) {
-            $table->char('id', 26)->unique('ikut_ujian_pk');
+            $table->char('id', 26)->primary()->unique('ikut_ujian_pk');
             $table->char('siswa_id', 26)->nullable()->index('siswa_ikut_ujian_fk');
             $table->char('ujian_id', 26)->nullable()->index('status_ujian_siswa_fk');
             $table->boolean('status')->default(true)->nullable();

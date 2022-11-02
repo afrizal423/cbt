@@ -22,6 +22,8 @@ class Siswa extends Authenticatable
 {
     use HasUlid;
 
+    protected $primaryKey = 'id';
+
     public $timestamps = false;
 
     /**
