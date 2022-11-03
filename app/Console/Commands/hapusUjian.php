@@ -11,7 +11,7 @@ class hapusUjian extends Command
      *
      * @var string
      */
-    protected $signature = 'dev:hapusUjian';
+    protected $signature = 'dev:devHapusUjian';
 
     /**
      * The console command description.
@@ -27,6 +27,7 @@ class hapusUjian extends Command
      */
     public function handle()
     {
+        \DB::table('nilais')->delete();
         \DB::table('jawaban_ujians')->delete();
         \DB::table('ikut_ujians')->delete();
         \DB::table('ujians')->delete();
