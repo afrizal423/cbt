@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Siswa;
 use App\Models\Ujian;
+use Rorecek\Ulid\Ulid;
 use Illuminate\Database\Seeder;
 
 class IkutUjiansTableSeeder extends Seeder
@@ -17,21 +18,21 @@ class IkutUjiansTableSeeder extends Seeder
     public function run()
     {
 
-        $siswa = Siswa::all();
+
         $ujian = Ujian::all();
         \DB::table('ikut_ujians')->delete();
 
         foreach ($ujian as $key1 => $u) {
+            $siswa = Siswa::where('kelas_id', $u->kelas_id)->get();
             foreach ($siswa as $key => $sswa) {
-                if ($u->kelas_id == $sswa->kelas_id) {
+                $ulid = new Ulid;
                     \DB::table('ikut_ujians')->insert(array (
-                        'id' => '01ge17tvy7xq2dv1jr5ercxr34',
+                        'id' => $ulid->generate(),
                         'siswa_id' => $sswa->id,
-                        'ujian_id' => $ujian->id,
+                        'ujian_id' => $u->id,
                         'status' => true,
                         'sudah_ujian' => false,
                 ));
-                }
             }
         }
 

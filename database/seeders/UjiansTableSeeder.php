@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Guru;
 use App\Models\Kela;
 use App\Models\Mapel;
+use Rorecek\Ulid\Ulid;
 use Illuminate\Database\Seeder;
 
 class UjiansTableSeeder extends Seeder
@@ -24,8 +25,9 @@ class UjiansTableSeeder extends Seeder
         \DB::table('ujians')->delete();
 
         foreach ($kelas as $key => $kls) {
+            $ulid = new Ulid;
             \DB::table('ujians')->insert(array (
-                'id' => '01ge17rk63nfzk87z1sd4fm5xd',
+                'id' => $ulid->generate(),
                 'mapel_id' => $mapel->id,
                 'guru_id' => $guru->id,
                 'kelas_id' => $kls->id,
