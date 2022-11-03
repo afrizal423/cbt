@@ -6782,16 +6782,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.14.5",
+            "version": "2.14.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "a63e5e8f26ebbebf8ed3c5c691637325512eb0dc"
+                "reference": "f7948baaa0330277c729714910336383286305da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/a63e5e8f26ebbebf8ed3c5c691637325512eb0dc",
-                "reference": "a63e5e8f26ebbebf8ed3c5c691637325512eb0dc",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/f7948baaa0330277c729714910336383286305da",
+                "reference": "f7948baaa0330277c729714910336383286305da",
                 "shasum": ""
             },
             "require": {
@@ -6841,7 +6841,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.14.5"
+                "source": "https://github.com/filp/whoops/tree/2.14.6"
             },
             "funding": [
                 {
@@ -6849,7 +6849,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-07T12:00:00+00:00"
+            "time": "2022-11-02T16:23:29+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -6904,16 +6904,16 @@
         },
         {
             "name": "kitloong/laravel-migrations-generator",
-            "version": "v6.5.0",
+            "version": "v6.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kitloong/laravel-migrations-generator.git",
-                "reference": "124a5be41fe97161de8f351be51373e974f6bd18"
+                "reference": "c9ba8a2b2879c0c625288163f04f99b60f87966f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kitloong/laravel-migrations-generator/zipball/124a5be41fe97161de8f351be51373e974f6bd18",
-                "reference": "124a5be41fe97161de8f351be51373e974f6bd18",
+                "url": "https://api.github.com/repos/kitloong/laravel-migrations-generator/zipball/c9ba8a2b2879c0c625288163f04f99b60f87966f",
+                "reference": "c9ba8a2b2879c0c625288163f04f99b60f87966f",
                 "shasum": ""
             },
             "require": {
@@ -6967,7 +6967,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kitloong/laravel-migrations-generator/issues",
-                "source": "https://github.com/kitloong/laravel-migrations-generator/tree/v6.5.0"
+                "source": "https://github.com/kitloong/laravel-migrations-generator/tree/v6.5.1"
             },
             "funding": [
                 {
@@ -6975,7 +6975,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-11-01T12:52:54+00:00"
+            "time": "2022-11-02T14:06:15+00:00"
         },
         {
             "name": "krlove/code-generator",
