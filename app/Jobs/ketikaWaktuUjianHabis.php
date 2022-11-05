@@ -35,7 +35,7 @@ class ketikaWaktuUjianHabis implements ShouldQueue
      */
     public function handle()
     {
-        $u = Ujian::with(['nilais'])->where('status_jobs_selesai_ujian', false)->get();
+        $u = Ujian::with(['nilais'])->where('status_penilaian_ujian', false)->get();
 
         foreach ($u as $key => $ujn) {
             $sekarang = Carbon::now();

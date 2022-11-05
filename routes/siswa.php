@@ -74,7 +74,8 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id
             ],[
-                'nilai_ujian' => 0
+                'nilai_ujian' => 0,
+                'status_penilaian' => false
             ]);
 
             // proses insert pengacakan soal

@@ -89,6 +89,7 @@ class TableListsoalpenilaianUjian extends Component
             'siswa_id' => $this->siswa_id,
             'ujian_id' => $this->ujian_id
         ], [
+            'status_penilaian' => true,
             'nilai_ujian' => $this->total_score
         ]);
         $this->dispatchBrowserEvent('suksesUbah');

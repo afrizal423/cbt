@@ -49,6 +49,8 @@ class inisialisasiKehadiranUjian implements ShouldQueue
             Nilai::updateOrCreate([
                 'siswa_id' => $value->id,
                 'ujian_id' => $this->datanya['ujian_id']
+            ],[
+                'status_penilaian' => false
             ]);
         }
     }
