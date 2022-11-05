@@ -24,7 +24,7 @@ class Nilai extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ujian_id', 'siswa_id', 'nilai_ujian'];
+    protected $fillable = ['ujian_id', 'siswa_id', 'nilai_ujian', 'status_penilaian'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

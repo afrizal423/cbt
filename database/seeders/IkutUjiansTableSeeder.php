@@ -39,6 +39,9 @@ class IkutUjiansTableSeeder extends Seeder
                 Nilai::updateOrCreate([
                     'siswa_id' => $sswa->id,
                     'ujian_id' => $u->id
+                ],[
+                    'nilai_ujian' => 0,
+                    'status_penilaian' => false
                 ]);
 
                 // proses insert pengacakan soal
