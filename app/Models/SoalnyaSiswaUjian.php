@@ -11,6 +11,8 @@ class SoalnyaSiswaUjian extends Model
     use HasFactory;
     use HasUlid;
 
+    protected $primaryKey = 'id';
+
 
     /**
      * @var array

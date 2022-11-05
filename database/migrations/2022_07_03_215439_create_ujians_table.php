@@ -14,7 +14,7 @@ class CreateUjiansTable extends Migration
     public function up()
     {
         Schema::create('ujians', function (Blueprint $table) {
-            $table->char('id', 26)->unique('ujian_pk');
+            $table->char('id', 26)->unique('ujian_pk')->primary();
             $table->char('mapel_id', 26)->nullable()->index('memiliki_mapel_fk');
             $table->char('guru_id', 26)->nullable()->index('membuat_fk');
             $table->char('kelas_id', 26)->nullable()->index('memiliki_fk');

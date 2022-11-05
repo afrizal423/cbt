@@ -120,6 +120,13 @@
             }
         })
     })
+    window.addEventListener('masihAdaRagu', event => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Kamu masih memiliki soal yang masih ragu-ragu!',
+        })
+    })
 
 </script>
 <script>

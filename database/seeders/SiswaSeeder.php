@@ -49,7 +49,7 @@ class SiswaSeeder extends Seeder
             $siswa->nama_siswa = $faker->name();
             $siswa->tgl_lahir_siswa = $faker->dateTimeBetween('2016-01-01', '2017-12-31');
             $siswa->alamat_siswa = $faker->address();
-            $siswa->password = "siswa";
+            $siswa->password = 123;
             $kelas = \App\Models\Kela::inRandomOrder()->first()->toArray();
             $siswa->kelas_id = $kelas['id'];
             $siswa->save();

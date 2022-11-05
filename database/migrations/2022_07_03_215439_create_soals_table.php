@@ -14,7 +14,7 @@ class CreateSoalsTable extends Migration
     public function up()
     {
         Schema::create('soals', function (Blueprint $table) {
-            $table->char('id', 26)->unique('soal_pk');
+            $table->char('id', 26)->primary()->unique('soal_pk');
             $table->char('mapel_id', 26)->nullable()->index('memiliki_soal_fk');
             $table->smallInteger('no_soal')->nullable();
             $table->text('soal')->nullable();

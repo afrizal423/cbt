@@ -20,6 +20,8 @@ class JawabanUjian extends Model
 {
     use HasUlid;
 
+    protected $primaryKey = 'id';
+
     public $timestamps = false;
 
     /**

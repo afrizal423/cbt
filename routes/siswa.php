@@ -37,9 +37,12 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         $akhirUjian = Carbon::parse($stts->tgl_selesai_ujian.' '.$stts->waktu_selesai_ujian);
         $batasWaktuIkut = $mulaiUjian->addMinutes($stts->keterlambatan_ujian);
         $siswa = Auth::guard('siswa')->user();
-        // $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', false)->count();
-        // dd($cekSudahUjian);
+        $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', true)->count();
 
+        // cek sudah ujian
+        if ($cekSudahUjian > 0) {
+            return redirect()->back()->withErrors(['done' => 'Anda Sudah Menyelesaikan Ujian :)']);
+        }
         // cek token
         if ($request->input('token_ujian') == null || $request->input('token_ujian') == '') {
             return redirect()->back()->withErrors(['token' => 'Token Ujian Tidak Boleh Kosong']);
@@ -117,6 +120,12 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         $cekSoal = SoalnyaSiswaUjian::where('siswa_id', $siswa->id)
                         ->where('ujian_id', $ujian_id)
                         ->count();
+        $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', true)->count();
+
+        // cek sudah ujian
+        if ($cekSudahUjian > 0) {
+            return redirect()->back()->withErrors(['done' => 'Anda Sudah Menyelesaikan Ujian :)']);
+        }
 
         if ($sekarang->lt($akhirUjian) && $waktuMulaiUjian && $cekSoal == 1) {
             return App::call('App\Http\Controllers\Siswa\UjianPlayground@index', [

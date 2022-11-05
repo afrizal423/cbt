@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('soalnya_siswa_ujians', function (Blueprint $table) {
-            $table->char('id', 26)->unique();
+            $table->char('id', 26)->unique()->primary();
             $table->char('siswa_id', 26)->nullable();
             $table->char('ujian_id', 26)->nullable();
             $table->json('listsoal')->nullable();

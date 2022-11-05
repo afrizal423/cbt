@@ -17,6 +17,8 @@ class ListJawabansoal extends Model
 {
     use HasUlid;
 
+    protected $primaryKey = 'id';
+
     public $timestamps = false;
     /**
      * @var array
