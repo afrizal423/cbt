@@ -21,6 +21,11 @@
 
     <section class="content">
         <div class="container">
+            @if (\Session::has('fail'))
+            <script>
+                alert('{!! \Session::get('fail') !!}');
+            </script>
+            @endif
             @livewire('guru.ujian.table-peserta-ujian', [
                 'ujian_id' => $data->id
                 ])

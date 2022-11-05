@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\IkutUjian;
 use App\Models\Siswa;
 use App\Models\Ujian;
 use Illuminate\Http\Request;
@@ -31,6 +32,13 @@ class PesertaUjian extends Controller
         ])->first();
 
         $s = Siswa::where('id', $request['siswaId'])->first();
+        $j = IkutUjian::where('siswa_id', $request['siswaId'])
+                ->where('ujian_id', $u->id)
+                ->where('sudah_ujian', true)
+                ->count();
+        if ($j == 0) {
+            return redirect()->back()->with('fail', 'Siswa belum menyelesaikan ujian!');
+        }
         return view('pages.guru.ujian.listsoalpenilaianujian', [
             'ujian' => $u,
             'siswa' => $s
