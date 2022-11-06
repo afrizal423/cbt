@@ -72,7 +72,7 @@ class UjianPlayground extends Component
     public function tombolHentikanUjian()
     {
         // dd($this->soal);
-        $this->mount();
+        $this->showSoal($this->nomor_soal);
         $this->dispatchBrowserEvent('openModal');
     }
 
@@ -84,10 +84,10 @@ class UjianPlayground extends Component
                             ->where('ragu_jawaban', true)
                             ->count();
         if ($jumlahRagu != 0) {
-            $this->mount();
+            $this->showSoal($this->nomor_soal);
             $this->dispatchBrowserEvent('masihAdaRagu');
         } else {
-            $this->mount();
+            $this->showSoal($this->nomor_soal);
             $dt['siswa_id'] = $userId;
             $dt['ujian_id'] = $this->ujian_id;
             penilaianUjianSiswa::dispatch($dt);
