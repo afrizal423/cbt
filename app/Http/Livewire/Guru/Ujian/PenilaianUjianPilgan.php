@@ -40,9 +40,15 @@ class PenilaianUjianPilgan extends Component
         $this->jawabanSistem = ListJawabansoal::select('text_jawaban')
                                 ->where('keyPilgan',$jsistem->kunci)
                                 ->first();
-        $this->jawabanSiswa = ListJawabansoal::select('text_jawaban')
+        $jabsis = ListJawabansoal::select('text_jawaban')
                                 ->where('keyPilgan',json_decode($jsiswa->jawaban_siswa))
                                 ->first();
+        if ($jabsis != null) {
+            $this->jawabanSiswa = $jabsis;
+        } else {
+            $this->jawabanSiswa = (object) ['text_jawaban' => ''];
+        }
+
         // dd($jsiswa);
     }
 
