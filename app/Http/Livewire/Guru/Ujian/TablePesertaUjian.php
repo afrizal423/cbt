@@ -34,6 +34,7 @@ class TablePesertaUjian extends Component
             ->select(
                 [
                     'ikut_ujians.id as id',
+                    'ikut_ujians.ujian_id as ujian_id',
                     'siswas.id as siswa_id',
                     'siswas.nisn as nisn',
                     'siswas.nama_siswa as nama_siswa',
@@ -41,12 +42,14 @@ class TablePesertaUjian extends Component
                     // DB::raw('sum(soals.bobot_soal) as jumlah_bobot_soal')
                 ]
             )
-            ->where('ikut_ujians.ujian_id', $this->ujian_id)
             ->join('siswas', 'ikut_ujians.siswa_id','=','siswas.id')
             ->leftJoin('nilais', 'ikut_ujians.siswa_id','=','nilais.siswa_id')
+            ->where('ikut_ujians.ujian_id', $this->ujian_id)
+            ->where('nilais.ujian_id', $this->ujian_id)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            // ->get()->toArray();
             ->paginate($this->perPage);
-
+            // dd($soalnya);
         return [
             "view" => 'livewire.guru.ujian.table-peserta-ujian',
             "pesertanya" => $soalnya

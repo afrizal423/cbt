@@ -45,13 +45,31 @@ class inisialisasiKehadiranUjian implements ShouldQueue
                 'status' => false
             ]);
 
-            // inisialisasi nilai 0
-            Nilai::updateOrCreate([
-                'siswa_id' => $value->id,
-                'ujian_id' => $this->datanya['ujian_id']
-            ],[
-                'status_penilaian' => false
-            ]);
+            // inisialisasi nilai
+            // jika data baru
+            if ($this->datanya['status'] == 'baru') {
+                Nilai::updateOrCreate([
+                    'siswa_id' => $value->id,
+                    'ujian_id' => $this->datanya['ujian_id']
+                ],[
+                    'nilai_ujian' => 0,
+                    'status_penilaian' => null
+                ]);
+            } elseif ($this->datanya['status'] == 'ubah') {
+                // jika data lama, tidak mengubah apa2
+                $n = Nilai::where('siswa_id', $value->id)
+                            ->where('ujian_id', $this->datanya['ujian_id'])
+                            ->first();
+
+                Nilai::updateOrCreate([
+                    'siswa_id' => $value->id,
+                    'ujian_id' => $this->datanya['ujian_id']
+                ],[
+                    'nilai_ujian' => $n->nilai_ujian,
+                    'status_penilaian' => $n->status_penilaian
+                ]);
+            }
+
         }
     }
 }

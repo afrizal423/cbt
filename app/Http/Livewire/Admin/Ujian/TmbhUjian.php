@@ -36,6 +36,7 @@ class TmbhUjian extends Component
            $uj = Ujian::create($this->ujian);
            $dt['ujian_id'] = $uj->id;
            $dt['kelas_id'] = $uj->kelas_id;
+           $dt['status'] = 'baru';
            inisialisasiKehadiranUjian::dispatch($dt);
            session()->flash('success','Data telah ditambahkan!!');
         } catch (\Exception $e) {
@@ -61,10 +62,11 @@ class TmbhUjian extends Component
         try {
             $u = Ujian::findOrFail($this->ujianId);
             $u->update($this->ujian);
-            IkutUjian::where('ujian_id', $this->ujianId)->delete();
-            Nilai::where('ujian_id', $this->ujianId)->delete();
+            // IkutUjian::where('ujian_id', $this->ujianId)->delete();
+            // Nilai::where('ujian_id', $this->ujianId)->delete();
             $dt['ujian_id'] = $u->id;
             $dt['kelas_id'] = $u->kelas_id;
+            $dt['status'] = 'ubah';
             inisialisasiKehadiranUjian::dispatch($dt);
             session()->flash('success','Data telah ditambahkan!!');
          } catch (\Exception $e) {
