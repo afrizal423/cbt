@@ -126,6 +126,13 @@
             title: 'Oops...',
             text: 'Kamu masih memiliki soal yang masih ragu-ragu!',
         })
+    });
+    window.addEventListener('masihBelumDijawab', event => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Kamu masih memiliki soal yang belum terjawab!',
+        })
     })
 
 </script>

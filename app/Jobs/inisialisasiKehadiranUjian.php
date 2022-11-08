@@ -65,7 +65,7 @@ class inisialisasiKehadiranUjian implements ShouldQueue
                         'ujian_id' => $this->datanya['ujian_id']
                     ],
                     [
-                        'jawaban_siswa' => json_encode(" "),
+                        'jawaban_siswa' => null,
                         'ragu_jawaban' => false
                     ]);
                 }

@@ -83,10 +83,19 @@ class UjianPlayground extends Component
                             ->where('siswa_id', $userId)
                             ->where('ragu_jawaban', true)
                             ->count();
+        $jumlahJawabanKosong = JawabanUjian::where('ujian_id', $this->ujian_id)
+                            ->where('siswa_id', $userId)
+                            ->where('jawaban_siswa', null)
+                            ->count();
+        // dd($jumlahJawabanKosong);
         if ($jumlahRagu != 0) {
             $this->showSoal($this->nomor_soal);
             $this->dispatchBrowserEvent('masihAdaRagu');
-        } else {
+        } elseif ($jumlahJawabanKosong != 0) {
+            $this->showSoal($this->nomor_soal);
+            $this->dispatchBrowserEvent('masihBelumDijawab');
+        }
+        else {
             $this->showSoal($this->nomor_soal);
             $dt['siswa_id'] = $userId;
             $dt['ujian_id'] = $this->ujian_id;

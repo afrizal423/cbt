@@ -18,7 +18,7 @@ class CreateJawabanUjiansTable extends Migration
             $table->char('soal_id', 26)->nullable()->index('memiliki_jawaban_fk');
             $table->char('siswa_id', 26)->nullable()->index('jawaban_siswa_fk');
             $table->char('ujian_id', 26)->nullable()->index('jawaban_dari_ujian_fk');
-            $table->json('jawaban_siswa')->nullable();
+            $table->longText('jawaban_siswa')->nullable();
             $table->float('bobot_nilai', 0, 0)->nullable();
             $table->boolean('ragu_jawaban')->nullable();
             $table->boolean('selesai_ujian')->nullable();
