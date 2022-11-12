@@ -13,7 +13,7 @@ class Listsoal extends Controller
         $data = [
             "jumlah_soalpilgan" => Soal::where('type_soal', 'pilgan')->count(),
             "jumlah_essai" => Soal::where('type_soal', 'essai')->count(),
-            "identitas_soal" => Mapel::find($id)->first()
+            "identitas_soal" => Mapel::where('id',$id)->first()
         ];
         // dd($data);
         return view('pages.admin.banksoal.listsoal', $data);
