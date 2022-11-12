@@ -195,6 +195,12 @@
 
 <script>
   var options = {
+    // Customizing list of languages available in the Language drop-down.
+    language_list: ['ar:Arabic:rtl', 'fr:French', 'he:Hebrew:rtl', 'es:Spanish'],
+    height: 270,
+    scayt_customerId: '1:Eebp63-lWHbt2-ASpHy4-AYUpy2-fo3mk4-sKrza1-NsuXy4-I1XZC2-0u2F54-aqYWd1-l3Qf14-umd',
+    scayt_sLang: 'auto',
+    removeButtons: 'PasteFromWord',
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
     filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
     filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
