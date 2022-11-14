@@ -78,7 +78,7 @@ class ListSoal extends Component
                     // DB::raw('sum(soals.bobot_soal) as jumlah_bobot_soal')
                 ]
             )
-            ->where('id',$this->idsoal)
+            ->where('mapel_id',$this->idsoal)
             // ->join('list_jawabansoals', 'soals.id','=','list_jawabansoals.soal_id')
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
