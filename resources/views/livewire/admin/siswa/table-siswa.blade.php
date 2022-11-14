@@ -100,7 +100,7 @@
                             <select class="form-control" id="kelasnya" wire:model.defer="siswa.kelas_id"style="width: 100%;">
                                 <option value="">Silahkan Pilih</option>
                                 @foreach ($klsnya as $kls)
-                                <option value="{{ $kls->id }}" wire:key="{{ $kls->id }}" @if ($kls->id == $siswa->kelas_id) selected @endif>{{ $kls->nama_kelas }}</option>
+                                <option value="{{ $kls->id }}" wire:key="{{ $kls->id }}" @if ($jikaUpdate && $kls->id == $siswa->kelas_id) selected @endif>{{ $kls->nama_kelas }}</option>
                                 @endforeach
                             </select>
                             @error('siswa.kelas_id') <span class="text-danger error">{{ $message }}</span>@enderror
