@@ -1,7 +1,9 @@
 <?php
 
+use App\Jobs\SiswaIkutUjian;
 use App\Models\Ujian;
 use App\Models\IkutUjian;
+use App\Models\Mapel;
 use App\Models\Nilai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -29,7 +31,7 @@ Route::group(['middleware' => ['auth.siswa']],function(){
     })->name('siswa.ikutujian');
 
     Route::post('joinExam/{ujian_id}', function(Request $request, $ujian_id){
-        $stts = Ujian::with(['guru', 'mapel', 'mapel.soals'])->where('id',$ujian_id)->first();
+        $stts = Ujian::select('mapel_id','tgl_mulai_ujian', 'waktu_mulai_ujian', 'tgl_selesai_ujian', 'waktu_selesai_ujian', 'code_ujian')->where('id',$ujian_id)->first();
         $sekarang = Carbon::now();
         $mulai = Carbon::parse($stts->tgl_mulai_ujian.' '.$stts->waktu_mulai_ujian);
         $waktuMulaiUjian = $sekarang->gte($mulai);
@@ -62,6 +64,9 @@ Route::group(['middleware' => ['auth.siswa']],function(){
         // jika token benar dan waktu tidak lebih dari batas akhir ujian
         if ($request->input('token_ujian') == $stts->code_ujian && $sekarang->lt($akhirUjian)) {
             // proses insert data ikutujians
+            // $dt['siswa_id'] = $siswa->id;
+            // $dt['ujian_id'] = $ujian_id;
+            // SiswaIkutUjian::dispatch($dt);
             IkutUjian::updateOrCreate([
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id
@@ -78,26 +83,13 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                 'status_penilaian' => false
             ]);
 
-            // proses insert pengacakan soal
-            $u = Ujian::select('mapel_id')->with([
-                'mapel' => function($q){
-                    $q->select('id');
-                    $q->with(
-                        [
-                            'soals' => function($q){
-                                $q->inRandomOrder();// jika random. klo gak hapus aja
-                                $q->select('id', 'mapel_id');
-                            }
-                        ]
-                    );
-                }
-            ])->where('id', $ujian_id)->first()->toArray();
-            $data = [];
-            foreach ($u['mapel']['soals'] as $key => $value) {
-                array_push($data, $value['id']);
-            }
-            // echo '<pre>' . var_export($data, true) . '</pre>';
-            // echo json_encode($data);
+            $uj = Mapel::select('soals.id')
+                ->join('soals', 'soals.mapel_id','=','mapels.id')
+                ->where('mapels.id', $stts->mapel_id)
+                ->inRandomOrder()
+                ->get();
+            $data = array_column($uj->toArray(), 'id');
+
             SoalnyaSiswaUjian::updateOrCreate([
                 'siswa_id' => $siswa->id,
                 'ujian_id' => $ujian_id],
