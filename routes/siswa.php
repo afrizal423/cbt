@@ -102,6 +102,12 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                         ->count();
         $cekSudahUjian = IkutUjian::where('siswa_id', $siswa->id)->where('ujian_id', $ujian_id)->where('sudah_ujian', true)->count();
 
+        // cek akses ujian
+        if (!$stts->status_ujian) {
+            return redirect()->route('siswa.ikutujian', [
+                'ujian_id' => $ujian_id
+            ]);
+        }
         // cek sudah ujian
         if ($cekSudahUjian > 0) {
             return redirect()->back()->withErrors(['done' => 'Anda Sudah Menyelesaikan Ujian :)']);
