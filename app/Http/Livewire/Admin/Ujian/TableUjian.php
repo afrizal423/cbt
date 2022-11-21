@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Ujian;
 
+use App\Jobs\GenerateSoalSiswa;
 use App\Models\Ujian;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,7 +17,7 @@ class TableUjian extends Component
     public $sortField = "ujians.id";
     public $sortAsc = false;
     public $search = '';
-    protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal"];
+    protected $listeners = ["deleteItem" => "delete_item", "tutupModal" => "tutupModal", "ubahStatusUjian"];
     public $ujian, $jikaUpdate, $idsoal, $showSoal = [];
 
     public function openModal()
@@ -38,9 +39,18 @@ class TableUjian extends Component
         // dd($this->ujian);
         $this->openModal();
     }
-    public function ubahStatusUjian(bool $statusnya, string $idnya)
+    public function ubahStatusUjian(string $datanya)
     {
-        $dt = $this->model::find($idnya);
+        $idnya = json_decode($datanya);
+        $statusnya = $idnya->status;
+        $dt = $this->model::find($idnya->data);
+        if ($idnya->status) {
+            $d['mapel_id'] = $dt->mapel_id;
+            $d['ujian_id'] = $dt->id;
+            $d['kelas_id'] = $dt->kelas_id;
+
+            GenerateSoalSiswa::dispatch($d);
+        }
         $dt->update([
             "status_ujian" => $statusnya
         ]);

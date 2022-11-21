@@ -83,19 +83,6 @@ Route::group(['middleware' => ['auth.siswa']],function(){
                 'status_penilaian' => false
             ]);
 
-            $uj = Mapel::select('soals.id')
-                ->join('soals', 'soals.mapel_id','=','mapels.id')
-                ->where('mapels.id', $stts->mapel_id)
-                ->inRandomOrder()
-                ->get();
-            $data = array_column($uj->toArray(), 'id');
-
-            SoalnyaSiswaUjian::updateOrCreate([
-                'siswa_id' => $siswa->id,
-                'ujian_id' => $ujian_id],
-                ['listsoal' => json_encode($data)]
-            );
-
             return redirect()->route('ujian_playground', [
                 'ujian_id' => $ujian_id]);
         }

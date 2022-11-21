@@ -79,9 +79,9 @@
                     </td>
                     <td>
                         @if ($ujn->status_ujian)
-                        <a class="btn btn-warning" wire:click.prevent="ubahStatusUjian(false,'{{ $ujn->id }}')">Nonaktifkan</a>
+                        <a class="btn btn-warning"  onclick="changeStatusUjian(false, '{{ $ujn->id }}')">Nonaktifkan</a>
                         @else
-                        <a class="btn btn-primary" wire:click.prevent="ubahStatusUjian(true,'{{ $ujn->id }}')">Aktifkan</a>
+                        <a class="btn btn-primary"  onclick="changeStatusUjian(true, '{{ $ujn->id }}')">Aktifkan</a>
                         @endif
                     </td>
                     <td class="whitespace-no-wrap row-action--icon">
@@ -174,3 +174,51 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    function changeStatusUjian(status, datanya) {
+        if (status) {
+            Swal.fire({
+                title: 'Apakah anda yakin ingin membuka akses ujian?',
+                html: "Jika anda membuka akses, siswa dapat mengerjakan, sistem akan menyiapkan soal ujian untuk siswa.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya, Buka akses ujian!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const dt = {
+                        status: status,
+                        data: datanya
+                    }
+                    Livewire.emit('ubahStatusUjian', JSON.stringify(dt));
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'Apakah anda yakin ingin menutup akses ujian?',
+                html: "Jika anda menutup akses, siswa <b>tidak</b> dapat mengerjakan ujian.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya, Tutup akses ujian!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Livewire.emit('hentikanUjian');
+                    const dt = {
+                        status: status,
+                        data: datanya
+                    }
+                    Livewire.emit('ubahStatusUjian', JSON.stringify(dt));
+                }
+            })
+        }
+    }
+
+</script>
+@endpush
