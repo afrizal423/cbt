@@ -48,7 +48,9 @@ function dataTableMainController () {
                         'Error!',
                         result.message,
                         'error'
-                    );
+                    ).then(function() {
+                        location.reload();
+                    });
                 }
             });
         }

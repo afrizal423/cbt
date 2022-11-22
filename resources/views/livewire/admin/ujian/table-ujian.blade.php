@@ -181,7 +181,9 @@
         if (status) {
             Swal.fire({
                 title: 'Apakah anda yakin ingin membuka akses ujian?',
-                html: "Jika anda membuka akses, siswa dapat mengerjakan, sistem akan menyiapkan soal ujian untuk siswa.",
+                html: `Jika anda membuka akses, siswa dapat mengerjakan, sistem akan menyiapkan soal ujian untuk siswa.<br>
+                        <b>-CATATAN-</b><br>
+                        Jika membuka ujian maka siswa dapat mengerjakan ujian dan <b>data ujian tidak bisa dihapus</b>.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

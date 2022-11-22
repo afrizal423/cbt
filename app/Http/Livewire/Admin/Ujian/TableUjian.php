@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Ujian;
 
 use App\Jobs\GenerateSoalSiswa;
+use App\Models\IkutUjian;
+use App\Models\Nilai;
 use App\Models\Ujian;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -58,22 +60,42 @@ class TableUjian extends Component
     public function delete_item($id)
     {
         $data = $this->model::find($id);
-
-        if (!$data) {
-            // dd($id);
+        $ij = IkutUjian::select('status')
+            ->where('ujian_id', $id)
+            ->where('status', true)
+            ->count();
+        $ni = Nilai::select('status_penilaian')
+            ->where('ujian_id', $id)
+            ->where('status_penilaian', true)
+            ->count();
+        // dd($ni);
+        if ($data->status_ujian) {
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Gagal menghapus data "
+                "message" => "Tidak bisa menghapus Data! <b>Akses ujian masih terbuka!</b>"
             ]);
-            return;
+        } elseif ($ij > 0) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Tidak bisa menghapus Data! <b>Siswa sudah ada yang mengerjakan ujian!</b>"
+            ]);
+        }elseif ($ij > 0) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Tidak bisa menghapus Data! <b>Terdapat ujian siswa yang sudah dinilai!</b>"
+            ]);
+        } else {
+            \DB::table('nilais')->where('ujian_id', $id)->delete();
+            \DB::table('jawaban_ujians')->where('ujian_id', $id)->delete();
+            \DB::table('ikut_ujians')->where('ujian_id', $id)->delete();
+            $data->delete();
+            $this->emit("deleteResult", [
+                "status" => true,
+                "message" => "Data berhasil dihapus!"
+            ]);
         }
-
-        $data->delete();
-        $this->emit("deleteResult", [
-            "status" => true,
-            "message" => "Data berhasil dihapus!"
-        ]);
     }
+
     public function get_pagination_data()
     {
         $soalnya = $this->model::search($this->search)
