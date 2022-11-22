@@ -119,6 +119,10 @@ class TableUsers extends Component
             ]);
             return;
         }
+        if($data->guru->foto_guru && file_exists(public_path().$data->guru->foto_guru)){
+            unlink(public_path().$data->guru->foto_guru);
+            // dd('sukses hapus');
+        }
         $data->guru()->delete();
         $data->delete();
         $this->emit("deleteResult", [

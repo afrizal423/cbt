@@ -118,7 +118,21 @@
 
                                 </div>
                                 <div class="col-md-8">
-                                    <input
+                                    @if ($action == "ubahUsers")
+                                        <input
+                                        wire:model="foto"
+                                        type="file"
+                                        id="inputFoto"
+                                        accept="image/*"
+                                        class="form-control @error('foto') is-invalid @enderror"
+                                        placeholder="Upload foto profil">
+                                        @error('foto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    @else
+                                        <input
                                         wire:model="users.guru.foto_guru"
                                         type="file"
                                         id="inputFoto"
@@ -130,6 +144,8 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
+                                    @endif
+
                                 </div>
                             </div>
 

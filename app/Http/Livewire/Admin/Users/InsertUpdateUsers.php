@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class InsertUpdateUsers extends Component
 {
     use WithFileUploads;
-    public $action, $users, $userId;
+    public $action, $users, $userId, $foto;
 
     public function simpan()
     {
@@ -67,7 +67,7 @@ class InsertUpdateUsers extends Component
             'users.level' => 'required',
             'users.guru.nama_guru' => 'required|min:3',
             'users.guru.notelp_guru' => 'required|min:11',
-            // 'users.guru.foto_guru' => 'image|max:1024',
+            'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1024',
         ]);
         // dd($this->users);
 
@@ -86,9 +86,13 @@ class InsertUpdateUsers extends Component
             $biodata->alamat_guru = $this->users['guru']['alamat_guru'];
             $biodata->jabatan_guru = $this->users['guru']['jabatan_guru'];
             $biodata->notelp_guru = $this->users['guru']['notelp_guru'];
-            if (in_array('foto_guru', $this->users['guru']) || $this->users['guru']['foto_guru']) {
-                $nama_gambar = time() . '_' . $this->users['guru']['foto_guru']->getClientOriginalName();
-                $upload = $this->users['guru']['foto_guru']->storeAs('public/'.$this->users['level'].'/user_profile', $nama_gambar);
+            if ($this->foto != null) {
+                if($this->users['guru']['foto_guru'] && file_exists(public_path().$this->users['guru']['foto_guru'])){
+                    unlink(public_path().$this->users['guru']['foto_guru']);
+                    // dd('sukses hapus');
+                }
+                $nama_gambar = time() . '_' . $this->foto->getClientOriginalName();
+                $upload = $this->foto->storeAs('public/'.$this->users['level'].'/user_profile', $nama_gambar);
                 $img = Storage::url($upload);
                 $biodata->foto_guru = $img;
             }
