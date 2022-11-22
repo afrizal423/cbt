@@ -67,7 +67,7 @@ class InsertUpdateUsers extends Component
             'users.level' => 'required',
             'users.guru.nama_guru' => 'required|min:3',
             'users.guru.notelp_guru' => 'required|min:11',
-            'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1024',
+            // 'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1024',
         ]);
         // dd($this->users);
 

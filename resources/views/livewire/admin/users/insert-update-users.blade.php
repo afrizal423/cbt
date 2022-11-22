@@ -2,11 +2,16 @@
     <!-- Main content -->
 <section class="content">
     @if(session()->has('success'))
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
-        {{ session()->get('success') }}
-      </div>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Data telah disimpan',
+            showConfirmButton: true,
+            timer: 1800
+        }).then(() => {
+            history.back();
+        })
+    </script>
     @endif
     <form method="post" enctype="multipart/form-data">
         @csrf
@@ -248,7 +253,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
+                <a onclick="history.back()" class="btn btn-secondary">Kembali</a>
                 @if ($action == "ubahUsers")
                 <button type="submit" class="btn btn-primary float-right" wire:click.prevent="ubah()">Simpan Perubahan</button>
                 @else

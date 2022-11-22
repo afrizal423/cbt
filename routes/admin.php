@@ -8,6 +8,7 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function(){
     // Route admin
     Route::group(['middleware'=> ['auth.admin']], function(){
         Route::get('dashboard', [ Dashboard::class, 'index'])->name('dashboard');
+        Route::view("profile",'pages.admin.users.profile')->name("profile");
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");

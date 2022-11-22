@@ -12,6 +12,8 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
     Route::group(['middleware'=> ['auth.guru']], function(){
         // Route::view("dashboard","pages.admin.dashboard")->name("dashboard");
         Route::get('dashboard', [ DashboardGuru::class, 'index'])->name('dashboard');
+        Route::view("profile",'pages.admin.users.profile')->name("profile");
+
 
         // Route kelas
         Route::view("data_kelas",'pages.admin.kelas.index')->name("data_kelas");

@@ -30,7 +30,7 @@ class AkunSeeder extends Seeder
         $guru->alamat_guru = $faker->address();
         $guru->jabatan_guru = "ini admin";
         $guru->notelp_guru = $faker->phoneNumber();
-        $guru->foto_guru = "soon";
+        $guru->foto_guru = null;
         $admin->guru()->save($guru);
 
         $adminguru = new \App\Models\User;
@@ -45,7 +45,7 @@ class AkunSeeder extends Seeder
         $guru2->alamat_guru = $faker->address();
         $guru2->jabatan_guru = "guru tetap";
         $guru2->notelp_guru = $faker->phoneNumber();
-        $guru2->foto_guru = "soon";
+        $guru2->foto_guru = null;
         $adminguru->guru()->save($guru2);
     }
 }
