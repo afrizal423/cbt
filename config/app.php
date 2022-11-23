@@ -186,7 +186,7 @@ return [
          * Package Service Providers...
          */
 
-        Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
+        // Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
 
         /*

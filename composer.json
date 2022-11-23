@@ -73,7 +73,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "krlove/eloquent-model-generator"
+            ]
         }
     },
     "config": {
