@@ -46,7 +46,7 @@ class Nilai extends Controller
         $save_file_name = $this->proses_word($Ujian_id);
         $tmp = explode('.', $save_file_name);
         $nama_baru = $tmp[0].'.pdf';
-        shell_exec('libreoffice --headless --convert-to pdf '.storage_path($save_file_name).' --outdir '.storage_path().' '.storage_path($nama_baru));
+        shell_exec('/usr/bin/libreoffice --headless --convert-to pdf '.storage_path($save_file_name).' --outdir '.storage_path().' '.storage_path($nama_baru));
         // hapus file doc lama
         unlink(storage_path($save_file_name));
         return response()->download(storage_path($nama_baru))->deleteFileAfterSend(true);
