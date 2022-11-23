@@ -18,6 +18,20 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                      Eksport Data
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{ route('guru.export.nilai_pdf', [
+                        'ujian_id' => $ujian_id
+                      ]) }}"><i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                      <a class="dropdown-item" href="{{ route('guru.export.nilai_word', [
+                        'ujian_id' => $ujian_id
+                      ]) }}"><i class="fa fa-file-word" aria-hidden="true"></i> Word</a>
+                      <a class="dropdown-item" href="#"><i class="fa fa-file-excel" aria-hidden="true"></i> Excel</a>
+                    </div>
+                </div>
 
             </div>
         </x-slot>

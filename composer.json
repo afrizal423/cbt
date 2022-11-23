@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "orangehill/iseed": "^3.0",
+        "phpoffice/phpword": "dev-develop",
         "rorecek/laravel-ulid": "^2.0",
         "unisharp/laravel-filemanager": "^2.5"
     },

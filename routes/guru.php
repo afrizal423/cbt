@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\DashboardGuru;
 use App\Http\Controllers\Guru\PesertaUjian;
+use App\Http\Controllers\ImportData\Nilai;
 
 Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
 
@@ -48,6 +49,11 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
             });
             // Route::view("/tambah_user",'pages.admin.users.tambah')->name("data_user.tambah");
             // Route::view("/{userId}/ubah_user",'pages.admin.users.ubah')->name("data_user.update");
+        });
+
+        Route::group(['prefix'=> 'export','as'=>'export.'], function(){
+            Route::get("/nilai/{ujian_id}/word", [ Nilai::class, 'to_word' ])->name("nilai_word");
+            Route::get("/nilai/{ujian_id}/pdf", [ Nilai::class, 'to_pdf' ])->name("nilai_pdf");
         });
     });
 
