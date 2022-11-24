@@ -17,7 +17,7 @@ class Nilai extends Controller
     {
         $u = Ujian::with(['nilais','nilais.siswa'])->withCount('nilais as jumlahsiswa')->where('id', $Ujian_id)->first()->toArray();
         // dd($u);
-        $templateProcessor = new TemplateProcessor('export_data/daftarNilaiSiswaUjian.docx');
+        $templateProcessor = new TemplateProcessor(public_path('export_data/daftarNilaiSiswaUjian.docx'));
         $templateProcessor->setValue('namaUjian', $u['judul']);
         $tgl = $u['tgl_mulai_ujian'].' '.$u['waktu_mulai_ujian'];
         $templateProcessor->setValue('waktuMulaiUjian', TanggalFormat::DateIndo($tgl));
