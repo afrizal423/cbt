@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^7.3 || ^8.0.2",
         "afrizalmy/laraindo": "^1.0",
         "afrizalmy/textsearch-id": "master",
         "browner12/helpers": "^3.4",
@@ -15,6 +15,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^3.0",
         "phpoffice/phpword": "dev-develop",
         "rorecek/laravel-ulid": "^2.0",
