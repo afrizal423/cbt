@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Soal\Tmbhsoalessai;
 use App\Http\Controllers\Admin\DashboardGuru;
 use App\Http\Controllers\Guru\PesertaUjian;
-use App\Http\Controllers\ImportData\Nilai;
+use App\Http\Controllers\ExportData\Nilai;
 
 Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
 
@@ -54,6 +54,7 @@ Route::group(['prefix' => 'guru','as'=>'guru.'], function(){
         Route::group(['prefix'=> 'export','as'=>'export.'], function(){
             Route::get("/nilai/{ujian_id}/word", [ Nilai::class, 'to_word' ])->name("nilai_word");
             Route::get("/nilai/{ujian_id}/pdf", [ Nilai::class, 'to_pdf' ])->name("nilai_pdf");
+            Route::get("/nilai/{ujian_id}/excel", [ Nilai::class, 'to_excel' ])->name("nilai_excel");
         });
     });
 

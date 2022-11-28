@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\ImportData;
+namespace App\Http\Controllers\ExportData;
 
 use App\Models\Ujian;
 use Illuminate\Support\Str;
 use Laraindo\TanggalFormat;
 use Illuminate\Http\Request;
 use App\Models\Nilai as TbNIlai;
+use App\Exports\ExportNilaiUjian;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
 
@@ -56,5 +58,22 @@ class Nilai extends Controller
     {
         $save_file_name = $this->proses_word($Ujian_id);
         return response()->download(storage_path($save_file_name))->deleteFileAfterSend(true);
+    }
+
+    public function to_excel($Ujian_id)
+    {
+        $u = Ujian::with(['nilais','nilais.siswa'])->where('id', $Ujian_id)->first();
+        $data = [];
+        foreach ($u->nilais as $key => $value) {
+            $tmp = [];
+            array_push($tmp, $key+1);
+            array_push($tmp, $value->siswa->nisn);
+            array_push($tmp, $value->siswa->nama_siswa);
+            array_push($tmp, $value->nilai_ujian);
+            array_push($data, $tmp);
+        }
+        // dd($data);
+        $save_file_name = 'Ujian-'.Str::slug($u->judul).'-'.date('dmy-His').'.xlsx';
+        return Excel::download(new ExportNilaiUjian($data), $save_file_name);
     }
 }

@@ -29,7 +29,9 @@
                       <a class="dropdown-item" href="{{ route('guru.export.nilai_word', [
                         'ujian_id' => $ujian_id
                       ]) }}"><i class="fa fa-file-word" aria-hidden="true"></i> Word</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-file-excel" aria-hidden="true"></i> Excel</a>
+                      <a class="dropdown-item" href="{{ route('guru.export.nilai_excel', [
+                        'ujian_id' => $ujian_id
+                      ]) }}"><i class="fa fa-file-excel" aria-hidden="true"></i> Excel</a>
                     </div>
                 </div>
 
