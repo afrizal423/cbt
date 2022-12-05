@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Admin\Ujian;
 
-use App\Jobs\GenerateSoalSiswa;
-use App\Models\IkutUjian;
 use App\Models\Nilai;
 use App\Models\Ujian;
 use Livewire\Component;
+use App\Models\IkutUjian;
 use Livewire\WithPagination;
+use App\Jobs\GenerateSoalSiswa;
+use Illuminate\Support\Facades\Auth;
 
 class TableUjian extends Component
 {
@@ -98,6 +99,7 @@ class TableUjian extends Component
 
     public function get_pagination_data()
     {
+        $guru_id = Auth::user()->with('guru')->where('id', Auth::user()->id)->first()->guru->id;
         $soalnya = $this->model::search($this->search)
             ->select(
                 [
@@ -113,6 +115,7 @@ class TableUjian extends Component
             ->join('mapels', 'mapels.id','=','ujians.mapel_id')
             ->join('kelas', 'kelas.id','=','ujians.kelas_id')
             ->join('gurus', 'gurus.id','=','ujians.guru_id')
+            ->where('ujians.guru_id','=',$guru_id)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 

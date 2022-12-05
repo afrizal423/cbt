@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Mapel;
 
+use App\Models\ListJawabansoal;
 use App\Models\Mapel;
+use App\Models\Soal;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -131,6 +133,11 @@ class TabelMapel extends Component
     {
         $data = $this->model::find($id);
 
+        $soal = Soal::where('mapel_id', $data->id);
+        foreach ($soal->get() as $key => $s) {
+            ListJawabansoal::where('soal_id', $s->id)->delete();
+        }
+        $soal->delete();
         if (!$data) {
             dd($data);
             $this->emit("deleteResult", [
