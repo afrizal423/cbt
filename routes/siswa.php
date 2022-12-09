@@ -109,9 +109,9 @@ Route::group(['middleware' => ['auth.siswa']],function(){
             ]);
         }
         // cek sudah ujian
-        if ($cekSudahUjian > 0) {
-            return redirect()->back()->withErrors(['done' => 'Anda Sudah Menyelesaikan Ujian :)']);
-        }
+        // if ($cekSudahUjian > 0) {
+        //     return redirect()->back()->withErrors(['done' => 'Anda Sudah Menyelesaikan Ujian :)']);
+        // }
 
         if ($sekarang->lt($akhirUjian) && $waktuMulaiUjian && $cekSoal == 1) {
             return App::call('App\Http\Controllers\Siswa\UjianPlayground@index', [
