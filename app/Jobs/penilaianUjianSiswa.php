@@ -117,8 +117,12 @@ class penilaianUjianSiswa implements ShouldQueue
                                 ->toArray();
                 $listjawaban = json_decode($lj['text_jawaban']);
                 array_push($listjawaban, $value['kunci']);
+                $kumpulanJawaban = [];
+                foreach ($listjawaban as $key => $value) {
+                    array_push($kumpulanJawaban, str_replace(array("\r","\n")," ",$value));
+                }
                 $tfidfjaccard = new TfIdfJaccard();
-                $tfidfjaccard->document($listjawaban)
+                $tfidfjaccard->document($kumpulanJawaban)
                                     ->query(str_replace(array("\r","\n")," ",$j['jawaban_siswa'])) // hapus enter menjadi one line
                                     ->HitungTFIDF();
                 $hasilakhir = $tfidfjaccard->HitungJaccard();
