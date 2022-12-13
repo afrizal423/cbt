@@ -219,6 +219,126 @@ class ListJawabansoalsTableSeeder extends Seeder
                 'soal_id' => '01g735pvg27nnd491j2bj1ctev',
                 'keyPilgan' => NULL,
             ),
+            25 => 
+            array (
+                'id' => '01gkv0fkqzkry65qwcpxt160tz',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv0fkqkemm27ttbarj7kdad',
+                'keyPilgan' => NULL,
+            ),
+            26 => 
+            array (
+                'id' => '01gkv0kcwy7facgf8vjqn2zcsa',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["Kedua"]',
+                'soal_id' => '01gkv0kcwsxwdvawbrpvtp203p',
+                'keyPilgan' => NULL,
+            ),
+            27 => 
+            array (
+                'id' => '01gkv0p1tt5hkrjzyqtpmrky2w',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["mengharumkan nama Indonesia di kancah internasional","menjaga keamanan wilayah negara dari ancaman luar","menggunakan bahasa Indonesia yang baik dan benar","melestarikan budaya Indonesia"]',
+                'soal_id' => '01gkv0p1tmm2v1zm8n9e4v6kef',
+                'keyPilgan' => NULL,
+            ),
+            28 => 
+            array (
+                'id' => '01gkv0t5e009v8c44j7rwmt5kp',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv0t5dw3s7fseb8v1fvym78',
+                'keyPilgan' => NULL,
+            ),
+            29 => 
+            array (
+                'id' => '01gkv0v7vjx3janjdjaxvjrc22',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv0v7vbkadvn12yrvwjrgr7',
+                'keyPilgan' => NULL,
+            ),
+            30 => 
+            array (
+                'id' => '01gkv0zhrwmwzcxvz78sb9xyqj',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv0zhrnt76z8hefyjah1kzb',
+                'keyPilgan' => NULL,
+            ),
+            31 => 
+            array (
+                'id' => '01gkv117ayn6am09nsrvk2txj5',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv117arja8ssehtafg8bsss',
+                'keyPilgan' => NULL,
+            ),
+            32 => 
+            array (
+                'id' => '01gkv15mq8h2164yrpzwterfkq',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["Hak di lingkungan keluarga"]',
+                'soal_id' => '01gkv15mq37chj6qa4bdjyc64m',
+                'keyPilgan' => NULL,
+            ),
+            33 => 
+            array (
+                'id' => '01gkv1xvzq3granhharjcm0nz1',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["Keadilan Sosial bagi Seluruh Rakyat Indonesia\\nMenghargai hasil karya teman bermain\\nSaling menghargai sesama teman di tempat bermain"]',
+                'soal_id' => '01gkv1xvzgws4d10sms6k3rjsp',
+                'keyPilgan' => NULL,
+            ),
+            34 => 
+            array (
+                'id' => '01gkv21gm9kmm47fnqtycg50ev',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv21gm2f57vh7sec94e2tns',
+                'keyPilgan' => NULL,
+            ),
+            35 => 
+            array (
+                'id' => '01gkv230qqsd827rk42m16063a',
+                'type_jawaban' => 'essai',
+            'text_jawaban' => '["Pasal 29 ayat 2 : hak kebebasan memeluk agama\\nPasal 31 ayat 1 : hak mendapatkan pendidikan\\nPasal 28E ayat (3) : kebebasan berserikat berkumpul dan mengeluarkan pendapat"]',
+                'soal_id' => '01gkv230qj20cbfr1qgkf8n5mx',
+                'keyPilgan' => NULL,
+            ),
+            36 => 
+            array (
+                'id' => '01gkv0rt35nphm8mmhg8e6f9a5',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["sumber hukum di Indonesia","dasar negara"]',
+                'soal_id' => '01gkv0rt2wye680q0wy8qg4ywt',
+                'keyPilgan' => NULL,
+            ),
+            37 => 
+            array (
+                'id' => '01gkv12zcye67rpb42txh9dray',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["Kewajiban masyarakat","Kewajiban"]',
+                'soal_id' => '01gkv12zcq9f1nt3vvsjmnrpry',
+                'keyPilgan' => NULL,
+            ),
+            38 => 
+            array (
+                'id' => '01gkv1zpfxq85sbp196pyy051f',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '[]',
+                'soal_id' => '01gkv1zpfn800nba2fk7wd8m2f',
+                'keyPilgan' => NULL,
+            ),
+            39 => 
+            array (
+                'id' => '01gkv246j0210y63hk34v99rq1',
+                'type_jawaban' => 'essai',
+                'text_jawaban' => '["27 ayat 1 : setiap warga negara wajib menjunjung hukum \\nPasal 30 ayat 1 : setiap warga negara wajib ikut dalam usaha pertahanan dan keamanan negara"]',
+                'soal_id' => '01gkv246htbc9jpmxnh10hz9yn',
+                'keyPilgan' => NULL,
+            ),
         ));
         
         
