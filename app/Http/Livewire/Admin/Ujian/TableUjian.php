@@ -75,17 +75,19 @@ class TableUjian extends Component
                 "status" => false,
                 "message" => "Tidak bisa menghapus Data! <b>Akses ujian masih terbuka!</b>"
             ]);
-        } elseif ($ij > 0) {
-            $this->emit("deleteResult", [
-                "status" => false,
-                "message" => "Tidak bisa menghapus Data! <b>Siswa sudah ada yang mengerjakan ujian!</b>"
-            ]);
-        }elseif ($ij > 0) {
-            $this->emit("deleteResult", [
-                "status" => false,
-                "message" => "Tidak bisa menghapus Data! <b>Terdapat ujian siswa yang sudah dinilai!</b>"
-            ]);
-        } else {
+        }
+        // elseif ($ij > 0) {
+        //     $this->emit("deleteResult", [
+        //         "status" => false,
+        //         "message" => "Tidak bisa menghapus Data! <b>Siswa sudah ada yang mengerjakan ujian!</b>"
+        //     ]);
+        // }elseif ($ij > 0) {
+        //     $this->emit("deleteResult", [
+        //         "status" => false,
+        //         "message" => "Tidak bisa menghapus Data! <b>Terdapat ujian siswa yang sudah dinilai!</b>"
+        //     ]);
+        // }
+        else {
             \DB::table('nilais')->where('ujian_id', $id)->delete();
             \DB::table('jawaban_ujians')->where('ujian_id', $id)->delete();
             \DB::table('ikut_ujians')->where('ujian_id', $id)->delete();

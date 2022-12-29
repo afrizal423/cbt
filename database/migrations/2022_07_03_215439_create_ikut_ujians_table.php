@@ -21,6 +21,8 @@ class CreateIkutUjiansTable extends Migration
             $table->boolean('status')->default(true)->nullable();
             // sudah_ujian buat mengetahui kalu sudha pernah mengerjakan dan menekan tombol selesai
             $table->boolean('sudah_ujian')->default(false)->nullable();
+
+            $table->softDeletes();
         });
     }
 
