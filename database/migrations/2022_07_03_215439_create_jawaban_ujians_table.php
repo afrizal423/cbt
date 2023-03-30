@@ -26,6 +26,8 @@ class CreateJawabanUjiansTable extends Migration
             $table->json('data_rekomendasi_nilai')->nullable();
 
             $table->unique(['id'], 'jawaban_ujian_pk');
+
+            $table->softDeletes();
         });
     }
 

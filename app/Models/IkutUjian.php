@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Rorecek\Ulid\HasUlid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $id
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class IkutUjian extends Model
 {
-    use HasUlid;
+    use HasUlid, SoftDeletes;
 
     protected $primaryKey = 'id';
 

@@ -117,9 +117,13 @@ class penilaianUjianSiswa implements ShouldQueue
                                 ->toArray();
                 $listjawaban = json_decode($lj['text_jawaban']);
                 array_push($listjawaban, $value['kunci']);
+                $kumpulanJawaban = [];
+                foreach ($listjawaban as $lst) {
+                    array_push($kumpulanJawaban, str_replace(array("\r","\n")," ",$lst));
+                }
                 $tfidfjaccard = new TfIdfJaccard();
-                $tfidfjaccard->document($listjawaban)
-                                    ->query($j['jawaban_siswa'])
+                $tfidfjaccard->document($kumpulanJawaban)
+                                    ->query(str_replace(array("\r","\n")," ",$j['jawaban_siswa'])) // hapus enter menjadi one line
                                     ->HitungTFIDF();
                 $hasilakhir = $tfidfjaccard->HitungJaccard();
                 $final = $this->findNilaiMax($listjawaban, $hasilakhir, $value['bobot_soal']);

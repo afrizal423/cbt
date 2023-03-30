@@ -35,7 +35,7 @@ class UjiansTableSeeder extends Seeder
                 'jenis_ujian' => 'UH',
                 'tgl_mulai_ujian' => '2022-10-21',
                 'waktu_mulai_ujian' => '04:00:00',
-                'tgl_selesai_ujian' => '2022-12-26',
+                'tgl_selesai_ujian' => '2023-02-26',
                 'waktu_selesai_ujian' => '23:59:00',
                 'keterlambatan_ujian' => 1,
                 'code_ujian' => '123',

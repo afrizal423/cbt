@@ -29,6 +29,7 @@ class CreateUjiansTable extends Migration
             $table->boolean('status_ujian')->nullable()->default(false);
             $table->boolean('status_penilaian_ujian')->nullable()->default(false);
             $table->boolean('status_jobs_selesai_ujian')->nullable()->default(false);
+            $table->softDeletes();
         });
     }
 
