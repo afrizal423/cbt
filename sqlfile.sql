@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.5 (Ubuntu 14.5-1ubuntu1)
--- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1ubuntu1)
+-- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.10.1)
+-- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.10.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: failed_jobs; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: failed_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.failed_jobs (
@@ -35,10 +35,8 @@ CREATE TABLE public.failed_jobs (
 );
 
 
-ALTER TABLE public.failed_jobs OWNER TO afrizal;
-
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: afrizal
+-- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.failed_jobs_id_seq
@@ -49,17 +47,15 @@ CREATE SEQUENCE public.failed_jobs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.failed_jobs_id_seq OWNER TO afrizal;
-
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: afrizal
+-- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
 
 
 --
--- Name: gurus; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: gurus; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.gurus (
@@ -73,10 +69,8 @@ CREATE TABLE public.gurus (
 );
 
 
-ALTER TABLE public.gurus OWNER TO afrizal;
-
 --
--- Name: ikut_ujians; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: ikut_ujians; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.ikut_ujians (
@@ -84,14 +78,13 @@ CREATE TABLE public.ikut_ujians (
     siswa_id character(26),
     ujian_id character(26),
     status boolean DEFAULT true,
-    sudah_ujian boolean DEFAULT false
+    sudah_ujian boolean DEFAULT false,
+    deleted_at timestamp(0) without time zone
 );
 
 
-ALTER TABLE public.ikut_ujians OWNER TO afrizal;
-
 --
--- Name: jawaban_ujians; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.jawaban_ujians (
@@ -99,19 +92,18 @@ CREATE TABLE public.jawaban_ujians (
     soal_id character(26),
     siswa_id character(26),
     ujian_id character(26),
-    jawaban_siswa json,
+    jawaban_siswa text,
     bobot_nilai double precision,
     ragu_jawaban boolean,
     selesai_ujian boolean,
     rekomendasi_bobot_nilai double precision,
-    data_rekomendasi_nilai json
+    data_rekomendasi_nilai json,
+    deleted_at timestamp(0) without time zone
 );
 
 
-ALTER TABLE public.jawaban_ujians OWNER TO afrizal;
-
 --
--- Name: jobs; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: jobs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.jobs (
@@ -125,10 +117,8 @@ CREATE TABLE public.jobs (
 );
 
 
-ALTER TABLE public.jobs OWNER TO afrizal;
-
 --
--- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: afrizal
+-- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.jobs_id_seq
@@ -139,17 +129,15 @@ CREATE SEQUENCE public.jobs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.jobs_id_seq OWNER TO afrizal;
-
 --
--- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: afrizal
+-- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.jobs_id_seq OWNED BY public.jobs.id;
 
 
 --
--- Name: kelas; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: kelas; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.kelas (
@@ -159,10 +147,8 @@ CREATE TABLE public.kelas (
 );
 
 
-ALTER TABLE public.kelas OWNER TO afrizal;
-
 --
--- Name: list_jawabansoals; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: list_jawabansoals; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.list_jawabansoals (
@@ -174,10 +160,8 @@ CREATE TABLE public.list_jawabansoals (
 );
 
 
-ALTER TABLE public.list_jawabansoals OWNER TO afrizal;
-
 --
--- Name: mapels; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: mapels; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.mapels (
@@ -192,10 +176,8 @@ CREATE TABLE public.mapels (
 );
 
 
-ALTER TABLE public.mapels OWNER TO afrizal;
-
 --
--- Name: migrations; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.migrations (
@@ -205,10 +187,8 @@ CREATE TABLE public.migrations (
 );
 
 
-ALTER TABLE public.migrations OWNER TO afrizal;
-
 --
--- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: afrizal
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.migrations_id_seq
@@ -220,33 +200,29 @@ CREATE SEQUENCE public.migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.migrations_id_seq OWNER TO afrizal;
-
 --
--- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: afrizal
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- Name: nilais; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: nilais; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.nilais (
     id character(26) NOT NULL,
     ujian_id character(26),
     siswa_id character(26),
-    id_nilai_ujian character(26),
     nilai_ujian double precision,
-    status_penilaian boolean
+    status_penilaian boolean,
+    deleted_at timestamp(0) without time zone
 );
 
 
-ALTER TABLE public.nilais OWNER TO afrizal;
-
 --
--- Name: password_resets; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: password_resets; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.password_resets (
@@ -256,10 +232,8 @@ CREATE TABLE public.password_resets (
 );
 
 
-ALTER TABLE public.password_resets OWNER TO afrizal;
-
 --
--- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.personal_access_tokens (
@@ -275,10 +249,8 @@ CREATE TABLE public.personal_access_tokens (
 );
 
 
-ALTER TABLE public.personal_access_tokens OWNER TO afrizal;
-
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.personal_access_tokens_id_seq
@@ -289,17 +261,15 @@ CREATE SEQUENCE public.personal_access_tokens_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.personal_access_tokens_id_seq OWNER TO afrizal;
-
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_access_tokens.id;
 
 
 --
--- Name: sessions; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.sessions (
@@ -312,10 +282,8 @@ CREATE TABLE public.sessions (
 );
 
 
-ALTER TABLE public.sessions OWNER TO afrizal;
-
 --
--- Name: siswas; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: siswas; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.siswas (
@@ -329,10 +297,8 @@ CREATE TABLE public.siswas (
 );
 
 
-ALTER TABLE public.siswas OWNER TO afrizal;
-
 --
--- Name: soalnya_siswa_ujians; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: soalnya_siswa_ujians; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.soalnya_siswa_ujians (
@@ -345,10 +311,8 @@ CREATE TABLE public.soalnya_siswa_ujians (
 );
 
 
-ALTER TABLE public.soalnya_siswa_ujians OWNER TO afrizal;
-
 --
--- Name: soals; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: soals; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.soals (
@@ -364,10 +328,8 @@ CREATE TABLE public.soals (
 );
 
 
-ALTER TABLE public.soals OWNER TO afrizal;
-
 --
--- Name: ujians; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: ujians; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.ujians (
@@ -385,14 +347,13 @@ CREATE TABLE public.ujians (
     code_ujian character varying(20),
     status_ujian boolean DEFAULT false,
     status_penilaian_ujian boolean DEFAULT false,
-    status_jobs_selesai_ujian boolean DEFAULT false
+    status_jobs_selesai_ujian boolean DEFAULT false,
+    deleted_at timestamp(0) without time zone
 );
 
 
-ALTER TABLE public.ujians OWNER TO afrizal;
-
 --
--- Name: users; Type: TABLE; Schema: public; Owner: afrizal
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.users (
@@ -408,90 +369,81 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO afrizal;
-
 --
--- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: afrizal
+-- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
 
 
 --
--- Name: jobs id; Type: DEFAULT; Schema: public; Owner: afrizal
+-- Name: jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jobs ALTER COLUMN id SET DEFAULT nextval('public.jobs_id_seq'::regclass);
 
 
 --
--- Name: migrations id; Type: DEFAULT; Schema: public; Owner: afrizal
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
 
 
 --
--- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.personal_access_tokens_id_seq'::regclass);
 
 
 --
--- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
-1	2abc3a9b-9b83-4202-a371-7e0849bdfdac	database	default	{"uuid":"2abc3a9b-9b83-4202-a371-7e0849bdfdac","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	ErrorException: Undefined array key "kunci" in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:54\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(259): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(54): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(151): Illuminate\\Console\\Application->run()\n#35 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#36 {main}	2022-10-12 07:48:12
-2	468325bc-87ff-405f-a5dd-3ed09a8e4ada	database	default	{"uuid":"468325bc-87ff-405f-a5dd-3ed09a8e4ada","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	ErrorException: Undefined array key "bobot_soal" in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:58\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(259): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(58): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(151): Illuminate\\Console\\Application->run()\n#35 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#36 {main}	2022-10-12 16:00:06
-3	362b70be-5b02-496b-a504-385f6c580a8e	database	default	{"uuid":"362b70be-5b02-496b-a504-385f6c580a8e","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	ErrorException: Undefined array key "bobot_soal" in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:58\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(259): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(58): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(151): Illuminate\\Console\\Application->run()\n#35 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#36 {main}	2022-10-12 16:00:30
-4	8f317c40-3755-4027-8762-49d43c13534f	database	default	{"uuid":"8f317c40-3755-4027-8762-49d43c13534f","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	Error: Cannot use object of type stdClass as array in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:37\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(121): App\\Jobs\\penilaianUjianSiswa->findNilaiMax()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#35 {main}	2022-10-21 21:31:37
-5	cef27f63-2848-450c-bc1f-da51fffe518e	database	default	{"uuid":"cef27f63-2848-450c-bc1f-da51fffe518e","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	Error: Cannot use object of type stdClass as array in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:37\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(121): App\\Jobs\\penilaianUjianSiswa->findNilaiMax()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#35 {main}	2022-10-21 21:32:13
-6	85b0adbb-8531-4ea9-a5c2-be060c16de32	database	default	{"uuid":"85b0adbb-8531-4ea9-a5c2-be060c16de32","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	Error: Cannot use object of type stdClass as array in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:35\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(125): App\\Jobs\\penilaianUjianSiswa->findNilaiMax()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#35 {main}	2022-10-23 18:15:41
-7	e097d02e-7fab-4e29-b33f-f37366838bac	database	default	{"uuid":"e097d02e-7fab-4e29-b33f-f37366838bac","displayName":"App\\\\Jobs\\\\penilaianUjianSiswa","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\penilaianUjianSiswa","command":"O:28:\\"App\\\\Jobs\\\\penilaianUjianSiswa\\":1:{s:8:\\"\\u0000*\\u0000siswa\\";a:2:{s:8:\\"siswa_id\\";s:26:\\"01ge17pg494yx1s29qycjsjvxp\\";s:8:\\"ujian_id\\";s:26:\\"01ge17rk63nfzk87z1sd4fm5xd\\";}}"}}	Error: Cannot use object of type stdClass as array in /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php:40\nStack trace:\n#0 /home/afrizal/Documents/project/skripsi/project/cbt-backend/app/Jobs/penilaianUjianSiswa.php(135): App\\Jobs\\penilaianUjianSiswa->findNilaiMax()\n#1 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Jobs\\penilaianUjianSiswa->handle()\n#2 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#4 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#5 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#6 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(128): Illuminate\\Container\\Container->call()\n#7 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}()\n#8 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#9 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then()\n#10 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow()\n#11 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}()\n#12 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()\n#13 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then()\n#14 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware()\n#15 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call()\n#16 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(375): Illuminate\\Queue\\Worker->process()\n#18 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(173): Illuminate\\Queue\\Worker->runJob()\n#19 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(150): Illuminate\\Queue\\Worker->daemon()\n#20 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php(134): Illuminate\\Queue\\Console\\WorkCommand->runWorker()\n#21 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()\n#24 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()\n#25 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\\Container\\BoundMethod::call()\n#26 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(144): Illuminate\\Container\\Container->call()\n#27 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Command/Command.php(308): Illuminate\\Console\\Command->execute()\n#28 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Command.php(126): Symfony\\Component\\Console\\Command\\Command->run()\n#29 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(1002): Illuminate\\Console\\Command->run()\n#30 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand()\n#31 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()\n#32 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()\n#33 /home/afrizal/Documents/project/skripsi/project/cbt-backend/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()\n#34 /home/afrizal/Documents/project/skripsi/project/cbt-backend/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()\n#35 {main}	2022-10-23 18:25:40
 \.
 
 
 --
--- Data for Name: gurus; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: gurus; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.gurus (id, user_id, nama_guru, alamat_guru, jabatan_guru, notelp_guru, foto_guru) FROM stdin;
-01ge17pfyztmh5hpzypd983nv1	01ge17pfxz664ak7ckt1xb3chp	Ini admin	Jr. Jakarta No. 763, Tanjungbalai 91268, Riau	ini admin	0312 9731 2224	soon
-01ge17pg2y7hz5q82gxn8s1jaj	01ge17pg2tw7zktqpbq6xgegjp	Ini Guru	Gg. Ters. Jakarta No. 143, Tual 21687, Sultra	guru tetap	(+62) 26 2986 1158	soon
+01gneykbbtzaxtms60c82nkmej	01gneykbaxf4accarc496pdwkf	Ini admin	Dk. Baik No. 988, Magelang 98673, Babel	ini admin	0541 9620 2750	\N
+01gneykbeppdbnt0vx0tg0976z	01gneykbejt2wnhwm5h9kgex3h	Ini Guru	Jr. Samanhudi No. 202, Administrasi Jakarta Barat 45621, Sumsel	guru tetap	0699 9254 2513	\N
 \.
 
 
 --
--- Data for Name: ikut_ujians; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: ikut_ujians; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.ikut_ujians (id, siswa_id, ujian_id, status, sudah_ujian) FROM stdin;
-01ge17tvy7xq2dv1jr5ercxr34	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	t	t
+COPY public.ikut_ujians (id, siswa_id, ujian_id, status, sudah_ujian, deleted_at) FROM stdin;
+01gneykfemxakhsxqta65kmag4	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	t	t	\N
 \.
 
 
 --
--- Data for Name: jawaban_ujians; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: jawaban_ujians; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.jawaban_ujians (id, soal_id, siswa_id, ujian_id, jawaban_siswa, bobot_nilai, ragu_jawaban, selesai_ujian, rekomendasi_bobot_nilai, data_rekomendasi_nilai) FROM stdin;
-01gem3h0ftpd6e7xepaw8s5q0x	01g7335jr5y1bs76ge2te5efb3	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"01g7334vpy69cawhsytshg9ec4"	10	f	\N	10	\N
-01gem3gd63a1tmbjy389tvyq14	01g7362t3yn9qqn8mxy5xj24s8	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"gambaran keseluruhan dari paragraf"	10	t	\N	10	[{"text":"gambaran keseluruhan dari sebuah paragraf","similarity":1},{"text":"Ide pokok bacaan berfungsi untuk menjelaskan inti atau pokok pembahasan utama dari suatu paragraf","similarity":0.06054936462149973},{"text":"Ide pokok bacaan adalah ide yang menjadi pokok atau pikiran utama dalam mengembangkan paragraf suatu bacaan","similarity":0.05709245287522211}]
-01gem3gvtm1yh8kcckfcjq184q	01g7333r7d726ryh3twg5q38jm	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"01g7332yngcqkggn7w50wrs2dt"	10	f	\N	10	\N
-01gem3gxcrarcpb20s5y91xgdq	01g735pvg27nnd491j2bj1ctev	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"kalimat yang berisi ide pokok"	5	t	\N	5	[{"text":"Kalimat ini diartikan sebagai kalimat yang mengandung pokok pikiran paragraf","similarity":0.1786972569536653},{"text":"kalimat yang berisi ide pokok atau ide utama paragraf","similarity":0.5400123534870788},{"text":"kalimat jabaran yang isinya penjebaran dari pokok pikiran tersebut","similarity":0.3488810801322895},{"text":"Kalimat utama adalah kalimat yang berada di awal paragraf","similarity":0.08521932550520887}]
-01gem3gwj0zrc7aev6ym9jfvmk	01g732vctje9f7j72xj5m1hj7k	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"01g732sftj1w4bq9jd00xjc2xm"	10	f	\N	10	\N
-01gem3g6dt59y3pdfx1nzp8y7c	01g7330hg18mh4mt8x5zt9xqvp	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"01g732xhxshtk694ncpyffveh8"	10	f	\N	10	\N
-01gem3gxw6dmeh1zzhcp683e38	01g735txk7r0w6d14d30tqp1zb	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"Kalimat utama bisa berada di awal sebuah paragraf"	8	t	\N	8	[{"text":"Kalimat utama bisa berada di awal atau akhir sebuah paragraf.","similarity":0.7795729685029128},{"text":"Menemukan kalimat utama yang berisi gagasan pokok.","similarity":0.16475708389497723},{"text":"Membedakan kalimat utama dan penjelas.","similarity":0.21923440971541877},{"text":"Mengetahui jenis paragraf.","similarity":0.11946078283645291},{"text":"Membaca secara intensif isi paragraf, menentukan kalimat utama pada paragraf, menentukan unsur inti kalimat utama","similarity":0.1416064474587855}]
-01gem3g4gk54qwac0yb17101n8	01g735rzyztses2fm78rgxm6ec	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"membaca dengan seksama"	10	t	\N	10	[{"text":"Membaca judul teks","similarity":0.19905123822737344},{"text":"Membaca teks dengan cermat.","similarity":0.19905123822737344},{"text":"Menentukan ide pokok setiap paragra","similarity":0},{"text":"Menandai kata kunci","similarity":0},{"text":"membaca dengan seksama","similarity":1}]
-01gem3gv8m15t9sv1m5yrqk4pd	01g735zf1wn3n3a25y8vq8vmg3	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"gambaran keseluruhan dari paragraf"	10	t	\N	10	[{"text":"gambaran keseluruhan dari suatu paragraf","similarity":1},{"text":"ide\\/gagasan yang menjadi pokok pengembangan paragraf. Gagasan utama terdapat di kalimat utama dan setiap paragraf hanya memiliki satu ide pokok. Berdasarkan letaknya, kalimat utama bisa terdapat pada awal paragraf (paragraf deduktif), akhir paragraf (paragraf induktif), dan awal sekaligus akhir paragraf (Campuran).","similarity":0.021960622481149737},{"text":"Gagasan Utama atau ide pokok merupakan pernyataan yang menjadi inti pembahasan. Gagasan utama terdapat pada kalimat utama dalam setiap paragraf. Letaknya biasanya terdapat pada awal atau akhir paragraf","similarity":0.03620216168368331}]
-01gem3g5kvm7kas21fkrpyd4n6	01g735fxanwmxsydzh8yqbd6f3	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	"01g735cwq6v85ttd741et0pk3n"	10	f	\N	10	\N
+COPY public.jawaban_ujians (id, soal_id, siswa_id, ujian_id, jawaban_siswa, bobot_nilai, ragu_jawaban, selesai_ujian, rekomendasi_bobot_nilai, data_rekomendasi_nilai, deleted_at) FROM stdin;
+01gneykfg6mamvdkbhg0em2dc1	01g7335jr5y1bs76ge2te5efb3	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"01g7334vpy69cawhsytshg9ec4"	10	f	\N	10	\N	\N
+01gneykfg7mve9xah7m697zzh6	01g7362t3yn9qqn8mxy5xj24s8	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"gambaran keseluruhan dari paragraf"	10	t	\N	10	[{"text":"gambaran keseluruhan dari sebuah paragraf","similarity":1},{"text":"Ide pokok bacaan berfungsi untuk menjelaskan inti atau pokok pembahasan utama dari suatu paragraf","similarity":0.06054936462149973},{"text":"Ide pokok bacaan adalah ide yang menjadi pokok atau pikiran utama dalam mengembangkan paragraf suatu bacaan","similarity":0.05709245287522211}]	\N
+01gneykfg8nsvd4nac8yqw294a	01g735fxanwmxsydzh8yqbd6f3	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"01g735cwq6v85ttd741et0pk3n"	10	f	\N	10	\N	\N
+01gneykfg9nrap6rp5s7zcxj1n	01g735pvg27nnd491j2bj1ctev	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"kalimat yang berisi ide pokok"	5	t	\N	5	[{"text":"Kalimat ini diartikan sebagai kalimat yang mengandung pokok pikiran paragraf","similarity":0.1786972569536653},{"text":"kalimat yang berisi ide pokok atau ide utama paragraf","similarity":0.5400123534870788},{"text":"kalimat jabaran yang isinya penjebaran dari pokok pikiran tersebut","similarity":0.3488810801322895},{"text":"Kalimat utama adalah kalimat yang berada di awal paragraf","similarity":0.08521932550520887}]	\N
+01gneykfgantsjwsyqdkekfzx5	01g732vctje9f7j72xj5m1hj7k	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"01g732sftj1w4bq9jd00xjc2xm"	10	f	\N	10	\N	\N
+01gneykfgbys8gfkx53zbafsgf	01g7330hg18mh4mt8x5zt9xqvp	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"01g732xhxshtk694ncpyffveh8"	10	f	\N	10	\N	\N
+01gneykfgc1etvp4gn12jxr9r1	01g7333r7d726ryh3twg5q38jm	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"01g7332yngcqkggn7w50wrs2dt"	10	f	\N	10	\N	\N
+01gneykfgdbc55tp0snhqq745a	01g735rzyztses2fm78rgxm6ec	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"membaca dengan seksama"	10	t	\N	10	[{"text":"Membaca judul teks","similarity":0.19905123822737344},{"text":"Membaca teks dengan cermat.","similarity":0.19905123822737344},{"text":"Menentukan ide pokok setiap paragra","similarity":0},{"text":"Menandai kata kunci","similarity":0},{"text":"membaca dengan seksama","similarity":1}]	\N
+01gneykfgec431kb9ks77hg11h	01g735txk7r0w6d14d30tqp1zb	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"Kalimat utama bisa berada di awal sebuah paragraf"	8	t	\N	8	[{"text":"Kalimat utama bisa berada di awal atau akhir sebuah paragraf.","similarity":0.7795729685029128},{"text":"Menemukan kalimat utama yang berisi gagasan pokok.","similarity":0.16475708389497723},{"text":"Membedakan kalimat utama dan penjelas.","similarity":0.21923440971541877},{"text":"Mengetahui jenis paragraf.","similarity":0.11946078283645291},{"text":"Membaca secara intensif isi paragraf, menentukan kalimat utama pada paragraf, menentukan unsur inti kalimat utama","similarity":0.1416064474587855}]	\N
+01gneykfgfcbp61rcr8z39mr64	01g735zf1wn3n3a25y8vq8vmg3	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	"gambaran keseluruhan dari paragraf"	10	t	\N	10	[{"text":"gambaran keseluruhan dari suatu paragraf","similarity":1},{"text":"ide\\/gagasan yang menjadi pokok pengembangan paragraf. Gagasan utama terdapat di kalimat utama dan setiap paragraf hanya memiliki satu ide pokok. Berdasarkan letaknya, kalimat utama bisa terdapat pada awal paragraf (paragraf deduktif), akhir paragraf (paragraf induktif), dan awal sekaligus akhir paragraf (Campuran).","similarity":0.021960622481149737},{"text":"Gagasan Utama atau ide pokok merupakan pernyataan yang menjadi inti pembahasan. Gagasan utama terdapat pada kalimat utama dalam setiap paragraf. Letaknya biasanya terdapat pada awal atau akhir paragraf","similarity":0.03620216168368331}]	\N
 \.
 
 
 --
--- Data for Name: jobs; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: jobs; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.jobs (id, queue, payload, attempts, reserved_at, available_at, created_at) FROM stdin;
@@ -499,7 +451,7 @@ COPY public.jobs (id, queue, payload, attempts, reserved_at, available_at, creat
 
 
 --
--- Data for Name: kelas; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: kelas; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.kelas (id, kode_kelas, nama_kelas) FROM stdin;
@@ -510,7 +462,7 @@ COPY public.kelas (id, kode_kelas, nama_kelas) FROM stdin;
 
 
 --
--- Data for Name: list_jawabansoals; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: list_jawabansoals; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.list_jawabansoals (id, type_jawaban, text_jawaban, soal_id, "keyPilgan") FROM stdin;
@@ -539,61 +491,77 @@ COPY public.list_jawabansoals (id, type_jawaban, text_jawaban, soal_id, "keyPilg
 01g735txkd5dtcn02t8xjs6psf	essai	["Kalimat utama bisa berada di awal atau akhir sebuah paragraf.","Menemukan kalimat utama yang berisi gagasan pokok.","Membedakan kalimat utama dan penjelas.","Mengetahui jenis paragraf."]	01g735txk7r0w6d14d30tqp1zb	\N
 01g735rzz6axt8sbx89g8571rz	essai	["Membaca judul teks","Membaca teks dengan cermat.","Menentukan ide pokok setiap paragra","Menandai kata kunci"]	01g735rzyztses2fm78rgxm6ec	\N
 01g735pvg98wsmt3zn01wszc0h	essai	["Kalimat ini diartikan sebagai kalimat yang mengandung pokok pikiran paragraf","kalimat yang berisi ide pokok atau ide utama paragraf","kalimat jabaran yang isinya penjebaran dari pokok pikiran tersebut"]	01g735pvg27nnd491j2bj1ctev	\N
+01gkv0fkqzkry65qwcpxt160tz	essai	[]	01gkv0fkqkemm27ttbarj7kdad	\N
+01gkv0kcwy7facgf8vjqn2zcsa	essai	["Kedua"]	01gkv0kcwsxwdvawbrpvtp203p	\N
+01gkv0p1tt5hkrjzyqtpmrky2w	essai	["mengharumkan nama Indonesia di kancah internasional","menjaga keamanan wilayah negara dari ancaman luar","menggunakan bahasa Indonesia yang baik dan benar","melestarikan budaya Indonesia"]	01gkv0p1tmm2v1zm8n9e4v6kef	\N
+01gkv0t5e009v8c44j7rwmt5kp	essai	[]	01gkv0t5dw3s7fseb8v1fvym78	\N
+01gkv0v7vjx3janjdjaxvjrc22	essai	[]	01gkv0v7vbkadvn12yrvwjrgr7	\N
+01gkv0zhrwmwzcxvz78sb9xyqj	essai	[]	01gkv0zhrnt76z8hefyjah1kzb	\N
+01gkv117ayn6am09nsrvk2txj5	essai	[]	01gkv117arja8ssehtafg8bsss	\N
+01gkv15mq8h2164yrpzwterfkq	essai	["Hak di lingkungan keluarga"]	01gkv15mq37chj6qa4bdjyc64m	\N
+01gkv1xvzq3granhharjcm0nz1	essai	["Keadilan Sosial bagi Seluruh Rakyat Indonesia\\nMenghargai hasil karya teman bermain\\nSaling menghargai sesama teman di tempat bermain"]	01gkv1xvzgws4d10sms6k3rjsp	\N
+01gkv21gm9kmm47fnqtycg50ev	essai	[]	01gkv21gm2f57vh7sec94e2tns	\N
+01gkv230qqsd827rk42m16063a	essai	["Pasal 29 ayat 2 : hak kebebasan memeluk agama\\nPasal 31 ayat 1 : hak mendapatkan pendidikan\\nPasal 28E ayat (3) : kebebasan berserikat berkumpul dan mengeluarkan pendapat"]	01gkv230qj20cbfr1qgkf8n5mx	\N
+01gkv0rt35nphm8mmhg8e6f9a5	essai	["sumber hukum di Indonesia","dasar negara"]	01gkv0rt2wye680q0wy8qg4ywt	\N
+01gkv12zcye67rpb42txh9dray	essai	["Kewajiban masyarakat","Kewajiban"]	01gkv12zcq9f1nt3vvsjmnrpry	\N
+01gkv1zpfxq85sbp196pyy051f	essai	[]	01gkv1zpfn800nba2fk7wd8m2f	\N
+01gkv246j0210y63hk34v99rq1	essai	["27 ayat 1 : setiap warga negara wajib menjunjung hukum \\nPasal 30 ayat 1 : setiap warga negara wajib ikut dalam usaha pertahanan dan keamanan negara"]	01gkv246htbc9jpmxnh10hz9yn	\N
 \.
 
 
 --
--- Data for Name: mapels; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: mapels; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.mapels (id, kode_mapel, nama_mapel, kkm_mapel, jumlah_opsi_jawaban, jumlah_pilihan_ganda, jumlah_essai, status_mapel) FROM stdin;
-01g732g64qmcd0vs0x3x1aedrz	BHSINDOKLS6A	Bahasa Indonesia Kelas 6	60	4	5	5	t
+01g732g64qmcd0vs0x3x1aedrz	BHSINDOKLS6A	Bahasa Indonesia Kelas 6	60	4	5	5	\N
+01gkv0cavf1hhcyd8s0hg1552d	PPKN6	UH PPKN Kelas 6	70	0	0	15	t
 \.
 
 
 --
--- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
-1	2014_10_12_000000_create_users_table	1
-2	2014_10_12_100000_create_password_resets_table	1
-3	2019_08_19_000000_create_failed_jobs_table	1
-4	2019_12_14_000001_create_personal_access_tokens_table	1
-5	2022_07_03_215439_create_gurus_table	1
-6	2022_07_03_215439_create_ikut_ujians_table	1
-7	2022_07_03_215439_create_jawaban_ujians_table	1
-8	2022_07_03_215439_create_kelas_table	1
-9	2022_07_03_215439_create_list_jawabansoals_table	1
-10	2022_07_03_215439_create_mapels_table	1
-11	2022_07_03_215439_create_nilais_table	1
-12	2022_07_03_215439_create_siswas_table	1
-13	2022_07_03_215439_create_soals_table	1
-14	2022_07_03_215439_create_ujians_table	1
-15	2022_07_03_215440_add_foreign_keys_to_gurus_table	1
-16	2022_07_03_215440_add_foreign_keys_to_ikut_ujians_table	1
-17	2022_07_03_215440_add_foreign_keys_to_jawaban_ujians_table	1
-18	2022_07_03_215440_add_foreign_keys_to_list_jawabansoals_table	1
-19	2022_07_03_215440_add_foreign_keys_to_nilais_table	1
-20	2022_07_03_215440_add_foreign_keys_to_soals_table	1
-21	2022_07_03_215440_add_foreign_keys_to_ujians_table	1
-22	2022_07_13_175624_create_sessions_table	1
-23	2022_09_27_182306_create_soalnya_siswa_ujians_table	1
-24	2022_10_12_071831_create_jobs_table	2
+121	2014_10_12_000000_create_users_table	1
+122	2014_10_12_100000_create_password_resets_table	1
+123	2019_08_19_000000_create_failed_jobs_table	1
+124	2019_12_14_000001_create_personal_access_tokens_table	1
+125	2022_07_03_215439_create_gurus_table	1
+126	2022_07_03_215439_create_ikut_ujians_table	1
+127	2022_07_03_215439_create_jawaban_ujians_table	1
+128	2022_07_03_215439_create_kelas_table	1
+129	2022_07_03_215439_create_list_jawabansoals_table	1
+130	2022_07_03_215439_create_mapels_table	1
+131	2022_07_03_215439_create_nilais_table	1
+132	2022_07_03_215439_create_siswas_table	1
+133	2022_07_03_215439_create_soals_table	1
+134	2022_07_03_215439_create_ujians_table	1
+135	2022_07_03_215440_add_foreign_keys_to_gurus_table	1
+136	2022_07_03_215440_add_foreign_keys_to_ikut_ujians_table	1
+137	2022_07_03_215440_add_foreign_keys_to_jawaban_ujians_table	1
+138	2022_07_03_215440_add_foreign_keys_to_list_jawabansoals_table	1
+139	2022_07_03_215440_add_foreign_keys_to_nilais_table	1
+140	2022_07_03_215440_add_foreign_keys_to_soals_table	1
+141	2022_07_03_215440_add_foreign_keys_to_ujians_table	1
+142	2022_07_13_175624_create_sessions_table	1
+143	2022_09_27_182306_create_soalnya_siswa_ujians_table	1
+144	2022_10_12_071831_create_jobs_table	1
 \.
 
 
 --
--- Data for Name: nilais; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: nilais; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.nilais (id, ujian_id, siswa_id, id_nilai_ujian, nilai_ujian, status_penilaian) FROM stdin;
-01gga57md0mtm5mpngt0xjwn6m	01ge17rk63nfzk87z1sd4fm5xd	01ge17pg494yx1s29qycjsjvxp	\N	0	f
+COPY public.nilais (id, ujian_id, siswa_id, nilai_ujian, status_penilaian, deleted_at) FROM stdin;
+01gneykfepyr33bs4tzq33cbwf	01gneykfakhvdeyygknfwqkyvw	01gneykbg4rb51b4v1wdk6dp66	0	f	\N
 \.
 
 
 --
--- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.password_resets (email, token, created_at) FROM stdin;
@@ -601,7 +569,7 @@ COPY public.password_resets (email, token, created_at) FROM stdin;
 
 
 --
--- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, token, abilities, last_used_at, created_at, updated_at) FROM stdin;
@@ -609,45 +577,53 @@ COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, toke
 
 
 --
--- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.sessions (id, user_id, ip_address, user_agent, payload, last_activity) FROM stdin;
-sy3ahblTVs7Xz90SnR1oRRH65GQI2Rprat3tAfnL	01ge17pg2tw7zktqpbq6xgegjp	192.168.1.254	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36	YTo0OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoianZBVHBRdEJ0NHdJZk1RSXo0T1pjMmZ6ckcxMTk1T25iaTdLekdGdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xOTIuMTY4LjEuMjU0OjgwMDAvZ3VydS9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7czoyNjoiMDFnZTE3cGcydHc3emt0cXBicTZ4Z2VnanAiO30=	1666411615
-4VJGxk3rsQ1aXFvn32QHzRulCDFMmk3JCQiPdgfc	\N	192.168.1.254	Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36	YTozOntzOjY6Il90b2tlbiI7czo0MDoiQktpQkNYYUFyUmt2am81dDVoV1VKeFJSNWdBek1yYnZ2c2FRVjdlUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xOTIuMTY4LjEuMjU0OjgwMDAvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19	1666411638
 \.
 
 
 --
--- Data for Name: siswas; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: siswas; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.siswas (id, nisn, nama_siswa, tgl_lahir_siswa, alamat_siswa, password, kelas_id) FROM stdin;
-01ge17pg4eqcg2sg08czmr5d9z	1Q3Q0B2DY5	Kariman Pradipta	2017-05-31	Ds. Cemara No. 946, Surabaya 35532, Aceh	siswa	01g6qas85p236m57nr72ewcsdg
-01ge17pg4hxa2q5rtjemvga7tb	GPEZ0FE2LE	Muhammad Nalar Latupono S.Sos	2016-05-30	Ds. Reksoninten No. 220, Tebing Tinggi 22968, Kepri	siswa	01g4w9xx1ej4cfj6hawkvkbkg9
-01ge17pg4k6e98ktnxfpgk8def	XDBSEIZ6KL	Estiawan Wacana	2016-09-16	Dk. Yosodipuro No. 333, Binjai 70158, Sulut	siswa	01g4w9y4qqjrdkanc355f33gqy
-01ge17pg4pz6tn7q2rdc9b70ps	3ZACVEIH8X	Maimunah Suci Farida S.E.I	2016-05-30	Jr. Barasak No. 508, Tarakan 69967, Riau	siswa	01g4w9y4qqjrdkanc355f33gqy
-01ge17pg4sc2ab0fvdf4zdz65f	Y8I3R1Y1YH	Kartika Yuniar	2017-09-20	Ds. Fajar No. 434, Denpasar 42253, Jabar	siswa	01g4w9y4qqjrdkanc355f33gqy
-01ge17pg4vb4f8zf8hpy32cge8	IPG9S3IUY4	Galang Wahyudin	2016-10-30	Dk. Peta No. 418, Denpasar 25196, Jabar	siswa	01g6qas85p236m57nr72ewcsdg
-01ge17pg4y2q90zexwmnx6906t	RT7EA9XFXY	Viman Gunawan	2017-10-24	Jr. Bakaru No. 925, Mataram 39534, Sulut	siswa	01g4w9y4qqjrdkanc355f33gqy
-01ge17pg513pf0wcsg9zrewjd7	M5I1RQI7JO	Prabowo Manullang	2016-05-30	Gg. Surapati No. 968, Binjai 70863, NTT	siswa	01g4w9y4qqjrdkanc355f33gqy
-01ge17pg53yqp36y5vvx2xhbxh	OIZZXU1II7	Nadine Samiah Suartini	2017-12-30	Dk. Tentara Pelajar No. 80, Cimahi 87067, Lampung	siswa	01g4w9xx1ej4cfj6hawkvkbkg9
-01ge17pg566req9krjmh17tzkb	456	Aurora Hariyah	2017-05-22	Gg. Raden Saleh No. 403, Manado 58823, Jateng	456	01g6qas85p236m57nr72ewcsdg
-01ge17pg494yx1s29qycjsjvxp	123	rizal	2016-11-01	Psr. Ciumbuleuit No. 632, Banjarmasin 59563, Sulteng	123	01g6qas85p236m57nr72ewcsdg
+01gneykbg4rb51b4v1wdk6dp66	123	rizal	2017-06-19	Ki. Sadang Serang No. 77, Tasikmalaya 34446, Sulbar	123	01g6qas85p236m57nr72ewcsdg
+01gneykbg78wt2xnfzy2ac66bz	ZVNGENCWBW	Ana Oliva Wastuti S.I.Kom	2016-09-20	Psr. Dahlia No. 983, Tangerang Selatan 62644, Sulut	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbga6qcwz6yjvjgt9kdk	9OJSIJHAW7	Upik Yahya Hutagalung M.TI.	2016-12-15	Ds. Baja Raya No. 561, Sabang 63926, Bali	123	01g4w9xx1ej4cfj6hawkvkbkg9
+01gneykbgc9fcja95hg08q2kq9	XVASFZMDE9	Rika Rahmi Rahimah	2017-08-31	Jr. HOS. Cjokroaminoto (Pasirkaliki) No. 694, Solok 13728, Papua	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbgfh5vck94z3qntvgv4	OV709EQEN0	Dimaz Garda Saefullah S.Pd	2016-11-05	Ds. Qrisdoren No. 445, Bitung 42392, Bali	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbgj1db01mk7erbg2fq4	TG2HAZJTQV	Lanang Saptono	2017-02-18	Gg. Gading No. 581, Tebing Tinggi 23727, Kalsel	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbgpf1n5ezmrky5rjwhq	TWYN8638BL	Oni Fujiati	2016-09-15	Ds. Lumban Tobing No. 398, Administrasi Jakarta Timur 96751, Jatim	123	01g4w9xx1ej4cfj6hawkvkbkg9
+01gneykbgs4vt6y9s4c9hs2xgv	JSE65V3H6B	Indah Bella Hartati M.Ak	2017-08-11	Kpg. Dago No. 960, Tanjung Pinang 46728, Sumut	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbgwkggd6w06f5efxnbb	46ZO1MSMJV	Betania Andriani	2017-10-22	Jln. Imam No. 793, Tanjungbalai 28441, Sumbar	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbgz72y0fepgxj95zn64	D6K0QPGZBM	Waluyo Dongoran	2017-12-16	Ds. Thamrin No. 292, Sibolga 63238, Jambi	123	01g4w9y4qqjrdkanc355f33gqy
+01gneykbh2sqkagpsd6gv4cw2g	YSJJJGO61I	Hardi Narpati	2016-03-28	Dk. Bakhita No. 263, Payakumbuh 71396, NTT	123	01g4w9xx1ej4cfj6hawkvkbkg9
 \.
 
 
 --
--- Data for Name: soalnya_siswa_ujians; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: soalnya_siswa_ujians; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.soalnya_siswa_ujians (id, siswa_id, ujian_id, listsoal, created_at, updated_at) FROM stdin;
-01ge1c3d3emp4t2x6054g7xmpc	01ge17pg494yx1s29qycjsjvxp	01ge17rk63nfzk87z1sd4fm5xd	["01g7330hg18mh4mt8x5zt9xqvp","01g732vctje9f7j72xj5m1hj7k","01g735zf1wn3n3a25y8vq8vmg3","01g735pvg27nnd491j2bj1ctev","01g735fxanwmxsydzh8yqbd6f3","01g735rzyztses2fm78rgxm6ec","01g7362t3yn9qqn8mxy5xj24s8","01g735txk7r0w6d14d30tqp1zb","01g7333r7d726ryh3twg5q38jm","01g7335jr5y1bs76ge2te5efb3"]	2022-09-28 13:21:16	2022-10-26 19:45:48
+01gneykfcfwge3r1j1qv59g6b5	01gneykbg78wt2xnfzy2ac66bz	01gneykfahwccktdwn99vqhhpm	["01g735zf1wn3n3a25y8vq8vmg3","01g7335jr5y1bs76ge2te5efb3","01g7330hg18mh4mt8x5zt9xqvp","01g7362t3yn9qqn8mxy5xj24s8","01g735rzyztses2fm78rgxm6ec","01g7333r7d726ryh3twg5q38jm","01g735txk7r0w6d14d30tqp1zb","01g735fxanwmxsydzh8yqbd6f3","01g732vctje9f7j72xj5m1hj7k","01g735pvg27nnd491j2bj1ctev"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfctj1ccfznc9sc43wm4	01gneykbgc9fcja95hg08q2kq9	01gneykfahwccktdwn99vqhhpm	["01g735pvg27nnd491j2bj1ctev","01g735txk7r0w6d14d30tqp1zb","01g7362t3yn9qqn8mxy5xj24s8","01g732vctje9f7j72xj5m1hj7k","01g735zf1wn3n3a25y8vq8vmg3","01g7330hg18mh4mt8x5zt9xqvp","01g735fxanwmxsydzh8yqbd6f3","01g7333r7d726ryh3twg5q38jm","01g7335jr5y1bs76ge2te5efb3","01g735rzyztses2fm78rgxm6ec"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfd5b07k9wj4rxptsf8y	01gneykbgfh5vck94z3qntvgv4	01gneykfahwccktdwn99vqhhpm	["01g7330hg18mh4mt8x5zt9xqvp","01g732vctje9f7j72xj5m1hj7k","01g735zf1wn3n3a25y8vq8vmg3","01g735fxanwmxsydzh8yqbd6f3","01g7333r7d726ryh3twg5q38jm","01g735rzyztses2fm78rgxm6ec","01g7335jr5y1bs76ge2te5efb3","01g735pvg27nnd491j2bj1ctev","01g735txk7r0w6d14d30tqp1zb","01g7362t3yn9qqn8mxy5xj24s8"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfdgyft94p6a39c171cp	01gneykbgj1db01mk7erbg2fq4	01gneykfahwccktdwn99vqhhpm	["01g7362t3yn9qqn8mxy5xj24s8","01g735zf1wn3n3a25y8vq8vmg3","01g7335jr5y1bs76ge2te5efb3","01g735rzyztses2fm78rgxm6ec","01g735fxanwmxsydzh8yqbd6f3","01g735pvg27nnd491j2bj1ctev","01g7330hg18mh4mt8x5zt9xqvp","01g7333r7d726ryh3twg5q38jm","01g732vctje9f7j72xj5m1hj7k","01g735txk7r0w6d14d30tqp1zb"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfdv3wey0z3wf0xcs53d	01gneykbgs4vt6y9s4c9hs2xgv	01gneykfahwccktdwn99vqhhpm	["01g735pvg27nnd491j2bj1ctev","01g7362t3yn9qqn8mxy5xj24s8","01g735zf1wn3n3a25y8vq8vmg3","01g735rzyztses2fm78rgxm6ec","01g735fxanwmxsydzh8yqbd6f3","01g7333r7d726ryh3twg5q38jm","01g732vctje9f7j72xj5m1hj7k","01g7335jr5y1bs76ge2te5efb3","01g7330hg18mh4mt8x5zt9xqvp","01g735txk7r0w6d14d30tqp1zb"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfe6zfq53zcvrskc59yb	01gneykbgwkggd6w06f5efxnbb	01gneykfahwccktdwn99vqhhpm	["01g7362t3yn9qqn8mxy5xj24s8","01g732vctje9f7j72xj5m1hj7k","01g7335jr5y1bs76ge2te5efb3","01g735txk7r0w6d14d30tqp1zb","01g735pvg27nnd491j2bj1ctev","01g735zf1wn3n3a25y8vq8vmg3","01g735fxanwmxsydzh8yqbd6f3","01g7333r7d726ryh3twg5q38jm","01g735rzyztses2fm78rgxm6ec","01g7330hg18mh4mt8x5zt9xqvp"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfehr0tqgd722ff0v3xe	01gneykbgz72y0fepgxj95zn64	01gneykfahwccktdwn99vqhhpm	["01g7330hg18mh4mt8x5zt9xqvp","01g735rzyztses2fm78rgxm6ec","01g735zf1wn3n3a25y8vq8vmg3","01g732vctje9f7j72xj5m1hj7k","01g7362t3yn9qqn8mxy5xj24s8","01g735pvg27nnd491j2bj1ctev","01g7333r7d726ryh3twg5q38jm","01g735txk7r0w6d14d30tqp1zb","01g735fxanwmxsydzh8yqbd6f3","01g7335jr5y1bs76ge2te5efb3"]	2022-12-29 19:44:37	2022-12-29 19:44:37
+01gneykfbbc6p70e016v354wgz	01gneykbga6qcwz6yjvjgt9kdk	01gneykfac2w9rpgmazhbc0exq	["01g7330hg18mh4mt8x5zt9xqvp","01g7362t3yn9qqn8mxy5xj24s8","01g735rzyztses2fm78rgxm6ec","01g735fxanwmxsydzh8yqbd6f3","01g7335jr5y1bs76ge2te5efb3","01g735zf1wn3n3a25y8vq8vmg3","01g7333r7d726ryh3twg5q38jm","01g735txk7r0w6d14d30tqp1zb","01g732vctje9f7j72xj5m1hj7k","01g735pvg27nnd491j2bj1ctev"]	2022-12-29 19:44:37	2022-12-29 19:59:10
+01gneykfbr39cbhmybmmsdnxk4	01gneykbgpf1n5ezmrky5rjwhq	01gneykfac2w9rpgmazhbc0exq	["01g7330hg18mh4mt8x5zt9xqvp","01g732vctje9f7j72xj5m1hj7k","01g7362t3yn9qqn8mxy5xj24s8","01g735rzyztses2fm78rgxm6ec","01g735fxanwmxsydzh8yqbd6f3","01g735pvg27nnd491j2bj1ctev","01g735zf1wn3n3a25y8vq8vmg3","01g7333r7d726ryh3twg5q38jm","01g735txk7r0w6d14d30tqp1zb","01g7335jr5y1bs76ge2te5efb3"]	2022-12-29 19:44:37	2022-12-29 19:59:10
+01gneykfc3xyeqytpc8yc1fv3h	01gneykbh2sqkagpsd6gv4cw2g	01gneykfac2w9rpgmazhbc0exq	["01g7330hg18mh4mt8x5zt9xqvp","01g735zf1wn3n3a25y8vq8vmg3","01g7362t3yn9qqn8mxy5xj24s8","01g735rzyztses2fm78rgxm6ec","01g735fxanwmxsydzh8yqbd6f3","01g7335jr5y1bs76ge2te5efb3","01g735pvg27nnd491j2bj1ctev","01g732vctje9f7j72xj5m1hj7k","01g735txk7r0w6d14d30tqp1zb","01g7333r7d726ryh3twg5q38jm"]	2022-12-29 19:44:37	2022-12-29 19:59:10
+01gneykfewet8ddd6d0h3nv1d0	01gneykbg4rb51b4v1wdk6dp66	01gneykfakhvdeyygknfwqkyvw	["01g7362t3yn9qqn8mxy5xj24s8","01g7330hg18mh4mt8x5zt9xqvp","01g732vctje9f7j72xj5m1hj7k","01g7335jr5y1bs76ge2te5efb3","01g735zf1wn3n3a25y8vq8vmg3","01g735pvg27nnd491j2bj1ctev","01g735fxanwmxsydzh8yqbd6f3","01g7333r7d726ryh3twg5q38jm","01g735rzyztses2fm78rgxm6ec","01g735txk7r0w6d14d30tqp1zb"]	2022-12-29 19:44:37	2023-05-14 12:32:00
 \.
 
 
 --
--- Data for Name: soals; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: soals; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.soals (id, mapel_id, no_soal, soal, opsi_jawaban, kunci, media_soal, type_soal, bobot_soal) FROM stdin;
@@ -661,58 +637,75 @@ COPY public.soals (id, mapel_id, no_soal, soal, opsi_jawaban, kunci, media_soal,
 01g7333r7d726ryh3twg5q38jm	01g732g64qmcd0vs0x3x1aedrz	\N	<p>Orang tidak seharusnya membuang sampah ke sungai agar tidak banjir.</p>\n\n<p>Kalimat itu adalah kalimat.</p>\n	\N	01g7332yngcqkggn7w50wrs2dt	\N	pilgan	10
 01g7330hg18mh4mt8x5zt9xqvp	01g732g64qmcd0vs0x3x1aedrz	\N	<p>Dian: &ldquo;Kamu benar-benar layak menjadi juara<br />\nanggi: &ldquo;Ini berkat doa-doamu<br />\nDian : &ldquo;Selamat, Yang Mulia<br />\nAnggi: &ldquo;Terima kasih, Dian&rdquo;</p>\n\n<p>&nbsp;</p>\n\n<p>Kesepakatan yang baik untuk percakapan adalah.</p>\n	\N	01g732xhxshtk694ncpyffveh8	\N	pilgan	10
 01g732vctje9f7j72xj5m1hj7k	01g732g64qmcd0vs0x3x1aedrz	\N	<p>Komputer mengambil banyak tekanan di tempat kerja. Komputer dapat membantu orang memasukkan, menyimpan, atau menganalisis data. Ini tidak hanya membantu pekerjaan, tetapi juga dengan hiburan di komunitas. Saat bosan, orang dapat mendengarkan musik dan memainkan game dari komputer.</p>\n\n<p>Ringkasan isi paragraf di atas adalah.</p>\n	\N	01g732sftj1w4bq9jd00xjc2xm	\N	pilgan	10
+01gkv0fkqkemm27ttbarj7kdad	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Kata Pancasila di ambil dari kitab Sutasoma yang merupakan karangan dari</p>\n	\N	Empu Tantular	\N	essai	5
+01gkv0kcwsxwdvawbrpvtp203p	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Saling menasehati apabila ada teman yang menyontek atau tidak melaksanakan tugas piket merupakan salah satu contoh penerapan sila Pancasila, yaitu sila</p>\n	\N	Sila kedua	\N	essai	5
+01gkv0p1tmm2v1zm8n9e4v6kef	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Cinta tanah air dan bangsa dapat diwujudkan dengan</p>\n	\N	Membeli produk dalam negeri	\N	essai	5
+01gkv0t5dw3s7fseb8v1fvym78	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Sikap berani dan tidak mudah menyerah serta rela berkorban demi bangsa dan negara disebut dengan&nbsp;</p>\n	\N	Patriotisme	\N	essai	5
+01gkv0v7vbkadvn12yrvwjrgr7	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Segala sesuatu yang mutlak menjadi milik seseorang dan penggunaanya tergantung pada orang yang bersangkutan disebut&nbsp;</p>\n	\N	Hak	\N	essai	5
+01gkv0zhrnt76z8hefyjah1kzb	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Segala sesuatu yang harus dilakukan atau dilaksanakan oleh setiap individu dengan penuh rasa tanggung jawab disebut&nbsp;</p>\n	\N	Kewajiban	\N	essai	5
+01gkv117arja8ssehtafg8bsss	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Suatu perbuatan sebagai wujud kesadaran atas kewajiban yang dimilikinya disebut</p>\n	\N	Tanggung Jawab	\N	essai	5
+01gkv12zcq9f1nt3vvsjmnrpry	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Dalam kehidupan bermasyarakat, tentu terdapat aturan dan norma yang harus dilakukan dan dipatuhi. Mematuhi aturan dan norma merupakan</p>\n	\N	Kewajiban masyarakat Indonesia	\N	essai	5
+01gkv15mq37chj6qa4bdjyc64m	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Mendapatkan perlindungan dan rasa aman dalam keluarga merupakan&nbsp;</p>\n	\N	Hak di lingkungan rumah atau keluarga	\N	essai	5
+01gkv1xvzgws4d10sms6k3rjsp	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Sebutkan bunyi dan nilai yang terkandung dalam sila ke-5 Pancasila serta 3 contoh penerapan nilai Pancasila sila ke-5 dalam kehidupan sehari-hari!</p>\n	\N	Keadilan Sosial bagi Seluruh Rakyat Indonesia\nBersikap adil terhadap semua teman di tempat bermain.\nMemberikan bantuan jika ada teman bermain yang kesusahan\nMenghindari sikap sombong di tempat bermain	\N	essai	10
+01gkv21gm2f57vh7sec94e2tns	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Sebutkan 5 nilai juang dalam proses perumusan Pancasila</p>\n	\N	Nilai persatuan dan kesatuan\nnilai keikhlasan\nBerani menegakkan kebenaran dan keadilan\nToleran terhadap perbedaan\nNilai musyawarah mufakat	\N	essai	10
+01gkv246htbc9jpmxnh10hz9yn	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Sebagai warga negara, kita memiliki kewajiban yang harus dilaksanakan. Sebutkan 3 contoh kewajiban warga negara yang terdapat dalam UUD 1945 beserta pasalnya!</p>\n	\N	Pasal 23A ayat  : membayar pajak\nPasal 27 ayat (3) : ikut serta dalam upaya pembelaan negara\nPasal 31 ayat (2) : mengikuti pendidikan dasar 	\N	essai	10
+01gkv230qj20cbfr1qgkf8n5mx	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Hak dan kewajiban harus dilaksanakan secara seimbang. Sebutkan 3 contoh hak warga negara yang terdapat dalam UUD 1945 beserta pasalnya!</p>\n	\N	Pasal 27 ayat 1 : mendapat perlindungan hukum\nPasal 27 ayat 3 : ikut serta dalam upaya bela negara\nPasal 28E ayat 3 : kebebasan berserikat berkumpul dan mengeluarkan pendapat	\N	essai	10
+01gkv0rt2wye680q0wy8qg4ywt	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Salah satu fungsi Pancasila bagi bangsa Indonesia adalah</p>\n	\N	pedoman hidup bangsa	\N	essai	5
+01gkv1zpfn800nba2fk7wd8m2f	01gkv0cavf1hhcyd8s0hg1552d	\N	<p>Sebutkan usulan rumusan Pancasila yang di usulkan oleh Muhammad yamin secara lisan dalam sidang BPUPKI tanggal 29 Mei 1945</p>\n	\N	Peri Kebangsaan\nPeri Kemanusiaan\nPeri Ketuhanan\nPeri Kerakyatan\nKesejahteraan Sosial atau Rakyat	\N	essai	10
 \.
 
 
 --
--- Data for Name: ujians; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: ujians; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.ujians (id, mapel_id, guru_id, kelas_id, judul, jenis_ujian, tgl_mulai_ujian, waktu_mulai_ujian, tgl_selesai_ujian, waktu_selesai_ujian, keterlambatan_ujian, code_ujian, status_ujian, status_penilaian_ujian, status_jobs_selesai_ujian) FROM stdin;
-01ge17rk63nfzk87z1sd4fm5xd	01g732g64qmcd0vs0x3x1aedrz	01ge17pg2y7hz5q82gxn8s1jaj	01g6qas85p236m57nr72ewcsdg	UH Bahasa Indonesia Kelas 6C	UH	2022-10-21	04:00:00	2022-10-26	23:59:00	1	123	t	f	f
+COPY public.ujians (id, mapel_id, guru_id, kelas_id, judul, jenis_ujian, tgl_mulai_ujian, waktu_mulai_ujian, tgl_selesai_ujian, waktu_selesai_ujian, keterlambatan_ujian, code_ujian, status_ujian, status_penilaian_ujian, status_jobs_selesai_ujian, deleted_at) FROM stdin;
+01gneykfahwccktdwn99vqhhpm	01g732g64qmcd0vs0x3x1aedrz	01gneykbeppdbnt0vx0tg0976z	01g4w9y4qqjrdkanc355f33gqy	UH Bahasa Indonesia Kelas 6 B	UH	2022-10-21	04:00:00	2022-12-26	23:59:00	1	123	f	f	f	2022-12-29 19:54:24
+01gneykfac2w9rpgmazhbc0exq	01g732g64qmcd0vs0x3x1aedrz	01gneykbeppdbnt0vx0tg0976z	01g4w9xx1ej4cfj6hawkvkbkg9	UH Bahasa Indonesia Kelas 6 A	UH	2022-10-21	04:00:00	2022-12-26	23:59:00	1	123	f	f	f	2022-12-29 20:00:42
+01gneykfakhvdeyygknfwqkyvw	01g732g64qmcd0vs0x3x1aedrz	01gneykbeppdbnt0vx0tg0976z	01g6qas85p236m57nr72ewcsdg	UH Bahasa Indonesia Kelas 6 C	UH	2022-10-21	04:00:00	2022-12-26	23:59:00	1	123	f	f	f	\N
 \.
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: afrizal
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.users (id, email, username, email_verified_at, password, level, remember_token, created_at, updated_at) FROM stdin;
-01ge17pfxz664ak7ckt1xb3chp	me@afrizalmy.com	admin	\N	$2y$10$sm3exkLpqhaVgJB8.P3ZxO8MIYZ9/AS1piNVCeh441LST9XL6bi3a	admin	\N	2022-09-28 12:04:18	2022-09-28 12:04:18
-01ge17pg2tw7zktqpbq6xgegjp	guru@afrizalmy.com	guru	\N	$2y$10$oxlUoeT/Fu2rUmhN.L6ajuvxc20Ch1iLV1UdgxEnJ2torEEn/R2fy	guru	\N	2022-09-28 12:04:19	2022-09-28 12:04:19
+01gneykbaxf4accarc496pdwkf	me@afrizalmy.com	admin	\N	$2y$10$/rrxNBkOixd94BDTbxUakeRXvEG5xLu1xUcS0c.qG7OqDuknoMJ9y	admin	\N	2022-12-29 19:44:33	2022-12-29 19:44:33
+01gneykbejt2wnhwm5h9kgex3h	guru@afrizalmy.com	guru	\N	$2y$10$O9GSsYlD97WlV3cs23TbHuJD/JYvKt.2W6emP.uKv9Xv99V3H9Re6	guru	\N	2022-12-29 19:44:33	2022-12-29 19:44:33
 \.
 
 
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: afrizal
+-- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.failed_jobs_id_seq', 7, true);
-
-
---
--- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: afrizal
---
-
-SELECT pg_catalog.setval('public.jobs_id_seq', 153, true);
+SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
 
 
 --
--- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: afrizal
+-- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 24, true);
+SELECT pg_catalog.setval('public.jobs_id_seq', 28, true);
 
 
 --
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: afrizal
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 144, true);
+
+
+--
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
 
 
 --
--- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.failed_jobs
@@ -720,7 +713,7 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.failed_jobs
@@ -728,23 +721,23 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- Name: gurus guru_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: gurus gurus_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.gurus
-    ADD CONSTRAINT guru_pk UNIQUE (id);
+    ADD CONSTRAINT gurus_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ikut_ujians ikut_ujian_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ikut_ujians ikut_ujians_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ikut_ujians
-    ADD CONSTRAINT ikut_ujian_pk UNIQUE (id);
+    ADD CONSTRAINT ikut_ujians_pkey PRIMARY KEY (id);
 
 
 --
--- Name: jawaban_ujians jawaban_ujian_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians jawaban_ujian_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jawaban_ujians
@@ -752,7 +745,7 @@ ALTER TABLE ONLY public.jawaban_ujians
 
 
 --
--- Name: jawaban_ujians jawaban_ujians_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians jawaban_ujians_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jawaban_ujians
@@ -760,7 +753,7 @@ ALTER TABLE ONLY public.jawaban_ujians
 
 
 --
--- Name: jobs jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jobs jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jobs
@@ -768,7 +761,7 @@ ALTER TABLE ONLY public.jobs
 
 
 --
--- Name: kelas kelas_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: kelas kelas_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.kelas
@@ -776,7 +769,7 @@ ALTER TABLE ONLY public.kelas
 
 
 --
--- Name: kelas kelas_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: kelas kelas_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.kelas
@@ -784,7 +777,7 @@ ALTER TABLE ONLY public.kelas
 
 
 --
--- Name: list_jawabansoals list_jawabansoals_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: list_jawabansoals list_jawabansoals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.list_jawabansoals
@@ -792,7 +785,7 @@ ALTER TABLE ONLY public.list_jawabansoals
 
 
 --
--- Name: mapels mapel_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: mapels mapel_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.mapels
@@ -800,7 +793,7 @@ ALTER TABLE ONLY public.mapels
 
 
 --
--- Name: mapels mapels_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: mapels mapels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.mapels
@@ -808,7 +801,7 @@ ALTER TABLE ONLY public.mapels
 
 
 --
--- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.migrations
@@ -816,7 +809,7 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- Name: nilais nilais_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: nilais nilais_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.nilais
@@ -824,7 +817,7 @@ ALTER TABLE ONLY public.nilais
 
 
 --
--- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.personal_access_tokens
@@ -832,7 +825,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.personal_access_tokens
@@ -840,7 +833,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sessions
@@ -848,39 +841,39 @@ ALTER TABLE ONLY public.sessions
 
 
 --
--- Name: siswas siswa_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: siswas siswas_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.siswas
-    ADD CONSTRAINT siswa_pk UNIQUE (id);
+    ADD CONSTRAINT siswas_pkey PRIMARY KEY (id);
 
 
 --
--- Name: soals soal_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
---
-
-ALTER TABLE ONLY public.soals
-    ADD CONSTRAINT soal_pk UNIQUE (id);
-
-
---
--- Name: soalnya_siswa_ujians soalnya_siswa_ujians_id_unique; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: soalnya_siswa_ujians soalnya_siswa_ujians_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soalnya_siswa_ujians
-    ADD CONSTRAINT soalnya_siswa_ujians_id_unique UNIQUE (id);
+    ADD CONSTRAINT soalnya_siswa_ujians_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ujians ujian_pk; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: soals soals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.soals
+    ADD CONSTRAINT soals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ujians ujians_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ujians
-    ADD CONSTRAINT ujian_pk UNIQUE (id);
+    ADD CONSTRAINT ujians_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -888,7 +881,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -896,7 +889,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_username_unique; Type: CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: users users_username_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -904,126 +897,126 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: akun_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: akun_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX akun_fk ON public.gurus USING btree (user_id);
 
 
 --
--- Name: hasil_siswa_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: hasil_siswa_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX hasil_siswa_fk ON public.nilais USING btree (siswa_id);
 
 
 --
--- Name: jawaban_dari_ujian_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: jawaban_dari_ujian_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX jawaban_dari_ujian_fk ON public.jawaban_ujians USING btree (ujian_id);
 
 
 --
--- Name: jawaban_siswa_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: jawaban_siswa_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX jawaban_siswa_fk ON public.jawaban_ujians USING btree (siswa_id);
 
 
 --
--- Name: jobs_queue_index; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: jobs_queue_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX jobs_queue_index ON public.jobs USING btree (queue);
 
 
 --
--- Name: membuat_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: membuat_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX membuat_fk ON public.ujians USING btree (guru_id);
 
 
 --
--- Name: memiliki_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: memiliki_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX memiliki_fk ON public.ujians USING btree (kelas_id);
 
 
 --
--- Name: memiliki_jawaban_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: memiliki_jawaban_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX memiliki_jawaban_fk ON public.jawaban_ujians USING btree (soal_id);
 
 
 --
--- Name: memiliki_mapel_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: memiliki_mapel_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX memiliki_mapel_fk ON public.ujians USING btree (mapel_id);
 
 
 --
--- Name: memiliki_soal_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: memiliki_soal_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX memiliki_soal_fk ON public.soals USING btree (mapel_id);
 
 
 --
--- Name: nilai_ujian_siswa_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: nilai_ujian_siswa_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX nilai_ujian_siswa_fk ON public.nilais USING btree (ujian_id);
 
 
 --
--- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX password_resets_email_index ON public.password_resets USING btree (email);
 
 
 --
--- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.personal_access_tokens USING btree (tokenable_type, tokenable_id);
 
 
 --
--- Name: sessions_last_activity_index; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: sessions_last_activity_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_activity);
 
 
 --
--- Name: sessions_user_id_index; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: sessions_user_id_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
 
 
 --
--- Name: siswa_ikut_ujian_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: siswa_ikut_ujian_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX siswa_ikut_ujian_fk ON public.ikut_ujians USING btree (siswa_id);
 
 
 --
--- Name: status_ujian_siswa_fk; Type: INDEX; Schema: public; Owner: afrizal
+-- Name: status_ujian_siswa_fk; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX status_ujian_siswa_fk ON public.ikut_ujians USING btree (ujian_id);
 
 
 --
--- Name: gurus fk_gurus_akun_users; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: gurus fk_gurus_akun_users; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.gurus
@@ -1031,7 +1024,7 @@ ALTER TABLE ONLY public.gurus
 
 
 --
--- Name: ikut_ujians fk_ikut_uji_siswa_iku_siswas; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ikut_ujians fk_ikut_uji_siswa_iku_siswas; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ikut_ujians
@@ -1039,7 +1032,7 @@ ALTER TABLE ONLY public.ikut_ujians
 
 
 --
--- Name: ikut_ujians fk_ikut_uji_status_uj_ujians; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ikut_ujians fk_ikut_uji_status_uj_ujians; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ikut_ujians
@@ -1047,7 +1040,7 @@ ALTER TABLE ONLY public.ikut_ujians
 
 
 --
--- Name: jawaban_ujians fk_jawaban__jawaban_d_ujians; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians fk_jawaban__jawaban_d_ujians; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jawaban_ujians
@@ -1055,7 +1048,7 @@ ALTER TABLE ONLY public.jawaban_ujians
 
 
 --
--- Name: jawaban_ujians fk_jawaban__jawaban_s_siswas; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians fk_jawaban__jawaban_s_siswas; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jawaban_ujians
@@ -1063,7 +1056,7 @@ ALTER TABLE ONLY public.jawaban_ujians
 
 
 --
--- Name: jawaban_ujians fk_jawaban__memiliki__soals; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: jawaban_ujians fk_jawaban__memiliki__soals; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.jawaban_ujians
@@ -1071,7 +1064,7 @@ ALTER TABLE ONLY public.jawaban_ujians
 
 
 --
--- Name: list_jawabansoals fk_list_jaw_reference_soals; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: list_jawabansoals fk_list_jaw_reference_soals; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.list_jawabansoals
@@ -1079,7 +1072,7 @@ ALTER TABLE ONLY public.list_jawabansoals
 
 
 --
--- Name: nilais fk_nilais_hasil_sis_siswas; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: nilais fk_nilais_hasil_sis_siswas; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.nilais
@@ -1087,7 +1080,7 @@ ALTER TABLE ONLY public.nilais
 
 
 --
--- Name: nilais fk_nilais_nilai_uji_ujians; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: nilais fk_nilais_nilai_uji_ujians; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.nilais
@@ -1095,7 +1088,7 @@ ALTER TABLE ONLY public.nilais
 
 
 --
--- Name: soals fk_soals_memiliki__mapels; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: soals fk_soals_memiliki__mapels; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soals
@@ -1103,7 +1096,7 @@ ALTER TABLE ONLY public.soals
 
 
 --
--- Name: ujians fk_ujians_membuat_gurus; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ujians fk_ujians_membuat_gurus; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ujians
@@ -1111,7 +1104,7 @@ ALTER TABLE ONLY public.ujians
 
 
 --
--- Name: ujians fk_ujians_memiliki__mapels; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ujians fk_ujians_memiliki__mapels; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ujians
@@ -1119,7 +1112,7 @@ ALTER TABLE ONLY public.ujians
 
 
 --
--- Name: ujians fk_ujians_memiliki_kelas; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: ujians fk_ujians_memiliki_kelas; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ujians
@@ -1127,7 +1120,7 @@ ALTER TABLE ONLY public.ujians
 
 
 --
--- Name: soalnya_siswa_ujians soalnya_siswa_ujians_siswa_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: soalnya_siswa_ujians soalnya_siswa_ujians_siswa_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soalnya_siswa_ujians
@@ -1135,7 +1128,7 @@ ALTER TABLE ONLY public.soalnya_siswa_ujians
 
 
 --
--- Name: soalnya_siswa_ujians soalnya_siswa_ujians_ujian_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: afrizal
+-- Name: soalnya_siswa_ujians soalnya_siswa_ujians_ujian_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soalnya_siswa_ujians
